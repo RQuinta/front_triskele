@@ -1,0 +1,145 @@
+<!-- TODO LIST ITEMS -->
+<div>
+  <div id="card-list">
+    <ul class="list">
+      <li class="list-item" ng-repeat="service in vm.servicesList" >
+
+        <a ui-sref="app.service-detail({service_id: service.id})">
+          <md-card class="md-whiteframe-1dp card-style md-background-bg">
+            <cl-image public-id="{{service.image}}" class="thumbnail inline" quality="80" format="jpg"/>
+            
+
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline card-title">{{ service.name }}</span>
+                <div class="md-subhead" layout="row" layout-align="start center">
+                  <div flex="60"  layout="row" layout-align="start center">
+                    <div ng-if="service.rating" flex="25" style="height: auto; width: 30px;">
+                        <md-tooltip md-direction="top">
+                          <span ng-if="service.rating == 5" translate="PROFILE.EXCELLENT">Excelente</span>
+                          <span ng-if="service.rating == 4" translate="PROFILE.VERY_GOOD">Muito Bom</span>
+                          <span ng-if="service.rating == 3" translate="PROFILE.GOOD">Bom</span>
+                          <span ng-if="service.rating == 2" translate="PROFILE.SATISFACTORY">Satisfatório</span>
+                          <span ng-if="service.rating == 1" translate="PROFILE.BELOW_AVERAGE">Abaixo da Média</span>
+                        </md-tooltip>
+                        <img style="height: auto; width: 30px;" src="../../../../../assets/icons/rating-icon/rating-{{ service.rating }}-icon.png" alt="Rating {{ service.rating }}">             
+                    </div>
+                    <div ng-if="!service.rating" flex="25"  style="height: auto; width: 30px;">
+                      <div   layout="column" layout-align="center center" style="height: 30px; width: 30px; background-color: #1E88E5
+  ; border-radius: 150px; font-size: 9px; font-weight: 600; color: white;">
+                        <md-tooltip md-direction="top">
+                          <span translate="PROFILE.NEW_ADVENTURE">Nova Aventura</span>
+                        </md-tooltip>
+                        <span translate="PROFILE.NEW">NOVO</span>
+                      </div>
+                    </div>                  
+                    <div flex="25" style="height: auto; width: 30px;">
+                      <!--  #TODO ver como estar o rating do banco e definir os intervalos --> 
+                      <md-tooltip md-direction="top">
+                        <span ng-if="service.adrenaline == 5" translate="PROFILE.ADRENALINE_5">Ultra Radical</span>
+                        <span ng-if="service.adrenaline == 4" translate="PROFILE.ADRENALINE_4">Radical</span>
+                        <span ng-if="service.adrenaline == 3" translate="PROFILE.ADRENALINE_3">Meio Radical</span>
+                        <span ng-if="service.adrenaline == 2" translate="PROFILE.ADRENALINE_2">Pouco Radical</span>
+                        <span ng-if="service.adrenaline == 1" translate="PROFILE.ADRENALINE_1">Nada Radical</span>
+                      </md-tooltip>
+                      <img style="height: auto; width: 30px;" src="../../../../../assets/icons/adrenaline-icon/lv{{ service.adrenaline }}-icon.png" translate translate-attr-alt="PROFILE.ADRENALINE_ALT">
+                    </div>
+                    <div flex="25" style="height: auto; width: 30px;">
+                      <!--  #TODO ver como estar o rating do banco e definir os intervalos --> 
+                      <md-tooltip md-direction="top">
+                        <span ng-if="service.physical_effort == 5" translate="PROFILE.PHYSICAL_EFFORT_5">Esforço Físico Extremo</span>
+                        <span ng-if="service.physical_effort == 4" translate="PROFILE.PHYSICAL_EFFORT_4">Esforço Físico Desafiador</span>
+                        <span ng-if="service.physical_effort == 3" translate="PROFILE.PHYSICAL_EFFORT_3">Esforço Físico Razoável</span>
+                        <span ng-if="service.physical_effort == 2" translate="PROFILE.PHYSICAL_EFFORT_2">Esforço Físico Leve</span>
+                        <span ng-if="service.physical_effort == 1" translate="PROFILE.PHYSICAL_EFFORT_1">Pouco Esforço Físico</span>
+                      </md-tooltip>
+                      <img style="height: auto; width: 30px;" src="../../../../../assets/icons/physical-effort-icon/lv{{ service.physical_effort }}-icon.png" translate translate-attr-alt="PROFILE.PHYSICAL_EFFORT_ALT">
+                    </div>
+                </div>
+                <div flex="40" layout="row" layout-align="end center">
+                  <span class="card-price">R$ {{ service.price }}</span>
+                </div>
+                </div>
+                <div layout="row" flex="100">
+                  <div flex="50" layout="row" layout-align="end center">
+                    <md-icon flex="10" md-font-icon="icon-map-marker" class="s16 margin-map-icon"></md-icon>
+                    <span flex="90"  class="md-subhead city-name">{{ service.city.name }}</span>
+                  </div>
+                  <div ng-if="service.event" flex="50" layout="row" layout-align="end center">
+                    <md-icon flex="10" md-font-icon="icon-calendar" class="s16 margin-map-icon"></md-icon>
+                    <span flex="90"  class="md-subhead city-name">{{ service.daytime | date:'dd/MM/yyyy' }}</span>
+                  </div>
+                </div>
+              </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+              <p class="card-description">
+                {{ service.description }}
+              </p>
+            </md-card-content>
+
+            <md-card-actions layout="row" layout-align="start center">
+
+              <md-card-icon-actions>
+
+                <md-menu>
+
+                  <md-button aria-label="Open share interactions menu" class="md-icon-button" ng-click="vm.openMenu($mdOpenMenu, $event)" translate translate-attr-aria-label="PROFILE.SHARE">
+                    <md-icon md-font-icon="icon-share-variant" class="s24"></md-icon>
+                  </md-button>
+
+                  <md-menu-content width="4">
+                    <md-menu-item>
+                      <md-button socialshare socialshare-provider="facebook"
+                        socialshare-text="{{service.name}}"
+                        socialshare-type="feed"
+                        socialshare-via="1733799820237301"
+                        socialshare-description="{{service.description}}"
+                        socialshare-url="http://www.triskele.me/service/{{service.id}}">
+                        <md-icon md-font-icon="icon-facebook" class="s18"></md-icon>
+                        <span translate="PROFILE.FACEBOOK_SHARE">Compartilhar no Facebook</span>
+                      </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item hide-gt-xs>
+                      <md-button style="color: rgba(0,0,0,0.87);" data-tooltip="Compartilhar no Whatsapp" href="whatsapp://send?text=http://www.triskele.me/service/{{service.id}}" data-action="share/whatsapp/share">
+                        <md-icon md-font-icon="icon-whatsapp" class="s18"></md-icon>
+                        <span translate="PROFILE.WHATSAPP_SHARE">Compartilhar no WhatsApp</span>
+                      </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item>
+                      <md-button socialshare
+                        socialshare-provider="twitter"
+                        socialshare-text="{{service.name}}"
+                        socialshare-hashtags="aventura, triskele"
+                        socialshare-url="http://www.triskele.me/service/{{service.id}}">
+                        <md-icon md-font-icon="icon-twitter" class="s18"></md-icon>
+                        <span translate="PROFILE.TWITTER_SHARE">Compartilhar no Twitter</span>
+                      </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item>
+                      <md-button socialshare socialshare-provider="google"
+                        socialshare-url="http://www.triskele.me/service/{{service.id}}">
+                        <md-icon md-font-icon="icon-google-plus" class="s18"></md-icon>
+                        <span translate="PROFILE.GOOGLE_PLUS_SHARE">Compartilhar no Google +</span>
+                      </md-button>
+                    </md-menu-item>
+
+                  </md-menu-content>
+                </md-menu>
+              </md-card-icon-actions>
+
+              <md-button ng-href="service/{{service.id}}" class="md-primary" translate="PROFILE.SEE_ADVENTURE">Ver Aventura</md-button>
+            </md-card-actions>
+          </md-card>  
+        </a>
+          
+      </li>
+    </ul>
+
+  </div>
+</div>
+<!-- / TODO LIST ITEMS -->

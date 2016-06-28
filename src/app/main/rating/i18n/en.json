@@ -1,0 +1,16 @@
+{
+    "RATING": {
+        "WHAT_YOU_THINK": "What did you think of the activity?",
+        "BELOW_AVERAGE": "Below Average",
+        "SATISFACTORY": "Satisfactory",
+        "GOOD": "Good",
+        "VERY_GOOD": "Very Good",
+        "EXCELLENT": "Excellent",
+        "COMMENT": "Comment",
+        "COMMENT_PLACEHOLDER": "Say to everyone what you think about this adventure. Do you recommend?",
+        "SEND": "Send",
+        "THANKS": "Thanks for Rating!",
+        "THANKS_MESSAGE": "Your opinion is very important to help others choose their next adventure :)",
+        "SEE_MORE_ADVENTURES": "See More Adventures"
+    }
+}

@@ -1,0 +1,36 @@
+<div layout="row" layout-wrap style="max-width: 768px; margin: auto;" layout-align="center center">
+
+    <div class="about" layout="column" flex="100">
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column" ng-if="vm.user.about">
+            <header class="md-accent-bg">
+                <div class="title" translate="ME.GENERAL_INFORMATION">General Information</div>
+            </header>
+
+            <div class="content">
+                <div class="info-line">
+                    <div class="title" translate="ME.ABOUT_ME"></div>
+                    <div class="info"><p>{{vm.user.about}}</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-sidebar" layout="column" flex="100">
+        <div class="profile-box info-box contact md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title" translate="ME.CONTACT"></div>
+            </header>
+            <div class="content">
+                <div ng-if="vm.user.phone" class="info-line">
+                    <div class="title" translate="ME.TEL"></div>
+                    <span class="info">{{ vm.user.phone }}<span>
+                </div>
+                <div class="info-line">
+                    <div class="title" translate="ME.EMAILS"></div>
+                    <span>{{ vm.user.email}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,559 @@
+<div id="service-create" class="page-layout simple fullwidth">
+  <!-- HEADER -->
+  <div class="header2 md-primary-bg">
+    <h1 class="margin-0" translate="SERVICE_CREATE.REGISTER_NEW_ADVENTURE">Cadastrar nova Aventura</h1>
+  </div>
+  <!-- / HEADER -->
+  
+  <!-- CONTENT -->
+  <div class="content-padding" id="top" md-background-bg layout-xs="column" layout-sm="column" layout-gt-sm="row">
+    <div flex="100" flex-sm="65" flex-gt-sm="75"  class="md-whiteframe-1dp white-bg">
+      <ms-form-wizard flex>
+        <md-tabs md-dynamic-height md-selected="msWizard.selectedIndex" md-center-tabs="true">
+          <md-tab>
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="!vm.cropper.sourceImage || !vm.files || vm.files.length < 3">1</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="vm.cropper.sourceImage && vm.files.length > 2">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text" translate="SERVICE_CREATE.IMAGES">Imagens</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body>
+              <form name="newServiceStep1" class="md-inline-form" ms-form-wizard-form novalidate>
+                <div layout="column">
+
+                  <div class="select-image-margin">
+                    <md-button class="md-raised md-primary">
+                      <label for="file-input" class="select-image-padding"><md-icon class="select-image" md-font-icon="icon-image-area"></md-icon><span translate="SERVICE_CREATE.SELECT_CARD_IMAGE">Selecionar Imagem do Card</span></label>
+                    </md-button>
+                    <input  id="file-input" type="file" img-cropper-fileread image="vm.cropper.sourceImage" required>
+                  </div>
+                  <div ng-if="vm.cropper.sourceImage">
+                    <canvas height="300" width="300" id="canvas" image-cropper image="vm.cropper.sourceImage" cropped-image="vm.cropper.croppedImage" crop-width="600" min-width="70" crop-height="334" keep-aspect="true" touch-radius="30" crop-area-bounds="vm.bounds"></canvas>
+                  </div>
+
+                  <div>
+                    <h3 class="margin-input-image" ng-class="{'md-primary-fg': vm.files , 'hint-text': !vm.files } " translate="SERVICE_CREATE.GALLERY_IMAGES">Imagens da Galeria</h3>
+                    <span ng-if="vm.files && vm.files.length < 4 || vm.files.length > 7" class="gallery-warn md-warn-fg" translate="SERVICE_CREATE.GALLERY_ERROR">Para a galeria devem ser selecionadas entre 4 e 7 imagens.</span>
+                  </div>
+
+                  <div ngf-drop ngf-select ng-model="vm.files" class="drop-box secondary-text"
+                       ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+                       accept="image/*"
+                       ngf-pattern="'image/*'" layout="row" layout-align="center center">
+                    <md-icon md-font-icon="icon-folder-image"></md-icon><span translate="SERVICE_CREATE.DRAG_GALLERY">Arraste imagens ou clique para fazer Upload</span>
+                  </div>
+                  <div ngf-no-file-drop translate="SERVICE_CREATE.DRAG_ERROR">Arrastar e soltar não suportado nesse browser</div>
+                  <div layout="row" layout-wrap>
+                    <div class="drop-image" flex="20" ng-repeat="f in vm.files" ng-show="f">
+                      {{f.$error}} {{f.$errorParam}}
+                      <button class="md-accent drop-image-button" ng-click="f = null; vm.files.length = vm.files.length - 1">
+                          <i class="icon-close-circle drop-image-button-icon s20"></i>
+                      </button>
+                      <img ng-show="f.$valid" ngf-thumbnail="f" class="thumb">
+
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </md-tab-body>
+          </md-tab>
+          <md-tab ng-disabled="!vm.cropper.sourceImage || !vm.files || vm.files.length < 3">
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="newServiceStep2.$invalid">2</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="newServiceStep2.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text" translate="SERVICE_CREATE.GENERAL_INFO">Informações Gerais</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body>
+              <form name="newServiceStep2" class="md-inline-form" ms-form-wizard-form novalidate>
+                <div layout="column">
+                  <div layout="row">
+                    <md-input-container flex-gt-sm="65" flex-sm="70" flex-xs="100">
+                      <label translate="SERVICE_CREATE.NAME">Nome</label>
+                      <input md-maxlength="45" required name="name" ng-model="vm.newService.name">
+                      <div ng-messages="newServiceStep2.name.$error" ng-show="newServiceStep2.name.$touched" role="alert">
+                        <div ng-message="required" translate="SERVICE_CREATE.NAME_REQUIRED">A atividade deve ter um nome</div>
+                        <div ng-message="md-maxlength" translate="SERVICE_CREATE.NAME_MAX">O nome não pode ter mais de 45 caracters</div>
+                      </div>
+                    </md-input-container>
+                  </div>
+                  <div layout="column">
+                    <div layout="row">
+                      <md-input-container class="md-block" flex-xs="50" flex-gt-xs="30">
+                        <label translate="SERVICE_CREATE.PRICE_PEOPLE">Preço por Pessoa</label>
+                        <input type="number" name="price" required max="999999" min="1" ng-model="vm.newService.price">
+                        <div ng-messages="newServiceStep2.price.$error" ng-show="newServiceStep2.price.$touched" role="alert" multiple>
+                          <div ng-message="required"><span translate="SERVICE_CREATE.PRICE_REQUIRED">O preço é obrigatorio</span></div>
+                          <div ng-message="min">
+                            <span translate="SERVICE_CREATE.PRICE_MIN">O preço deve ser pelo menos R$ 1</span>
+                          </div>
+                          <div ng-message="max">
+                            <span translate="SERVICE_CREATE.PRICE_MAX">O preço não pode ser maior que R$ 999999</span>
+                          </div>
+                        </div>
+                      </md-input-container>
+                      <md-input-container flex-gt-xs="none" class="md-block" flex-xs="50" flex-gt-xs="30">
+                        <label translate="SERVICE_CREATE.AVG_DURATION">Duração média</label>
+                        <input type="text" name="duration" required ng-model="vm.newService.duration">
+                        <div ng-messages="newServiceStep2.duration.$error" ng-show="newServiceStep2.duration.$touched" role="alert" multiple>
+                          <div ng-message="required" translate="SERVICE_CREATE.AVG_DURATION_REQUIRED">A duração média da atividade deve ser informada</div>
+                        </div>
+                      </md-input-container>
+                    </div>
+                    <div layout="column" layout-aling="start start">
+                      <h3 class="hint-text" translate="SERVICE_CREATE.ADVENTURE_DATE_FIXED">Essa aventura terá uma data fixa para ser realizada?</h3>
+                      <div layout="row" layout-aling="start center">
+                        <md-checkbox ng-change="vm.newService.daytime = null" md-no-ink aria-label="Checkbox No Ink" ng-model="vm.newService.event" class="md-primary secondary-text checkbox-event"><span translate="SERVICE_CREATE.YES"></span>
+                        
+                        </md-checkbox>
+                        <div layout="row" layout-align="start center" class="date-event">
+                          <md-datepicker flex="none" ng-if="vm.newService.event" ng-model="vm.newService.daytime" md-placeholder="Entre com a data"> </md-datepicker>
+                        </div>
+                      </div>
+                    </div>
+                    <div layout="column">
+                      <h3 class="hint-text" translate="SERVICE_CREATE.HOW_MANY">Quantas pessoas você é capaz de atender por vez nessa aventura?</h3>
+                      <div layout="row">
+                        <md-input-container class="md-block" flex-xs="50" flex-gt-xs="30">
+                          <label translate="SERVICE_CREATE.MIN_CLIENTS">Min.</label>
+                          <input type="number" name="min_clients" required ng-model="vm.newService.min_clients" min="1" max="1000">
+                          <div ng-messages="newServiceStep2.min_clients.$error" ng-show="newServiceStep2.min_clients.$touched" role="alert" multiple>
+                            <div ng-message="required" translate="SERVICE_CREATE.MIN_CLIENTS_REQUIRED"><span>O mínimo de pessoas que você precisa para realizar a atividade deve ser informado.</span></div>
+                            <div ng-message="min">
+                              <span translate="SERVICE_CREATE.MIN_1">Uma aventura deve ter pelo menos uma pessoa.</span>
+                            </div>
+                            <div ng-message="max">
+                              <span translate="SERVICE_CREATE.MIN_MORE_1000">Mais de 1000 pessoas? Tem certeza?</span>
+                            </div>
+                          </div>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-xs="50" flex-gt-xs="30">
+                          <label translate="SERVICE_CREATE.MAX_CLIENTS">Max.</label>
+                          <input type="number" name="max_clients" required ng-model="vm.newService.max_clients" min="{{vm.newService.min_clients}}" max="1000">
+                          <div ng-messages="newServiceStep2.max_clients.$error" ng-show="newServiceStep2.max_clients.$touched" name="max_clients" role="alert" multiple>
+                            <div ng-message="required" translate="SERVICE_CREATE.MAX_REQUIRED">O máximo de pessoas que você consegue atender nessa atividade deve ser informado. Obs: Pode ser igual ao mínimo de clientes.</div>
+                            <div ng-message="min">
+                              <span translate="SERVICE_CREATE.ADVENTURE_AT_LEAST">A aventura deve ter pelo menos</span> {{vm.newService.min_clients}} <span ng-if="vm.newService.min_clients <= 1" translate="SERVICE_CREATE.PERSON">pessoa</span><span ng-if="vm.newService.min_clients > 1" translate="SERVICE_CREATE.PEOPLE">s</span>
+                            </div>
+                            <div ng-message="max" translate="SERVICE_CREATE.MIN_MORE_1000">
+                              Mais de 1000 pessoas? Tem certeza?
+                            </div>
+                          </div>
+                        </md-input-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </md-tab-body>
+          </md-tab>
+          <md-tab ng-disabled="!vm.cropper.sourceImage || newServiceStep2.$invalid || !vm.files || vm.files.length < 3">
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="newServiceStep3.$invalid">3</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="newServiceStep3.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text" translate="SERVICE_CREATE.DESCRIPTION">Descrição</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body>
+              <form name="newServiceStep3" class="md-inline-form" ms-form-wizard-form novalidate>
+                <div layout="column">
+                  <md-input-container class="md-block">
+                    <label translate="SERVICE_CREATE.SHORT_DESCRIPTION">Descrição Curta (Para o card da atividade)</label>
+                    <textarea required name="short_description" ng-model="vm.newService.short_description" md-maxlength="150" rows="2" md-select-on-focus></textarea>
+                    <div ng-messages="newServiceStep3.short_description.$error" ng-if="newServiceStep3.short_description.$touched">
+                      <div ng-message="required" translate="SERVICE_CREATE.SHORT_DESCRIPTION_REQUIRED">Você deve informar uma descrição breve da aventura, ela será fundamental para aumentar a chance de uma pessoa clicar para ver mais detalhes da aventura.</div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container class="md-block">
+                    <label translate="SERVICE_CREATE.DESCRIPTION">Descrição</label>
+                    <textarea required name="description" ng-model="vm.newService.description" rows="20" md-maxlength="2000" md-select-on-focus></textarea>
+                    <div ng-messages="newServiceStep3.description.$error" ng-if="newServiceStep3.description.$touched">
+                      <div ng-message="required" translate="SERVICE_CREATE.DESCRIPTION_REQUIRED">Você deve informar uma descrição da sua aventura, uma boa descrição aumentará as chances de uma pessoa contratar sua atividade.</div>
+                    </div>
+                  </md-input-container>
+                </div>
+              </form>
+            </md-tab-body>
+          </md-tab>
+           <!-- ng-disabled="newServiceStep1.$invalid || newServiceStep2.$invalid || newServiceStep3.$invalid || !vm.files || vm.files.length < 3" -->
+          <md-tab>
+
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="vm.newService.sports.length == 0 || newServiceStep4.$invalid || !vm.newService.adrenaline || !vm.newService.physical_effort">4</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="vm.newService.sports.length > 0 && vm.newService.physical_effort && vm.newService.adrenaline && newServiceStep4.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text" translate="SERVICE_CREATE.ADVENTURE_DETAILS">Detalhes da Aventura</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body>
+              <form name="newServiceStep4" ms-form-wizard-form novalidate>
+                <div class="effort-adrenaline-margin" flex>
+                  <h3 class="hint-text" translate="SERVICE_CREATE.ADVENTURE_ACTIVITIES">Atividades da Aventura</h3>
+                </div>
+                <div layout="row" layout-wrap layout-align="start center">                    
+                    <md-chips flex layout="row" layout-align="start center" ng-model="vm.newService.sports" md-autocomplete-snap="" md-require-match="true">
+                      <md-autocomplete
+                        name="activities"
+                        md-no-cache="true"
+                        md-items="item in vm.sports"
+                        md-item-text="item.name"
+                        md-min-length="1"
+                        placeholder="Ex: Trekking">
+                        <span>{{item.name}}</span>
+                      </md-autocomplete>
+
+                      <md-chip-template>
+                        <span>
+                          <strong>{{$chip.name}}</strong>
+                        </span>
+                      </md-chip-template>
+                      <md-not-found translate="SERVICE_CREATE.NO_MATCHES">
+                        No matches found.
+                      </md-not-found>
+                    </md-chips>
+                </div>
+                <div layout="row">
+                  <div layout="column" flex="50">
+                    <div class="effort-adrenaline-margin">
+                      <h3 class="hint-text" translate="SERVICE_CREATE.PHYSICAL_EFFORT">Esforço Físico</h3>
+                    </div>
+                    <div layout="row">
+                      <md-slider flex="60" value="1" flex-xs="100" md-discrete ng-model="vm.newService.physical_effort" min="1" max="5" aria-label="rating"></md-slider>
+                    </div>
+                  </div>
+                  <div layout="column" flex="50">
+                    <div class="effort-adrenaline-margin">
+                      <h3 class="hint-text" translate="SERVICE_CREATE.ADRENALINE">Adrenalina</h3>
+                    </div>
+                    <div layout="row">
+                      <md-slider flex="60" value="1" flex-xs="100" md-discrete ng-model="vm.newService.adrenaline" min="1" max="5" aria-label="adrenaline"></md-slider>
+                    </div>
+                  </div>
+                </div>
+                <md-input-container class="md-block">
+                  <label translate="SERVICE_CREATE.REQUIRED_EXPERIENCE">Experiência Necessária</label>
+                  <textarea name="required_experience" ng-model="vm.newService.required_experience" rows="2" md-select-on-focus></textarea>
+                 <!--  <div ng-messages="newServiceStep4.required_experience.$error" ng-show="newServiceStep4.required_experience.$touched" role="alert">
+                   <div ng-message="required">Informe a experiência necessária para praticar a atividade.</div>
+                 </div> -->
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label translate="SERVICE_CREATE.RESTRICTIONS">Restrições</label>
+                  <textarea name="restrictions" ng-model="vm.newService.restrictions" rows="2" md-select-on-focus></textarea>
+                  <!-- <div ng-messages="newServiceStep4.restrictions.$error" ng-show="newServiceStep4.restrictions.$touched" role="alert">
+                    <div ng-message="required">Informe as restrições para se praticar a atividade.</div>
+                  </div> -->
+                </md-input-container>
+                <div flex="100" layout="row" layout-xs="column">
+                    <md-input-container class="md-block margin-bottom-0" flex-gt-sm="85" flex-sm="75" flex-xs="100">
+                        <label translate="SERVICE_CREATE.WHAT_BRING">O que levar (Favor colocar um item por linha)</label>
+                        <textarea name="bring" ng-model="vm.new_bring" rows="6" md-select-on-focus></textarea>
+                        <div ng-messages="newServiceStep4.bring.$error" ng-show="newServiceStep4.bring.$touched" role="alert">
+                            <div ng-message="required" translate="SERVICE_CREATE.WHAT_BRING_REQUIRED">Informe o que deve ser levado para praticar a atividade.</div>
+                        </div>
+                    </md-input-container>
+                    <md-button flex-gt-sm="15" flex-sm="25" flex-xs="100" class="md-raised md-primary addicionals-btn" ng-click="vm.addItemToList('bring', vm.new_bring)" ng-disabled="!vm.new_bring" translate="SERVICE_CREATE.ADD">
+                        Adicionar
+                    </md-button>
+                </div>
+                <div ng-repeat="bring in vm.newService.bring track by $index" class="md-primary secondary-text margin-bottom-8 padding-left-8">{{bring}}</div>
+              </form>
+            </md-tab-body>
+          </md-tab>
+          <md-tab ng-disabled="newServiceStep1.$invalid || newServiceStep2.$invalid || vm.newService.sports.length == 0 || newServiceStep3.$invalid || !vm.newService.adrenaline || !vm.newService.physical_effort || newServiceStep4.$invalid || !vm.files || vm.files.length < 3">
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="newServiceStep5.$invalid">5</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="newServiceStep5.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text" translate="SERVICE_CREATE.LOCATION">Localização</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body>
+              <form name="newServiceStep5" ms-form-wizard-form novalidate>
+                <div layout="row" layout-wrap>
+
+                  <md-autocomplete class="city-margin" flex-xs="100" flex-sm="40" flex="35" required
+                      md-input-name="city"
+                      md-no-cache="ctrl.noCache"
+                      md-selected-item="vm.newService.city"
+                      md-search-text="ctrl.searchText"
+                      md-items="city in vm.cities"
+                      md-item-text="city.name"
+                      md-floating-label="Cidade">
+
+                    <md-item-template>
+                            <span md-highlight-text="ctrl.searchText">{{city.name}}</span>
+                            </md-item-template>
+                            <div ng-messages="newServiceStep5.city.$error" ng-if="newServiceStep5.city.$touched">
+                              <div ng-message="required" translate="SERVICE_CREATE.CITY_REQUIRED">Você deve informar a cidade.</div>
+                            </div>
+                            <md-not-found translate="SERVICE_CREATE.CITY_NOT_FOUND">
+                                Nenhuma cidade encontrada com esse nome
+                            </md-not-found>
+                  </md-autocomplete>
+
+                  <md-input-container flex-xs=100 flex="70">
+                    <label translate="SERVICE_CREATE.MEETING_POINT">Local</label>
+                    <textarea required name="place" ng-model="vm.newService.place" rows="2" md-select-on-focus></textarea>
+                    <div ng-messages="newServiceStep5.place.$error" ng-if="newServiceStep5.place.$touched">
+                      <div ng-message="required" translate="SERVICE_CREATE.MEETING_POINT_REQUIRED">Você deve informar o nome do local onde será realizada a atividade.</div>
+                    </div>
+                    <md-not-found>
+                  </md-input-container>
+                  <md-input-container flex-xs=100 flex="70">
+                    <label translate="SERVICE_CREATE.HOW_TO_GET">Como Chegar</label>
+                    <textarea required name="how_to_get" ng-model="vm.newService.how_to_get" rows="2" md-select-on-focus></textarea>
+                    <div ng-messages="newServiceStep5.how_to_get.$error" ng-if="newServiceStep5.how_to_get.$touched">
+                      <div ng-message="required" translate="SERVICE_CREATE.HOW_TO_GET_REQUIRED">Você deve informar como chegar ao local onde será realizada a atividade.</div>
+                    </div>
+                  </md-input-container>
+                  <h3 class="hint-text" translate="SERVICE_CREATE.MARKER">Marque o local onde é realizado a atividade</h3>
+                  <script type="text/ng-template" id="searchbox.tpl.html">
+                    <div>
+                      <input type="text" class="md-whiteframe-1dp map-search" flex="100" placeholder="Buscar">
+                    </div>
+                  </script>
+                  <ui-gmap-google-map flex="100" center="vm.map.center" zoom="vm.map.zoom" options="vm.options">
+                    <ui-gmap-search-box template="vm.searchbox.template"
+                                        events="vm.searchbox.events"
+                                        position="TOP_LEFT"
+                                        options="vm.searchbox.options">
+                    </ui-gmap-search-box>
+                    <ui-gmap-marker coords="vm.marker.coords" options="vm.marker.options" events="vm.marker.events" idkey="vm.marker.id">
+                    </ui-gmap-marker>
+
+                  </ui-gmap-google-map>
+
+                </div>
+              </form>
+            </md-tab-body>
+          </md-tab>
+           <!-- ng-disabled="newServiceStep1.$invalid || newServiceStep2.$invalid || vm.newService.sports.length == 0 || newServiceStep3.$invalid || !vm.newService.adrenaline || !vm.newService.physical_effort || newServiceStep4.$invalid || newServiceStep5.$invalid || !vm.files || vm.files.length < 3 || !vm.newService.city" -->
+          <md-tab>
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="newServiceStep6.$invalid">6</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="newServiceStep6.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text" translate="SERVICE_CREATE.ADDITIONALS">Adicionais</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body>
+              <form name="newServiceStep6" class="md-inline-form" ms-form-wizard-form novalidate>
+                <div layout="column">
+                    <div flex="100" layout="row" layout-xs="column">
+                        <md-input-container class="md-block margin-bottom-0" flex-gt-sm="85" flex-sm="75" flex-xs="100">
+                            <label translate="SERVICE_CREATE.INCLUDED">Incluso</label>
+                            <textarea name="included" ng-model="vm.new_included" rows="6" md-select-on-focus></textarea>
+                            <div ng-messages="newServiceStep6.included.$error" ng-if="newServiceStep6.included.$touched">
+                              <div ng-message="required" translate="SERVICE_CREATE.INCLUDED_REQUIRED">Você deve informar o que está incluso na aventura.</div>
+                            </div>
+                        </md-input-container>
+                        <md-button flex-gt-sm="15" flex-sm="25" flex-xs="100" class="md-raised md-primary addicionals-btn" ng-click="vm.addItemToList('included', vm.new_included)" ng-disabled="!vm.new_included" translate="SERVICE_CREATE.ADD">
+                            Adicionar
+                        </md-button>
+                    </div>
+                    <div ng-repeat="included in vm.newService.included track by $index" class="md-primary secondary-text margin-bottom-8 padding-left-8">{{included}}</div>
+                    
+                    <div flex="100" layout="row" layout-xs="column">
+                        <md-input-container class="md-block margin-bottom-0" flex-gt-sm="85" flex-sm="75" flex-xs="100">
+                            <label translate="SERVICE_CREATE.NOT_INCLUDED">Não Incluso</label>
+                            <textarea name="not_included" ng-model="vm.new_not_included" rows="6" md-select-on-focus></textarea>
+                            <div ng-messages="newServiceStep6.not_included.$error" ng-if="newServiceStep6.not_included.$touched">
+                              <div ng-message="required" translate="SERVICE_CREATE.NOT_INCLUDED_REQUIRED">Você deve informar o que não está incluso na aventura.</div>
+                            </div>
+                        </md-input-container>
+                        <md-button flex-gt-sm="15" flex-sm="25" flex-xs="100" class="md-raised md-primary addicionals-btn" ng-click="vm.addItemToList('not_included', vm.new_not_included)" ng-disabled="!vm.new_not_included" translate="SERVICE_CREATE.ADD">
+                            Adicionar
+                        </md-button>
+                    </div>
+                    <div ng-repeat="not_included in vm.newService.not_included track by $index" class="md-primary secondary-text margin-bottom-8 padding-left-8">{{not_included}}</div>
+                    <div layout="row" flex="100" layout-wrap layout-align="start start" class="margin-top-16">
+                      <span flex="100" class="secondary-text" translate="SERVICE_CREATE.ADDITIONAL_PACKAGES">Pacotes Adicionais:</span>
+                      <div layout="row" layout-xs="column" flex="100">
+                          <div layout="row" flex-gt-sm="85" flex-sm="80" flex-xs="100">
+                              <md-input-container flex-gt-sm="85" flex-sm="80" flex-xs="80" class=" margin-bottom-0">
+                                  <label translate="SERVICE_CREATE.DESCRIPTION">Descrição</label>
+                                  <input md-maxlength="90" name="newAdditional.description" ng-model="vm.newAdditional.description">
+                                  <div ng-messages="newServiceStep6.additionalDescription.$error" ng-show="newServiceStep6.newAdditional.description.$touched" role="alert">
+                                    <div ng-message="required" translate="SERVICE_CREATE.ADDITIONAL_PACKAGES_REQUIRED">O pacote deve ter uma descrição.</div>
+                                    <div ng-message="md-maxlength" translate="SERVICE_CREATE.ADDITIONAL_PACKAGES_MAX">A decrição não pode ter mais de 90 caracteres</div>
+                                  </div> 
+                              </md-input-container>
+                              <md-input-container flex-gt-sm="15" flex-sm="20" flex-xs="20" class=" margin-bottom-0">
+                                  <label translate="SERVICE_CREATE.PRICE">Preço</label>
+                                  <input name="newAdditional.excess" type="number" ng-model="vm.newAdditional.excess">
+                                  <div ng-messages="newServiceStep6.newAdditional.excess.$error" ng-show="newServiceStep6.newAdditional.excess.$touched" role="alert">
+                                    <div ng-message="required" translate="SERVICE_CREATE.PACKAGE_PRICE_REQUIRED">O pacote deve ter um preço.</div>      
+                                  </div> 
+                              </md-input-container>
+                          </div>
+                          <md-button flex-gt-sm="15" flex-sm="20" flex-xs="100" class="md-raised md-primary addicionals-btn" ng-click="vm.addAdditional()" ng-disabled="!vm.newAdditional.description || !vm.newAdditional.excess" translate="SERVICE_CREATE.ADD">
+                            Adicionar
+                          </md-button>
+                      </div>
+                      <div layout="row" flex="100" ng-repeat="additional in vm.newService.additionals">
+                          <div flex="80" flex-xs="70" layout="row" layout-align="start center" class="md-primary secondary-text margin-bottom-8 padding-left-8">{{ additional.description }}</div>
+                          <div flex="20" flex-xs="30" layout="row" layout-align="end center" class="md-primary-fg font-size-16 margin-bottom-8 padding-right-8">
+                            R$ {{ additional.excess }}
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </form>
+            </md-tab-body>
+          </md-tab>
+        </md-tabs>
+        <div class="navigation" flex layout="row" layout-align="center center">
+          <md-button class="md-raised md-accent" ng-click="msWizard.previousStep(); vm.gotoTop();" ng-disabled="msWizard.isFirstStep()" translate="SERVICE_CREATE.PREVIOUS">
+            Anterior
+          </md-button>
+          <div hide-xs class="steps">
+            <span hide-xs ng-repeat="form in msWizard.forms" ng-class="{'selected md-accent-bg':msWizard.selectedIndex === $index}"></span>
+          </div>
+          <md-button class="md-raised md-accent" ng-click="msWizard.nextStep(); vm.gotoTop();" ng-hide="msWizard.isLastStep()" ng-disabled="msWizard.currentStepInvalid()" translate="SERVICE_CREATE.NEXT">
+            Próximo
+          </md-button>
+          <md-button class="md-raised md-primary" ng-click="vm.createService()" ng-show="msWizard.isLastStep()" ng-disabled="false || msWizard.formsIncomplete()" translate="SERVICE_CREATE.SEND">
+            Enviar
+          </md-button>
+        </div>
+      </ms-form-wizard>
+
+    </div>
+    <div ng-show="vm.cropper.croppedImage!=null" flex-none layout="column" layout-align="start start"  hide-sm hide-xs class="pre-card">
+      <md-toolbar class="md-whiteframe-1dp pre-card-toolbar">
+        <div class="md-toolbar-tools" flex>
+          <h3 translate="SERVICE_CREATE.CARD_PREVIEW">Pré Visualização do Card</h3>
+        </div>
+      </md-toolbar>
+      <md-card class="md-whiteframe-0dp card-style">
+
+        <div class="image-card">
+          <div ng-show="vm.cropper.croppedImage!=null"><img ng-src="{{vm.cropper.croppedImage}}" class="md-card-image" alt="{{ vm.newService.name }}" /></div>
+        </div>
+
+        <md-card-title class="pre-card-title-margin">
+          <md-card-title-text>
+            <span ng-show="vm.newService.name" class="md-headline pre-card-title">{{ vm.newService.name }}</span>
+            <div ng-show="vm.newService.price" class="md-subhead" layout="row" layout-align="start center">
+              <div flex="60"  layout="row" layout-align="start center">
+              	<div flex=25>
+              		<div  layout="column" layout-align="center center" style="height: 30px; width: 30px; background-color: #1E88E5
+; border-radius: 150px; font-size: 9px; font-weight: 600; color: white;">
+                    <md-tooltip md-direction="top">
+                      <span translate="SERVICE_CREATE.NEW_ADVENTURE">Nova Aventura</span>
+                    </md-tooltip>
+              			<span translate="SERVICE_CREATE.NEW">NOVO</span>
+              		</div>
+
+        			
+        		</div>
+        		<div ng-if="vm.newService.physical_effort" flex="25" style="height: auto; width: 30px;">
+                  <!--  #TODO ver como estar o rating do banco e definir os intervalos --> 
+                  <md-tooltip md-direction="top">
+                    <span ng-if="service.physical_effort == 5" translate="SERVICE_CREATE.PHYSICAL_EFFORT_5">Esforço Físico Extremo</span>
+                    <span ng-if="service.physical_effort == 4" translate="SERVICE_CREATE.PHYSICAL_EFFORT_4">Esforço Físico Desafiador</span>
+                    <span ng-if="service.physical_effort == 3" translate="SERVICE_CREATE.PHYSICAL_EFFORT_3">Esforço Físico Razoável</span>
+                    <span ng-if="service.physical_effort == 2" translate="SERVICE_CREATE.PHYSICAL_EFFORT_2">Esforço Físico Leve</span>
+                    <span ng-if="service.physical_effort == 1" translate="SERVICE_CREATE.PHYSICAL_EFFORT_1">Pouco Esforço Físico</span>
+                  </md-tooltip>
+                  <img style="height: auto; width: 30px;" src="../../../../../assets/icons/physical-effort-icon/lv{{ vm.newService.physical_effort }}-icon.png" translate translate-attr-alt="SERVICE_CREATE.PHYSICAL_EFFORT_ALT">
+                </div>
+                <div ng-if="vm.newService.adrenaline" flex="25" style="height: auto; width: 30px;">
+                  <!--  #TODO ver como estar o rating do banco e definir os intervalos --> 
+                  <md-tooltip md-direction="top">
+                    <span ng-if="vm.newService.adrenaline == 5" translate="SERVICE_CREATE.ADRENALINE_5">Ultra Radical</span>
+                    <span ng-if="vm.newService.adrenaline == 4" translate="SERVICE_CREATE.ADRENALINE_4">Radical</span>
+                    <span ng-if="vm.newService.adrenaline == 3" translate="SERVICE_CREATE.ADRENALINE_3">Meio Radical</span>
+                    <span ng-if="vm.newService.adrenaline == 2" translate="SERVICE_CREATE.ADRENALINE_2">Pouco Radical</span>
+                    <span ng-if="vm.newService.adrenaline == 1" translate="SERVICE_CREATE.ADRENALINE_1">Nada Radical</span>
+                  </md-tooltip>
+                  <img style="height: auto; width: 30px;"  src="../../../../assets/icons/adrenaline-icon/lv{{ vm.newService.adrenaline }}-icon.png" translate translate-attr-alt="SERVICE_CREATE.ADRENALINE_ALT">
+                </div>                
+                <!--<span class="font-rating">5 (0)</span>-->
+              </div>
+              <div ng-show="vm.newService.price" flex="40" layout="row" layout-align="end center">
+                <span class="card-price">R$ {{ vm.newService.price }}</span>
+              </div>
+            </div>
+            <div ng-show="vm.newService.city.name" layout="row" flex="100" layout-align="start center">
+              <md-icon flex="10" md-font-icon="icon-map-marker" class="s16 margin-map-icon"></md-icon>
+              <span flex="90" class="md-subhead">{{ vm.newService.city.name }}</span>
+            </div>
+          </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content ng-show="vm.newService.short_description">
+          <p class="flow-text pre-card-description">
+            {{ vm.newService.short_description }}
+          </p>
+        </md-card-content>
+
+        <md-card-actions layout="row" layout-align="start center">
+
+          <md-card-icon-actions>
+
+            <md-menu>
+
+              <md-button aria-label="Compartilhar" translate translate-attr-aria-label="SERVICE_CREATE.SHARE" class="md-icon-button" ng-click="vm.openMenu($mdOpenMenu, $event)">
+                <md-icon md-font-icon="icon-share-variant" class="s24"></md-icon>
+              </md-button>
+
+              <md-menu-content width="4">
+                <md-menu-item>
+                  <md-button ng-click="vm.redial()">
+                    <md-icon md-font-icon="icon-facebook" class="s18"></md-icon>
+                    <span translate="SERVICE_CREATE.FACEBOOK_SHARE">Compartilhar no Facebook</span>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item hide-gt-xs>
+                  <md-button ng-click="vm.redial()">
+                    <md-icon md-font-icon="icon-whatsapp" class="s18"></md-icon>
+                    <span translate="SERVICE_CREATE.WHATSAPP_SHARE"></span>Compartilhar no WhatsApp
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.redial($event)">
+                    <md-icon md-font-icon="icon-twitter" class="s18"></md-icon>
+                    <span translate="SERVICE_CREATE.TWITTER_SHARE"></span>Compartilhar no Twitter
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.toggleNotifications()">
+                    <md-icon md-font-icon="icon-google-plus" class="s18"></md-icon>
+                    <span translate="SERVICE_CREATE.GOOGLE_PLUS_SHARE"></span>Compartilhar no Google +
+                  </md-button>
+                </md-menu-item>
+
+              </md-menu-content>
+            </md-menu>
+          </md-card-icon-actions>
+
+          <md-button class="md-primary" translate="SERVICE_CREATE.SEE_ADVENTURE" aria-label="Ver Aventura" translate translate-attr-aria-label="SERVICE_CREATE.SEE_ADVENTURE">Ver Aventura</md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </div>
+
+  <!-- / CONTENT -->
+</div>
+
+

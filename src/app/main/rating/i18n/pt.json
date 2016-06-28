@@ -1,0 +1,16 @@
+{
+    "RATING": {
+        "WHAT_YOU_THINK": "O que você achou da atividade?",
+        "BELOW_AVERAGE": "Abaixo da Média",
+        "SATISFACTORY": "Satisfatório",
+        "GOOD": "Bom",
+        "VERY_GOOD": "Muito Bom",
+        "EXCELLENT": "Excelente",
+        "COMMENT": "Comentário",
+        "COMMENT_PLACEHOLDER": " Diga a todos o que você achou dessa aventura. Você recomendaria?",
+        "SEND": "Enviar",
+        "THANKS": "Obrigado por Avaliar!",
+        "THANKS_MESSAGE": "Sua opnião é muito importante para ajudar outras pessoas a escolher sua próxima aventura :)",
+        "SEE_MORE_ADVENTURES": "Ver Mais Aventuras"
+    }
+}

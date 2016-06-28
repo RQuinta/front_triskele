@@ -1,0 +1,8 @@
+{
+    "ERROR404": {
+        "CODE": "404",
+        "MESSAGE": "Desculpe mas não encontramas a página que você está procurando",
+        "SEARCH": "Busque Cidades, Atividades...",
+        "GO_BACK": "Voltar para início"
+    }
+}

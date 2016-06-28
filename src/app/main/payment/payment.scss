@@ -1,0 +1,272 @@
+#payment {
+    height: 100%;
+    background: url('/assets/images/backgrounds/march.jpg') no-repeat;
+    background-size: cover;
+    
+    .total-payment {
+    	cursor: pointer;
+    	font-size: 24px;
+
+    }
+
+    #payment-form-wrapper {
+        flex: 1 0 auto;
+        padding: 32px;
+
+        #payment-form {
+            width: 384px;
+            max-width: 384px;
+            padding: 32px;
+            background: #FFFFFF;
+            text-align: center;
+
+            .logo {
+                width: 188px;
+                font-weight: 500;
+                margin: auto;
+                margin-bottom: 24px; 
+                color: #FFFFFF;
+                border-radius: 2px;
+            }
+
+            .title {
+                font-size: 17px;
+                margin: 16px 0 32px 0;
+            }
+
+            form {
+                width: 100%;
+                text-align: left;
+
+                md-checkbox {
+                    margin: 0;
+                }
+
+                .remember-forgot-password {
+                    font-size: 13px;
+                    margin-top: 8px;
+
+                    .remember-me {
+                        margin-bottom: 16px
+                    }
+
+                    .forgot-password {
+                        font-size: 13px;
+                        font-weight: 500;
+                        margin-bottom: 16px
+                    }
+                }
+
+                .submit-button {
+                    width: 220px;
+                    margin: 16px auto;
+                    display: block;
+                }
+            }
+
+            .register {
+                margin: 32px auto 24px auto;
+                width: 250px;
+                font-weight: 500;
+
+                .text {
+                    margin-right: 8px;
+                }
+
+                .link {
+
+                }
+            }
+
+            .separator {
+                font-size: 15px;
+                font-weight: 600;
+                margin: 24px auto 16px auto;
+                position: relative;
+                overflow: hidden;
+                width: 100px;
+                color: rgba(0, 0, 0, 0.54);
+
+                .text {
+                    display: inline-block;
+                    vertical-align: baseline;
+                    position: relative;
+                    padding: 0 8px;
+                    z-index: 9999;
+
+                    &:before, &:after {
+                        content: '';
+                        display: block;
+                        width: 30px;
+                        position: absolute;
+                        top: 10px;
+                        border-top: 1px solid rgba(0, 0, 0, 0.12);
+                    }
+
+                    &:before {
+                        right: 100%;
+                    }
+
+                    &:after {
+                        left: 100%;
+                    }
+                }
+            }
+
+            .md-button {
+
+                &.google,
+                &.facebook {
+                    width: 192px;
+                    text-transform: none;
+                    color: #FFFFFF;
+                    font-size: 13px;
+
+                    md-icon {
+                        color: #FFFFFF;
+                        margin: 0 8px 0 0;
+                    }
+                }
+
+                &.google {
+                    background-color: #D73D32;
+                }
+
+                &.facebook {
+                    background-color: rgb(63, 92, 154);
+                }
+            }
+        }
+    }
+}
+
+#payment-message {
+    .title {
+        @media only screen and (max-width: 599px){
+          font-size: 24px;
+        }
+        @media only screen and (min-width: 600px) and (max-width: 959px){
+          font-size: 26px;
+        }
+        @media only screen and (min-width: 960px) and (max-width: 1279px){
+          font-size: 34px;
+        }
+        @media only screen and (min-width: 1280px) and (max-width: 1439px){
+          font-size: 36px;
+        }
+        @media only screen and (min-width: 1440px){
+          font-size: 38px;
+        }
+    }
+    .description {
+        @media only screen and (max-width: 599px){
+          font-size: 14px;
+          text-align: center;
+        }
+        @media only screen and (min-width: 600px) and (max-width: 959px){
+          font-size: 14px;
+          text-align: center;
+        }
+        @media only screen and (min-width: 960px) and (max-width: 1279px){
+          font-size: 16px;
+          text-align: center;
+        }
+        @media only screen and (min-width: 1280px) and (max-width: 1439px){
+          font-size: 18px;
+          text-align: center;
+        }
+        @media only screen and (min-width: 1440px){
+          font-size: 20px;
+          text-align: center;
+        }
+      }
+}
+
+#feedback {
+
+    .content {
+        width: 90%;
+        max-width: 512px;
+        margin-top: 128px;
+
+        .error-code {
+            font-size: 112px;
+            line-height: 1;
+            text-align: center;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .message {
+            font-size: 24px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.54);
+            margin-bottom: 16px;
+        }
+
+        .sub-message-no-margin-bottom {
+            font-size: 17px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.54);
+            margin: 16px auto 8px auto;
+        }
+
+        .sub-message {
+            font-size: 17px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.54);
+            margin: 16px auto 48px auto;
+        }
+
+        .report-link {
+            text-align: center;
+            font-size: 15px;
+        }
+    }
+}
+// RESPONSIVE
+@media screen and (max-width: $layout-breakpoint-xs) {
+
+    #payment {
+
+        #payment-form-wrapper {
+            padding: 16px;
+
+            #payment-form {
+                padding: 24px;
+                width: 100%;
+            }
+        }
+    }
+
+}
+// RESPONSIVE
+@media screen and (max-width: 450px) {
+
+    #payment {
+        background: none;
+
+        #payment-form-wrapper {
+            padding: 0;
+
+            #payment-form {
+                max-width: 450px;
+                width: 100%;
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+                .form-content {
+                    padding: 16px;
+                }
+                
+            }
+        }
+    }
+
+}
+
+.success-logo {
+    height: 135px;
+    width: auto;
+    padding-bottom: 32px;
+}

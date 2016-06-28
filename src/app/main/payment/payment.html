@@ -1,0 +1,71 @@
+<div id="payment" ng-if="!vm.payment_success && !vm.payment_error" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="payment-form-wrapper" layout="column" layout-align="center center">
+        <div id="payment-form" class="md-whiteframe-8dp">
+            <a ui-sref="app.sample">
+                <img class="logo" src="../../../assets/images/logos/triskele-logo-nome.png" alt="Triskele">
+            </a>
+            <div>
+            	<cl-image public-id="{{ vm.appointment.service.image }}" quality="80" format="jpg" alt="{{ vm.appointment.service.name }}"/>
+
+            	<div class="title">{{ vm.appointment.service.name }}</div>
+            	<p>
+            		{{ vm.appointment.service.description }}
+            	</p>
+            </div>
+
+            <div layout-gt-xs="row" layout-xs="column" layout-align="space-between center">
+        		<div class="md-primary-fg font-size-24">R$ {{ (vm.appointment.base_price + vm.appointment.additional_price) * vm.appointment.slots}}</div> 
+	            <md-button ng-click="vm.makePayment()" class="md-raised md-primary" translate="PAYMENT.BOOK">
+	                    Efetuar pagamento
+	            </md-button>
+            </div>
+            <md-button class="secondary-text" aria-label="detalhes" ng-click="vm.paymentDetails = !vm.paymentDetails" translate="PAYMENT.DETAIL" translate translate-attr-aria-label="PAYMENT.DETAIL">Detail</md-button>
+            <div class="margin-top-10" ng-if="vm.paymentDetails"> 
+    			<div layout="row" flex>
+	            	<div layout="row" layout-align="start center" flex class="padding-right-10">{{ vm.appointment.service.name }}</div>
+	            	<div layout="row" layout-align="end center" class="md-primary-fg font-size-16">R$ {{ vm.appointment.base_price }}</div>
+	        	</div>
+	        	<div ng-if="vm.appointment.additional" layout="row" flex>
+	            	<div layout="row" layout-align="start center" flex class="padding-right-10">{{ vm.appointment.additional.description }}</div>
+	            	<div layout="row" layout-align="end center" class="md-primary-fg font-size-16">R$ {{ vm.appointment.additional_price }}</div>
+	        	</div>
+	        	<div layout="row" flex>
+	            	<div layout="row" layout-align="start center" flex class="padding-right-10" translate="PAYMENT.PEOPLE">Pessoas</div>
+	            	<div layout="row" layout-align="end center" class="md-primary-fg font-size-16">x {{ vm.appointment.slots }}</div>
+	        	</div>
+	        	<div layout="row" flex>
+	            	<div layout="row" layout-align="start center" flex class="padding-right-10">Total</div>
+	            	<div layout="row" layout-align="end center" class="md-primary-fg font-size-18">R$ {{ (vm.appointment.base_price + vm.appointment.additional_price) * vm.appointment.slots}}</div>
+	        	</div>
+    		</div>
+			
+
+            <div class="register" layout="row" layout-sm="column" layout-align="center center">
+                <span class="text" translate="PAYMENT.DOUBTS">Dúvidas?</span>
+                <a class="link" ui-sref="app.doubts" translate="PAYMENT.CONTACT">Contato</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-if="vm.payment_success || vm.payment_error" id="payment-message">
+    <div ng-if="vm.payment_success" class="animate-slide-up" id="feedback" layout="column" layout-align="center center">
+        <div class="content" layout="column" layout-align="center center">
+            <img ng-src="http://res.cloudinary.com/triskele/image/upload/v1466537329/triskele-logo.png" class="success-logo" alt="Triskele">
+            <div class="message" translate="PAYMENT.ADVENTURE_BOOKED"></div>
+            <div class="sub-message-no-margin-bottom" translate="PAYMENT.BOOKED_SUCCESS"></div>
+            <div class="sub-message-no-margin-bottom" translate="PAYMENT.DOUBTS"></div>
+            <div class="sub-message" translate="PAYMENT.THANKS">
+            </div>
+            <a class="report-link md-accent-color" ui-sref="app.service-list" translate="RATING.SEE_MORE_ADVENTURES"></a>
+        </div>
+    </div>
+    <div ng-if="vm.payment_error" class="animate-slide-up" id="error-500" layout="column" layout-align="center center">
+        <div class="content" layout="column" layout-align="center center">
+            <div class="error-code" translate="ERROR500.CODE">500</div>
+            <div class="message" translate="ERROR500.MESSAGE">Well, you broke the internet!</div>
+            <div class="sub-message" translate="ERROR500.SUBMESSAGE">Just kidding, looks like we have an internal issue, please try again in couple minutes
+            </div>
+            <a class="report-link md-accent-color" ui-sref="app.doubts" translate="ERROR500.REPORT">Report this problem</a>
+        </div>
+    </div>
+</div>

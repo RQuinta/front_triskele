@@ -1,0 +1,239 @@
+#rating {
+    height: 100%;
+    background: url('/assets/images/backgrounds/march.jpg') no-repeat;
+    background-size: cover;
+        /* below-average */
+    .fixed-logo {
+        position: fixed; 
+        top: 16px; 
+        left: 16px; 
+        width: 168px;
+        @media screen and (max-width: 767px){
+            display: none;
+        }
+    }
+
+    #below-average{
+        height: 45px;
+        width: 45px;
+        background-image: url("../../../../../assets/icons/rating-icon/rating-1-disabled-icon.png");
+        background-size: cover;
+    }
+    /* satisfatory */
+    #satisfatory{
+      height: 45px;
+      width: 45px;
+      background-image: url("../../../../../assets/icons/rating-icon/rating-2-disabled-icon.png");
+      background-size: cover;
+    }
+    /* good */
+    #good{
+      height: 45px;
+      width: 45px;
+      background-image: url("../../../../../assets/icons/rating-icon/rating-3-disabled-icon.png");
+      background-size: cover;
+    }
+    /* very-good */
+    #very-good{
+      height: 45px;
+      width: 45px;
+      background-image: url("../../../../../assets/icons/rating-icon/rating-4-disabled-icon.png");
+      background-size: cover;
+    }
+    /* excelent */
+    #excellent{
+      height: 45px;
+      width: 45px;
+      background-image: url("../../../../../assets/icons/rating-icon/rating-5-disabled-icon.png");
+      background-size: cover;
+    }
+    .enabled-below-average{
+      background-image: url("../../../../../assets/icons/rating-icon/rating-1-icon.png")!important;
+    }
+    .enabled-satisfatory{
+      background-image: url("../../../../../assets/icons/rating-icon/rating-2-icon.png")!important;
+    }
+    .enabled-good{
+      background-image: url("../../../../../assets/icons/rating-icon/rating-3-icon.png")!important;
+    }
+    .enabled-very-good{
+      background-image: url("../../../../../assets/icons/rating-icon/rating-4-icon.png")!important;
+    }
+    .enabled-excellent{
+      background-image: url("../../../../../assets/icons/rating-icon/rating-5-icon.png")!important;
+    }
+
+    
+
+    #rating-form-wrapper {
+        flex: 1 0 auto;
+        padding: 16px;
+
+        #rating-form {
+            width: 384px;
+            max-width: 384px;
+            background: #FFFFFF;
+            text-align: center;
+
+            .form-content {
+                padding: 32px;
+            }
+
+            .logo {
+                width: 188px;
+                font-weight: 500;
+                margin: auto;
+                margin-bottom: 24px; 
+                color: #FFFFFF;
+                border-radius: 2px;
+            }
+
+            .title {
+                font-size: 17px;
+                margin: 16px 0 32px 0;
+            }
+
+            form {
+                width: 100%;
+                text-align: left;
+
+                md-checkbox {
+                    margin: 0;
+                }
+
+                .remember-forgot-password {
+                    font-size: 13px;
+                    margin-top: 8px;
+
+                    .remember-me {
+                        margin-bottom: 16px
+                    }
+
+                    .forgot-password {
+                        font-size: 13px;
+                        font-weight: 500;
+                        margin-bottom: 16px
+                    }
+                }
+
+                .submit-button {
+                    width: 220px;
+                    margin: 16px auto;
+                    display: block;
+                }
+            }
+
+            .register {
+                margin: 32px auto 24px auto;
+                width: 250px;
+                font-weight: 500;
+
+                .text {
+                    margin-right: 8px;
+                }
+
+                .link {
+
+                }
+            }
+
+            .separator {
+                font-size: 15px;
+                font-weight: 600;
+                margin: 24px auto 16px auto;
+                position: relative;
+                overflow: hidden;
+                width: 100px;
+                color: rgba(0, 0, 0, 0.54);
+
+                .text {
+                    display: inline-block;
+                    vertical-align: baseline;
+                    position: relative;
+                    padding: 0 8px;
+                    z-index: 9999;
+
+                    &:before, &:after {
+                        content: '';
+                        display: block;
+                        width: 30px;
+                        position: absolute;
+                        top: 10px;
+                        border-top: 1px solid rgba(0, 0, 0, 0.12);
+                    }
+
+                    &:before {
+                        right: 100%;
+                    }
+
+                    &:after {
+                        left: 100%;
+                    }
+                }
+            }
+
+            .md-button {
+
+                &.google,
+                &.facebook {
+                    width: 192px;
+                    text-transform: none;
+                    color: #FFFFFF;
+                    font-size: 13px;
+
+                    md-icon {
+                        color: #FFFFFF;
+                        margin: 0 8px 0 0;
+                    }
+                }
+
+                &.google {
+                    background-color: #D73D32;
+                }
+
+                &.facebook {
+                    background-color: rgb(63, 92, 154);
+                }
+            }
+        }
+    }
+}
+
+// RESPONSIVE
+@media screen and (max-width: $layout-breakpoint-xs) {
+
+    #rating {
+
+        #rating-form-wrapper {
+
+            #rating-form {
+                width: 100%;
+            }
+        }
+    }
+
+}
+// RESPONSIVE
+@media screen and (max-width: 450px) {
+
+    #rating {
+        background: none;
+
+        #rating-form-wrapper {
+            padding: 0;
+
+            #rating-form {
+                max-width: 450px;
+                width: 100%;
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+                .form-content {
+                    padding: 16px;
+                }
+                
+            }
+        }
+    }
+
+}

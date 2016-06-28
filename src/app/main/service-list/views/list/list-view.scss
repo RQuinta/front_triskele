@@ -1,0 +1,315 @@
+a {
+	text-decoration:none;
+}
+a:hover{
+	text-decoration:none;
+}
+#card-list{
+    .card-title{
+
+    	color:rgba(0,0,0,0.75);
+        margin-top: -6px;
+        overflow: hidden;
+        @media only screen and (max-width: 599px){
+          font-size: 16px;
+        }
+        @media only screen and (min-width: 600px) and (max-width: 959px){
+          font-size: 18px;
+          height: 54px;
+        }
+        @media only screen and (min-width: 960px) and (max-width: 1279px){
+          font-size: 20px;
+          height: 54px;
+        }
+        @media only screen and (min-width: 1280px) and (max-width: 1439px){
+          font-size: 22px;
+          height: 64px;
+        }
+        @media only screen and (min-width: 1440px){
+          font-size: 24px;
+          height: 64px;
+        }
+
+    }
+
+    .md-subhead{
+
+        .font-rating{
+            margin-left: 10px;
+            font-weight: 600;
+            color: rgba(0,0,0,.37);
+            @media only screen and (max-width: 599px){
+              font-size: 12px;
+            }
+            @media only screen and (min-width: 600px){
+              font-size: 14px;
+            }
+        }
+        .card-price{
+            @media only screen and (max-width: 959px){
+              font-size: 18px;
+            }
+            @media only screen and (min-width: 960px) and (max-width: 1279px){
+              font-size: 20px;
+            }
+            @media only screen and (min-width: 1280px) and (max-width: 1439px){
+              font-size: 22px;
+            }
+            @media only screen and (min-width: 1440px){
+              font-size: 24px;
+            }
+        }
+    }
+
+    .city-name {
+    	color: rgba(0,0,0,0.67);
+    }
+
+    .card-description{
+        overflow: hidden;
+        color: rgba(0,0,0,0.67);
+        margin-top: -6px;
+        @media only screen and (max-width: 599px){
+          font-size: 13px;
+        }
+        @media only screen and (min-width: 600px) and (max-width: 1439px){
+          font-size: 14px;
+          height: 57px;
+        }
+        @media only screen and (min-width: 1440px){
+          font-size: 16px;
+          height: 88px;
+        }
+    }
+    ul, li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+
+    /*Flex items*/
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+        @media all and (min-width: 601px) {
+            padding: 8px;
+        }
+      
+    }
+    @media all and (max-width: 600px) {
+      .list-item {
+        display: flex;
+        width: 100%;
+        margin-right: 16px;
+      }
+    }
+    @media all and (min-width: 601px) {
+      .list-item {
+        width: 50%;
+      }
+    }
+    @media all and (min-width: 940px) and (max-width: 959px) {
+      .list-item {
+        width: 33.33%;
+      }
+    }
+    @media all and (min-width: 960px) and (max-width: 1159px) {
+      .list-item {
+        width: 50%;
+      }
+    }
+    @media all and (min-width: 1160px) {
+      .list-item {
+        width: 33.33%;
+      }
+    }
+    @media all and (min-width: 1440px) {
+      .list-item {
+        width: 25%;
+      }
+    }
+    @media all and (min-width: 1920px) {
+      .list-item {
+        width: 20%;
+      }
+    }
+
+    .list-content {
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding: 1em;
+      width: 100%;
+    }
+    .list-content p {
+      flex: 1 0 auto;
+    }
+}
+
+#todo {
+
+    // Single scroll
+    &.single-scroll {
+
+        .todo-list-pane {
+            overflow: hidden;
+        }
+    }
+    
+    .todo-list-pane {
+
+        .todo-items {
+
+            &.sortable {
+
+                .todo-item {
+                    padding: 16px 16px 16px 48px;
+
+                    .handle {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .todo-items {
+            overflow-x: hidden;
+
+        }
+    }
+}
+
+.todo-item {
+    position: relative;
+    padding: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    text-transform: none;
+    cursor: pointer;
+
+    &.todo-item-placeholder {
+        background: rgba(0, 0, 0, 0.12);
+        * {
+            opacity: 0;
+        }
+    }
+
+    .handle {
+        display: none;
+        position: absolute;
+        height: 100%;
+        width: 48px;
+        top: 0;
+        left: 0;
+        cursor: move;
+        text-align: center;
+
+        md-icon {
+            display: block;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    .tags {
+        font-size: 12px;
+
+        .tag {
+            border-radius: 2px;
+            margin: 8px 4px 0 0;
+            padding: 3px 8px;
+            background-color: rgba(0, 0, 0, 0.08);
+
+            .tag-color {
+                width: 8px;
+                height: 8px;
+                margin-right: 8px;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    &.completed {
+        background: #EEEEEE;
+
+        .title,
+        .notes {
+            color: rgba(0, 0, 0, 0.54);
+            text-decoration: line-through;
+        }
+    }
+
+    &.selected {
+        background: #FFF8E1;
+    }
+
+    .info {
+        margin: 0 16px 0 8px;
+
+        .title {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .notes {
+            margin-top: 4px;
+        }
+    }
+
+    .buttons {
+
+        .is-starred {
+            margin: 0 0 0 16px;
+        }
+
+        .is-important {
+            margin: 0;
+        }
+    }
+}
+
+.todo-item-ghost {
+    opacity: 1 !important;
+    background: #FFFFFF;
+    box-shadow: $whiteframe-shadow-14dp;
+    border: none;
+
+    .md-ripple-container {
+        display: none;
+    }
+}
+@media screen and (max-width: 650px) {
+  .padding-xs {
+    padding-right: 15px;
+  }
+}
+// RESPONSIVE
+@media screen and (max-width: $layout-breakpoint-xs) {
+
+    #todo {
+
+        .todo-list-pane {
+
+            .sortable {
+
+                .todo-items {
+
+                    .todo-item {
+                        padding-left: 32px;
+                    }
+                }
+            }
+
+            .todo-items {
+
+                .todo-item {
+
+                    .handle {
+                        width: 32px;
+                    }
+                }
+            }
+        }
+    }
+}

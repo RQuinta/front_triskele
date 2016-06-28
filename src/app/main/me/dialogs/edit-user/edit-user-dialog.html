@@ -1,0 +1,89 @@
+<md-dialog aria-label="Editar Atividade" ng-cloak class="edit-user-width" >
+    <form name="editUser">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2 translate="ME.EDIT"></h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="vm.closeDialog()">
+					<md-icon md-font-icon="icon-close" class="s24" aria-label="Fechar" translate translate-attr-aria-label="ME.CLOSE"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+    <md-dialog-content class="padding-0">
+        <div ng-if="!vm.cropper.sourceImage" class="md-accent-bg user-header" ngf-background="vm.backgroundImage" layout="column" layout-align="center center" style="background-color: #E0E0E0;">
+            <div layout="row" layout-align="center center">
+              <div ngf-drop ngf-select ng-model="vm.backgroundImage"
+                       ngf-drag-over-class="dragover" ngf-allow-dir="true"
+                       accept="image/*"
+                       ngf-pattern="'image/*'" layout="row" layout-align="center center">
+                    <md-button aria-label="Alterar plano de fundo" class="md-background-fg" style="text-shadow: 1px 1px 2px #757575;" translate="ME.CHANGE_BACKGROUND_IMAGE" translate-attr-aria-label="ME.CHANGE_BACKGROUND_IMAGE"></md-button>
+              </div>
+            </div>
+            <div layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="space-between end">
+                <div class="user-info" layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="start center">
+                    <div class="image-upload user-control pointer">
+                        <label for="file-input">
+                            <img ng-if="!vm.copyUser.image" style="border: 2px white solid" md-menu-align-target class="profile-image avatar huge" src="assets/images/avatars/profile.jpg" alt="{{ vm.copyUser.name }}">
+                            <cl-image ng-if="!vm.cropper.croppedImage && vm.copyUser.image" style="border: 2px white solid" public-id="{{ vm.copyUser.image }}" class="profile-image avatar huge" quality="80" format="jpg" alt="{{ vm.copyUser.name }}"/>
+                            <img ng-if="vm.cropper.croppedImage && vm.copyUser.image" style="border: 2px white solid" class="profile-image avatar huge" ng-src="{{vm.cropper.croppedImage}}" class="md-card-image" alt="{{ vm.copyUser.name }}" />
+                            <div class="user-superior pointer" layout="row" layout-align="center center">
+                                <span class="content"><md-icon md-font-icon="icon-camera md-background-fg" class="s24"></md-icon></span>
+                            </div>
+                        </label>
+                        <input id="file-input" class="pointer" type="file" img-cropper-fileread image="vm.cropper.sourceImage"/>
+                    </div>
+                    <div class="font-size-34">{{ vm.copyUser.name }}</div>
+                </div>
+            </div>
+        </div>
+        <div layout="row" layout-align="center center" ng-if="vm.cropper.sourceImage">
+            <canvas height="300" width="300" id="canvas" image-cropper image="vm.cropper.sourceImage" cropped-image="vm.cropper.croppedImage" crop-width="100" min-width="70" crop-height="100" keep-aspect="true" touch-radius="30" crop-area-bounds="vm.bounds"></canvas>
+        </div>
+		    <div class="content" flex layout-padding ng-if="!vm.cropper.sourceImage">
+            <div layout="row" layout-wrap layout-align="center center">
+              	<div class="about" layout="column" flex="100">
+                  	<div class="profile-box info-box general" layout="column">
+                      	<div class="content">
+                      		<div class="info-line">
+                              	<md-input-container class="md-block" flex>
+                                		<label translate="ME.EMAIL" translate-attr-aria-label="ME.EMAIL"></label>
+                                		<input name="email" type="email" required ng-model="vm.copyUser.email">
+                                    <div ng-messages="editUser.email.$error" ng-show="editUser.email.$touched" role="alert">
+                                        <div ng-message="required">Você precisa de um email para podermos conversar.</div>
+                                        <div ng-message="email">This field must be a valid email address.</div>
+                                        <div ng-message="vm.emailError">O nome não pode ter mais de 45 caracters</div>
+                                    </div>
+                                    <div class="error" data-ng-messages="serverErrors" data-ng-cloak>
+                                        <div data-ng-message="vm.emailError">Email already exists</div>
+                                    </div>
+                              	</md-input-container>
+                          	</div>
+                          	<div class="info-line">
+                              	<md-input-container class="md-block" flex>
+                              		<label translate="ME.TEL" translate-attr-aria-label="ME.TEL"></label>
+                              		<input ng-model="vm.copyUser.phone">
+                              	</md-input-container>
+                          	</div>
+                          	<div class="info-line">
+                              	<md-input-container class="md-block" flex>
+                              		<label translate="ME.ABOUT_ME" translate-attr-aria-label="ME.ABOUT_ME"></label>
+                              		<textarea ng-model="vm.copyUser.about" rows="5" md-select-on-focus md-no-autogrow></textarea>
+                              	</md-input-container>
+                          	</div>
+                      	</div>
+                  	</div>
+             	</div>
+          	</div>
+      	</div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="secondary-text" translate="ME.CANCEL" translate-attr-aria-label="ME.CANCEL" ng-click="vm.closeDialog()" ng-if="!vm.cropper.sourceImage">Cancel</md-button>
+      <md-button class="md-raised md-primary" translate="ME.SAVE" translate-attr-aria-label="ME.SAVE" ng-click="vm.saveChanges()" ng-if="!vm.cropper.sourceImage">Save
+      </md-button>
+      <md-button class="secondary-text" translate="ME.CANCEL" translate-attr-aria-label="ME.CANCEL" ng-click="vm.cropper.sourceImage = null" ng-if="vm.cropper.sourceImage">Cancel</md-button>
+      <md-button class="md-raised md-primary" translate="ME.SEND" translate-attr-aria-label="ME.SEND" ng-click="vm.saveCropImage()" ng-if="vm.cropper.sourceImage">Send
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

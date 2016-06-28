@@ -1,0 +1,29 @@
+{
+    "REGISTER": {
+        "INTRO_TITLE": "Bem-vindo ao Triskele!",
+        "INTRO_DESCRIPTION": "Triskele é uma plataforma que ajuda aventureiros a encontrarem os melhores profissionais. A vida é composta de uma sucessão de experimentações, através dessas experiências as pessoas se transformam. Nós temos o objetivo de ajudar as pessoas a viverem essas experiências.",
+        "TITLE": "Criar conta",
+        "WITH_FACEBOOK": "Cadastrar com Facebook",
+        "DESCRIPTION": "Sed mollis velit facilisis facilisis viverra",
+        "NAME": "Nome",
+        "OR": "OU",
+        "EMAIL": "Email",
+        "PASSWORD": "Senha",
+        "PHONE_NUMBER": "Telefone",
+        "PASSWORD_CONFIRM": "Senha (Confirmação)",
+        "READ_ACCEPT": "Eu li e aceito",
+        "TERMS_COND": "termos e condições",
+        "CREATE_ACCOUNT": "CRIAR CONTA",
+        "ALREADY_HAVE": "Já tem uma conta?",
+        "LOGIN": "Login",
+        "ERRORS": {
+            "USERNAME_REQUIRED": "Campo Nome é necessário",
+            "PHONE_NUMBER_REQUIRED": "Campo Telefone é necessário",
+            "EMAIL_REQUIRED": "Campo Email é necessário",
+            "EMAIL_MUST_VALID": "Email tem que ser um endereço válido",
+            "PASSWORD_REQUIRED": "Campo Senha é necessário",
+            "PASSWORD_CONFIRM_REQUIRED": "Confirmação da senha é necessário",
+            "TERMS_REQUIRED": "Você tem que aceitar os termos e condições para criar a conta"
+        }
+    }
+}

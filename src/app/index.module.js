@@ -23,6 +23,31 @@
             // Sample
             'app.sample',
 
-            'ngFacebook'
+            'ngFacebook',
+
+            'jkuri.gallery',
+
+            'app.pages',
+
+            'app.service-list',
+
+            'app.service-detail',
+
+            'app.service-create',
+
+            'app.rating',
+
+            'app.doubts',
+
+            'app.how-it-works',
+
+            'app.profile',
+
+            'app.me',
+
+            'app.footer',
+
+            'app.payment'
+            
         ]);
 })();

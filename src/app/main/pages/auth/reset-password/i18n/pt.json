@@ -1,0 +1,18 @@
+{
+    "RESETPASSWORD": {
+        "TITLE": "Resetar senha",
+        "EMAIL_ADRESS": "Email",
+        "PASSWORD": "Senha",
+        "PASSWORD_CONFIRM": "Senha (Confirmação)",
+        "UPDATE_PASSWORD": "RESETAR MINHA SENHA",
+        "GO_BACK": "Voltar para Login",
+        "SUCCESS": "Sucesso!",
+        "SUCCESS_MESSAGE": "Sua senha foi redefinida com sucesso!",
+        "ERRORS": {
+            "EMAIL_REQUIRED": "Campo de Email é necessário",
+            "EMAIL_MUST_VALID": "Email tem que ser um endereço válido",
+            "PASSWORD_REQUIRED": "Campo Senha é necessário",
+            "PASSWORD_CONFIRM_REQUIRED": "Confirmar senha é necessário"
+        }
+    }
+}

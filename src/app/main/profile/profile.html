@@ -1,0 +1,42 @@
+<div id="profile" class="page-layout simple tabbed">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" ngf-background="vm.backgroundImage" style="background-color: #E0E0E0;" layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="space-between end">
+        <div class="user-info" layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="start center">
+            <img ng-if="!vm.profile.image" style="border: 2px white solid" class="profile-image avatar huge" src="assets/images/avatars/profile.jpg" alt="{{ vm.profile.name }}">
+            <cl-image ng-if="vm.profile.image" style="border: 2px white solid" public-id="{{ vm.profile.image }}" class="profile-image avatar huge" quality="80" format="jpg" alt="{{ vm.profile.name }}"/>
+            <div class="name">{{ vm.profile.name }}</div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content" flex>
+
+        <md-tabs md-dynamic-height md-swipe-content>
+            <md-tab ng-if="vm.servicesList.lenght > 0">
+                <md-tab-label>
+                    <span translate="PROFILE.ACTIVITIES">Activities</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/profile/tabs/services/services.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            <md-tab ng-if="vm.profile.about">
+                <md-tab-label>
+                    <span translate="PROFILE.ABOUT">About</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/profile/tabs/about/about.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

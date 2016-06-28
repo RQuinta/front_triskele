@@ -1,0 +1,212 @@
+<!-- SIDENAV HEADER -->
+<div class="header" layout="column" layout-align="space-between">
+    <md-chip-template>
+                  <span>
+                    <strong>{{$chip.name}}</strong>
+                  </span>
+    </md-chip-template>
+    <div class="logo" layout="row" layout-align="center center">
+        <span class="logo-icon" hide>
+            <md-icon md-font-icon="icon-filter-variant" class="s24"></md-icon>
+        </span>
+        <span class="logo-text" translate="LIST.FILTERS">Filters</span>
+    </div>
+</div>
+<!-- / SIDENAV HEADER -->
+
+<!-- SIDENAV CONTENT -->
+
+<md-content class="content" flex ms-scroll>
+
+    <div class="navigation-simple" layout="column">
+
+
+      <md-button class="item" ng-click="vm.searchService.filterClear();" translate translate-attr-aria-label="LIST.CLEAR"
+                 ng-click="vm.toggleFilterWithEmpty('starred')"
+                 ng-class="{'selected':vm.taskFilters.starred}">
+        <md-icon md-font-icon="icon-minus-circle-outline" class="s22"></md-icon>
+        <span class="title" translate="LIST.CLEAR">Limpar Filtros</span>
+      </md-button>
+
+      <div layout="row" layout-align="start center" style="position:relative; top: 0px;width: 100%;">
+
+        <div flex-offset="5">
+          <md-icon md-font-icon="icon-magnify" class="s28" aria-hidden="true"></md-icon>
+        </div>
+        <md-input layout="row" layout-align="start center" layout-fill ms-scroll layout-align="start center"  >
+          <md-chips layout="row"  layout-align="start center" ng-model="vm.searchService.selectedItens" md-autocomplete-snap="" md-on-remove="vm.searchService.selectedItemHandler($chip)" md-require-match="true" style="overflow: hidden">
+            <md-autocomplete layout-fill flex-grow layout-align="start center" md-selected-item="vm.searchService.selectedItem"
+                             md-search-text="vm.searchService.searchText"
+                             md-search-text-change="vm.searchService.searchTextHandler(vm.searchText)"
+                             md-selected-item-change="vm.searchService.selectedItemHandler(item)"
+                             md-no-cache="true"
+                             md-items="item in vm.searchService.itens"
+                             md-item-text="item.name"
+                             md-min-length="2"
+                             placeholder="Cidades, atividades ..."
+            >
+              <span md-highlight-text="vm.searchService.searchText">{{item.name}}</span>
+            </md-autocomplete>
+            <md-chip-template>
+                  <span>
+                    <strong>{{$chip.name}}</strong>
+                  </span>
+            </md-chip-template>
+          </md-chips>
+        </md-input>
+      </div>
+      <div layout="column" class="item subheader" style="height: 200px">
+        <span translate="LIST.RATING">Avaliação</span>
+      </div>
+      <div layout="row" class="item" layout-align="space-around center" style="margin-top: -10px">
+        <div id="below-average" ng-class="{'enabled-below-average': vm.hasMinRating(1)}" ng-click="vm.searchService.setMinRating(1)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.BELOW_AVERAGE">Abaixo da Média</span> 
+          </md-tooltip>
+        </div>     
+        <div id="satisfatory" ng-class="{'enabled-satisfatory': vm.hasMinRating(2)}" ng-click="vm.searchService.setMinRating(2)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.SATISFACTORY">Satisfatório</span>
+          </md-tooltip>
+        </div>
+        <div id="good" ng-class="{'enabled-good': vm.hasMinRating(3)}" ng-click="vm.searchService.setMinRating(3)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.GOOD">Bom</span>
+          </md-tooltip>
+        </div>
+        <div id="very-good" ng-class="{'enabled-very-good': vm.hasMinRating(4)}" ng-click="vm.searchService.setMinRating(4)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.VERY_GOOD">Muito Bom</span>
+          </md-tooltip>
+        </div>
+        <div id="excelent" ng-class="{'enabled-excelent': vm.hasMinRating(5)}" ng-click="vm.searchService.setMinRating(5)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.EXCELLENT">Excelente</span>
+          </md-tooltip>
+        </div>
+      </div>
+
+      <div class="item subheader" layout="column">
+        <span translate="LIST.PRICE">Preço</span>
+        <div layout="row">
+          <div flex="33" layout="column" layout-align="center center">
+            <span class="range-price-1" translate="LIST.MINIMUM">mín.</span>
+            <span class="range-price-2">R${{ vm.searchService.filter.lowestPrice }}</span>
+          </div>
+          <div flex="33" layout="column" layout-align="center center">
+            <span class="selected-price">R${{ vm.searchService.filter.highPrice }}</span>
+          </div>
+          <div flex="33" layout="column" layout-align="center center">
+            <span class="range-price-1" translate="LIST.MAXIMUM">max.</span>
+            <span class="range-price-2">R${{vm.searchService.filter.higherPrice}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="item" style="margin-top: 15px">
+        <md-slider class="md-primary" flex min="{{vm.searchService.filter.lowestPrice}}" max="{{vm.searchService.filter.higherPrice}}" step="1" ng-change="vm.searchService.setHighPriceTouched(); vm.searchService.filterResults(vm.searchService.servicesList);" ng-model="vm.searchService.filter.highPrice" aria-label="Preço"></md-slider>
+      </div>
+      <div layout="column" class="item subheader" style="height: 200px">
+        <span translate="LIST.ADRENALINE">Adrenalina</span>
+      </div>
+      <div layout="row" class="item" layout-align="space-around center" style="margin-top: -10px">
+        <div id="no-adrenaline" ng-class="{'enabled-no-adrenaline': vm.hasAdrenaline(1)}" ng-click="vm.searchService.handleAdrenaline(1)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.ADRENALINE_1"></span>
+          </md-tooltip>
+        </div>
+        <div id="little-adrenaline" ng-class="{'enabled-little-adrenaline': vm.hasAdrenaline(2)}" ng-click="vm.searchService.handleAdrenaline(2)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.ADRENALINE_2"></span>
+          </md-tooltip>
+        </div>
+        <div id="medium-adrenaline" ng-class="{'enabled-medium-adrenaline': vm.hasAdrenaline(3)}" ng-click="vm.searchService.handleAdrenaline(3)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.ADRENALINE_3"></span>
+          </md-tooltip>
+        </div>
+        <div id="radical" ng-class="{'enabled-radical': vm.hasAdrenaline(4)}" ng-click="vm.searchService.handleAdrenaline(4)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.ADRENALINE_4"></span>
+          </md-tooltip>
+        </div>
+        <div id="ultra-radical" ng-class="{'enabled-ultra-radical': vm.hasAdrenaline(5)}" ng-click="vm.searchService.handleAdrenaline(5)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.ADRENALINE_5"></span>
+          </md-tooltip>
+        </div>
+      </div>
+
+      <div layout="column" class="item subheader" style="height: 200px">
+        <span translate="LIST.PHYSICAL_EFFORT">Esforço Físico</span>
+      </div>
+      <div layout="row" class="item" layout-align="space-around center" style="margin-top: -10px">
+        <div id="effortless" ng-class="{'enabled-effortless': vm.hasPhysicalEffort(1)}" ng-click="vm.searchService.handlePhysicalEffort(1)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.PHYSICAL_EFFORT_1"></span>
+          </md-tooltip>
+        </div>
+        <div id="light" ng-class="{'enabled-light': vm.hasPhysicalEffort(2)}" ng-click="vm.searchService.handlePhysicalEffort(2)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.PHYSICAL_EFFORT_2"></span>
+          </md-tooltip>
+        </div>
+        <div id="medium" ng-class="{'enabled-medium': vm.hasPhysicalEffort(3)}" ng-click="vm.searchService.handlePhysicalEffort(3)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.PHYSICAL_EFFORT_3"></span>
+          </md-tooltip>
+        </div>
+        <div id="challenging" ng-class="{'enabled-challenging': vm.hasPhysicalEffort(4)}" ng-click="vm.searchService.handlePhysicalEffort(4)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.PHYSICAL_EFFORT_4"></span>
+          </md-tooltip>
+        </div>
+        <div id="extreme" ng-class="{'enabled-extreme': vm.hasPhysicalEffort(5)}" ng-click="vm.searchService.handlePhysicalEffort(5)">
+          <md-tooltip md-direction="top">
+            <span translate="LIST.PHYSICAL_EFFORT_5"></span>
+          </md-tooltip>
+        </div>
+      </div>
+
+      <div layout="row" flex class="item subheader" ng-click="vm.changeMenuState('cities')">
+        <div layout="row" flex="95" layout-align="start center">
+          <div translate="LIST.CITIES">Cidades</div>
+        </div>
+        <div layout="row" flex="5" layout-align="end center" translate translate-attr-aria-label="LIST.SEE_CITIES">
+          <md-icon md-font-icon="{{ vm.menuState.cities ? 'icon-chevron-up' : 'icon-chevron-down'}}" class="s24"></md-icon>
+        </div>
+      </div>
+      <div ng-show="vm.menuState.cities" class="menu-toggle-list">
+        <div>
+          <ul>
+            <li class="item list" ng-repeat="city in vm.cities" menu-check item="city" clicked-class="checked">
+              <div ng-click="vm.searchService.addItemHandler(city);">
+                <span>{{ city.name }}</span>
+              </diV>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div layout="row" flex class="item subheader" ng-click="vm.changeMenuState('sports')">
+        <div layout="row" flex="95" layout-align="start center">
+          <div translate="LIST.ACTIVITIES">Atividades</div>
+        </div>
+        <div layout="row" flex="5" layout-align="end center" translate translate-attr-aria-label="LIST.SEE_ACTIVITIES">
+          <md-icon md-font-icon="icon-chevron-down" class="s24"></md-icon>
+        </div>
+      </div>
+      <div ng-show="vm.menuState.sports" class="animate-if">
+        <div>
+          <ul>
+            <li class="item list" ng-repeat="sport in vm.sports" menu-check item="sport" clicked-class="checked">
+              <div ng-click="vm.searchService.addItemHandler(sport);">
+                <span translate="{{ vm.LanguagesService.getActivity(sport.name) }}"></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+</md-content>
+<!-- / SIDENAV CONTENT -->

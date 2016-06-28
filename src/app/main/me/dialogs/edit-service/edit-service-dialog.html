@@ -1,0 +1,53 @@
+<md-dialog aria-label="Editar Atividade" ng-cloak>
+  <form name="form">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 translate="ME.EDIT_ACTIVITY"></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="vm.closeDialog()">
+          <md-icon md-font-icon="icon-close" class="s24" aria-label="Fechar" translate translate-attr-aria-label="ME.CLOSE"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      	<div ng-if="!vm.success && !vm.error" class="md-dialog-content">
+        	<div layout="column">
+				<p translate="ME.DOES_NOT_SUPPORT"></p>
+				<p translate="ME.SEND_US_A_MESSAGE"></p>
+				<div class="info-line">
+		        	<md-input-container class="md-block" flex>
+		        		<label translate="ME.MESSAGE"></label>
+		            	<textarea ng-model="vm.service_changes.message" required rows="5" md-select-on-focus md-no-autogrow></textarea>
+		        	</md-input-container>
+		    	</div>
+			</div>
+      	</div>
+      	<div ng-if="vm.success || vm.error" id="payment-message">
+		    <div ng-if="vm.success" class="animate-slide-up padding-40" id="feedback-edit-service" layout="column" layout-align="center center">
+		        <div class="content" layout="column" layout-align="center center">
+		        	<img ng-src="http://res.cloudinary.com/triskele/image/upload/v1466537329/triskele-logo.png" class="success-logo" alt="Triskele">
+		            <div class="message" translate="DOUBTS.ALL_RIGHT"></div>
+		            <div class="sub-message" translate="DOUBTS.ALL_RIGHT_MESSAGE">
+		            </div>
+		        </div>
+		    </div>
+		    <div ng-if="vm.error" class="animate-slide-up" id="error-500" layout="column" layout-align="center center">
+		        <div class="content" layout="column" layout-align="center center">
+		            <div class="error-code" translate="ERROR500.CODE">500</div>
+		            <div class="message" translate="ERROR500.MESSAGE">Well, you broke the internet!</div>
+		            <div class="sub-message" translate="ERROR500.SUBMESSAGE">Just kidding, looks like we have an internal issue, please try again in couple minutes
+		            </div>
+		            <a class="report-link md-accent-color" ui-sref="app.doubts" translate="ERROR500.REPORT">Report this problem</a>
+		        </div>
+		    </div>
+		</div>
+    </md-dialog-content>
+    <md-dialog-actions ng-if="!vm.success && !vm.error" layout="row">
+        <span flex></span>
+        <md-button class="secondary-text" aria-label="Cancelar" translate="ME.CANCEL" translate-attr-aria-label="ME.CANCEL" ng-click="vm.closeDialog()">
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="Enviar" ng-disabled="form.$invalid" translate="ME.SEND" translate-attr-aria-label="ME.SEND" ng-click="vm.saveChanges()">
+        </md-button>  
+    </md-dialog-actions>
+  </form>
+</md-dialog>

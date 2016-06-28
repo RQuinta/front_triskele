@@ -1,0 +1,77 @@
+<div id="todo" class="page-layout carded left-sidenav" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-primary-bg">
+    </div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- LEFT SIDENAV -->
+    <md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="main-sidenav"
+                ng-include="'app/main/service-list/sidenavs/main/main-sidenav.html'" ms-scroll ms-sidenav-helper>
+    </md-sidenav>
+    <!-- / LEFT SIDENAV -->
+
+    <!-- CENTER -->
+    <div class="center"  layout="column" flex>
+
+        <!-- CONTENT HEADER
+        <div class="header" layout="row" layout-align="start center">
+          <div class="search md-whiteframe-4dp" flex="100" layout="row" layout-align="start center">
+            <md-icon md-font-icon="icon-magnify" class="icon s24"></md-icon>
+            <input flex="100" ng-model="vm.taskFilters.search" type="text" placeholder="Busque cidades e esportes"
+                   translate
+                   translate-attr-placeholder="TODO.SEARCH">
+          </div>
+        </div>
+         / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card content-card-margin" layout="column" flex>
+
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar" flex="100" layout="row" layout-align="space-between center">
+              <div layout="row" flex="70" layout-align="start center">
+                <div flex-xs="70" flex-gt-xs="10" layout="row" layout-align="start center">
+                  <md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('main-sidenav')" hide-gt-sm
+                             translate translate-attr-aria-label="TODO.TOGGLE_SIDENAV">
+                    <md-icon md-font-icon="icon-filter-variant" class="icon"></md-icon>
+                  </md-button>
+                  
+                </div>
+                <div flex class="number-results"  layout="row" layout-align="end center">
+                  <span class="result-text secondary-text"><strong class="result ">{{vm.searchService.filteredServiceList.length}}  </strong><span ng-if="vm.searchService.filteredServiceList.length > 1" translate="LIST.ADVENTURES">Aventuras</span><span ng-if="vm.searchService.filteredServiceList.length < 2" translate="LIST.ADVENTURE">Aventura</span></span>
+                </div>
+                
+              </div>
+              <div layout="row" flex="30" layout-align="end center">
+                <md-select class="simplified" ng-model="vm.searchService.orderOption" ng-model-options="{trackBy: '$value.id'}"
+                  ng-change="vm.searchService.orderChanged()" placeholder="Ordenar">
+                  <md-option ng-value="{ id: 1, key: 'sales_counter', order: 'desc' }" translate="LIST.MOST_POPULAR"></md-option>
+                  <md-option ng-value="{ id: 2, key: 'price', order: 'asc' }" translate="LIST.PRICE"></md-option>
+                  <md-option ng-value="{ id: 3, key: 'rating', order: 'desc' }" translate="LIST.RATING"></md-option>
+                </md-select>
+              </div>
+
+
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <div class="content" md-swipe-right="vm.toggleSidenav('main-sidenav')" layout="row" flex>
+
+                <!-- Todo list pane -->
+                <md-content class="todo-list-pane" flex
+                            ng-include="'app/main/service-list/views/list/list-view.html'" ms-scroll="vm.msScrollOptions">
+                </md-content>
+                <!-- / Todo list pane -->
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARDb-->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

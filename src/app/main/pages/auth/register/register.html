@@ -1,0 +1,97 @@
+<div id="register" layout="row" layout-align="start">
+  <div id="register-intro" layout="column" layout-align="center start"  flex hide show-gt-sm>
+    <div class="logo">
+      <a ng-href="/"><img ng-src="../../../../../assets/images/logos/triskele-logo.png" alt="Triskele"></a>
+    </div>
+    <div class="title divider" translate="REGISTER.INTRO_TITLE">
+      Welcome to Triskele!
+    </div>
+    <div class="description divider" translate="REGISTER.INTRO_DESCRIPTION">
+      Triskele is a platform that helps adventurers to find the best professionals.
+      Life is made ​​up of a succession of trials, through these experiences people evolve.
+      We have the goal of helping people to live these experiences.
+    </div>
+  </div>
+
+  <div id="register-form-wrapper" class="flex-scrollable md-whiteframe-8dp" layout="column" flex ms-scroll>
+    <div id="register-form">
+      <div class="logo" hide-gt-sm>
+        <a ng-href="/"><img ng-src="../../../../../assets/images/logos/triskele-logo.png" alt="Triskele"></a>
+      </div>
+
+      <div class="title" translate="REGISTER.TITLE">Create an account</div>
+      
+      <md-button ng-click="vm.loginWithFacebook()" class="md-raised facebook">
+        <div layout="row" layout-align="center center">
+                <span>
+                    <md-icon md-font-icon="icon-facebook" class="s16"></md-icon>
+                    <span translate="REGISTER.WITH_FACEBOOK">Register with Facebook</span>
+                </span>
+        </div>
+      </md-button>
+
+      <div class="separator">
+        <span class="text" translate="REGISTER.OR">OR</span>
+      </div>
+
+      <form name="registerForm" novalidate>
+        <md-input-container class="md-block" md-no-float>
+          <input name="username" ng-model="vm.credencials.name" placeholder="Name"
+                 translate translate-attr-placeholder="REGISTER.NAME"
+                 required>
+          <div ng-messages="registerForm.username.$error" role="alert">
+            <div ng-message="required">
+              <span translate="REGISTER.ERRORS.USERNAME_REQUIRED">Username field is required</span>
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block" md-no-float>
+          <input type="email" name="email" ng-model="vm.credencials.email" placeholder="Email"
+                 translate translate-attr-placeholder="REGISTER.EMAIL"
+                 ng-pattern="/^.+@.+\..+$/" required>
+          <div ng-messages="registerForm.email.$error" role="alert" multiple>
+            <div ng-message="required">
+              <span translate="REGISTER.ERRORS.EMAIL_REQUIRED">Email field is required</span>
+            </div>
+            <div ng-message="pattern">
+              <span translate="REGISTER.ERRORS.EMAIL_MUST_VALID">Email must be a valid e-mail address</span>
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block" md-no-float>
+          <input type="password" name="password" ng-model="vm.credencials.password" placeholder="Password"
+                 translate translate-attr-placeholder="REGISTER.PASSWORD"
+                 required>
+          <div ng-messages="registerForm.password.$error" role="alert">
+            <div ng-message="required">
+              <span translate="REGISTER.ERRORS.PASSWORD_REQUIRED">Password field is required</span>
+            </div>
+          </div>
+        </md-input-container>
+
+        <div class="terms" layout="row" layout-align="center center">
+          <md-checkbox name="terms" ng-model="data.cb1" aria-label="I read and accept" required></md-checkbox>
+          <div layout="row" layout-sm="column" layout-align="start center">
+            <span translate="REGISTER.READ_ACCEPT">I read and accept</span>
+            <a href="#" class="md-accent-color" translate="REGISTER.TERMS_COND">terms and conditions</a>
+          </div>
+        </div>
+
+        <md-button type="submit" ng-click="vm.create()" class="md-raised md-primary submit-button" aria-label="CREATE MY ACCOUNT"
+                   ng-disabled="registerForm.$invalid || registerForm.$pristine"
+                   translate="REGISTER.CREATE_ACCOUNT"
+                   translate-attr-aria-label="REGISTER.CREATE_ACCOUNT">
+          CREATE MY ACCOUNT
+        </md-button>
+      </form>
+
+      <div class="login" layout="row" layout-sm="column" layout-align="center center">
+        <span class="text" translate="REGISTER.ALREADY_HAVE">Already have an account?</span>
+        <a class="link" ng-href="/login" translate="REGISTER.LOGIN">Log in</a>
+      </div>
+
+    </div>
+  </div>
+</div>

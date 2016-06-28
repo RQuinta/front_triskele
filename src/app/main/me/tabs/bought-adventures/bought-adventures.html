@@ -1,0 +1,16 @@
+<table datatable="ng" dt-disable-deep-watchers="true" class="row-border hover">
+    <thead>
+    <tr>
+        <th>Cliente</th>
+        <th>Aventura</th>
+        <th>Adicional</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="acquisition in ::vm.acquisitionsList track by acquisition.id">
+        <td>{{ ::acquisition.user.name }}</td>
+        <td>{{ ::acquisition.service.name }}</td>
+        <td>{{ ::acquisition.additional.description }}</td>
+    </tr>
+    </tbody>
+</table>

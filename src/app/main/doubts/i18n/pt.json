@@ -1,0 +1,13 @@
+{
+    "DOUBTS": {
+        "DOUBTS": "Dúvidas",
+        "DESCRIPTION": "Tem alguma dúvida, sugestão ou crítica? Nos envie uma mensagem e responderemos o mais rápido possível.",
+        "NAME": "Nome",
+        "EMAIL": "Email",
+        "EMAIL_ALERT": "Você deve informar um email.",
+        "MESSAGE": "Menssagem",
+        "SEND": "Enviar",
+        "ALL_RIGHT": "Tudo Certo!",
+        "ALL_RIGHT_MESSAGE": "Sua mensagem foi enviada com sucesso!"
+    }
+}

@@ -1,0 +1,86 @@
+<div ng-if="!vm.success && !vm.error" id="rating" class="flex-scrollable" layout="column" ms-scroll>
+    <a class="logo fixed-logo" ui-sref="app.sample">
+        <img src="../../../assets/images/logos/triskele-logo-nome.png" alt="Triskele">
+    </a>
+
+    <div id="rating-form-wrapper" layout="column" layout-align="start center">
+        <div id="rating-form" class="md-whiteframe-8dp">
+            <cl-image public-id="{{ vm.acquisition.service.image }}" quality="80" format="jpg" alt="{{ vm.acquisition.service.name }}"/>
+
+            <div layout-aling="start center" class="form-content">
+                <h1 class="margin-0 margin-bottom-16">{{ vm.acquisition.service.name }}</h1>
+
+                <h2 style="color: #BDBDBD;" ng-class="{'blue-600-fg': vm.ratingSelected}" class="margin-0 margin-bottom-16" translate="RATING.WHAT_YOU_THINK">O que você achou da atividade?</h2>
+            
+                <div layout="row" class="item padding-bottom-20" layout-align="space-around center">
+                    <div>
+                        <md-tooltip md-direction="top">
+                            <span translate="RATING.BELOW_AVERAGE">Abaixo da Média</span>
+                        </md-tooltip>
+
+                        <div id="below-average" translate translate-attr-aria-label="RATING.BELOW_AVERAGE" ng-class="{'enabled-below-average': vm.acquisition.rating === 1 }" ng-click="vm.setAcquisitionRating(1)"></div>
+
+                    </div>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            <span translate="RATING.SATISFACTORY">Satisfatório</span>
+                        </md-tooltip>
+
+                        <div id="satisfatory"  translate translate-attr-aria-label="RATING.SATISFACTORY" ng-class="{'enabled-satisfatory': vm.acquisition.rating === 2}" ng-click="vm.setAcquisitionRating(2)"></div>
+
+                    </div>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            <span translate="RATING.GOOD">Bom</span>
+                        </md-tooltip>
+
+                        <div id="good"  translate translate-attr-aria-label="RATING.GOOD" ng-class="{'enabled-good': vm.acquisition.rating === 3}" ng-click="vm.setAcquisitionRating(3)"></div>
+
+                    </div>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            <span translate="RATING.VERY_GOOD">Muito Bom</span>
+                        </md-tooltip>
+
+                        <div id="very-good"  translate translate-attr-aria-label="RATING.VERY_GOOD" ng-class="{'enabled-very-good': vm.acquisition.rating === 4}" ng-click="vm.setAcquisitionRating(4)"></div>
+                    </div>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            <span translate="RATING.EXCELLENT">Excelente</span>
+                        </md-tooltip>
+                        <div id="excellent" translate translate-attr-aria-label="RATING.EXCELLENT" ng-class="{'enabled-excellent': vm.acquisition.rating === 5}"  ng-click="vm.setAcquisitionRating(5)"></div>
+                    </div>              
+                </div>
+                <label class="font-size-26 md-primary-fg" translate="RATING.COMMENT">Comentário</label>
+                <md-input-container class="md-block" class="left">
+                  <textarea rows="4" md-select-on-focus md-no-autogrow translate translate-attr-placeholder="RATING.COMMENT_PLACEHOLDER"  ng-model="vm.acquisition.commentary"></textarea>
+                </md-input-container>
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-raised md-primary margin-right-0" ng-click="vm.save()" ng-disabled="!vm.acquisition.rating" translate="RATING.SEND">Enviar</md-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-if="vm.success || vm.error" id="payment-message">
+    <div ng-if="vm.success" class="animate-slide-up" id="feedback" layout="column" layout-align="center center">
+        <div class="content" layout="column" layout-align="center center">
+            <img ng-src="http://res.cloudinary.com/triskele/image/upload/v1466537329/triskele-logo.png" class="success-logo" alt="Triskele">
+            <div class="message" translate="RATING.THANKS"></div>
+            <div class="sub-message" translate="RATING.THANKS_MESSAGE">
+            </div>
+            <a class="report-link md-accent-color" ui-sref="app.service-list" translate="RATING.SEE_MORE_ADVENTURES"></a>
+        </div>
+    </div>
+    <div ng-if="vm.error" class="animate-slide-up" id="error-500" layout="column" layout-align="center center">
+        <div class="content" layout="column" layout-align="center center">
+            <div class="error-code" translate="ERROR500.CODE">500</div>
+            <div class="message" translate="ERROR500.MESSAGE">Well, you broke the internet!</div>
+            <div class="sub-message" translate="ERROR500.SUBMESSAGE">Just kidding, looks like we have an internal issue, please try again in couple minutes
+            </div>
+            <a class="report-link md-accent-color" ui-sref="app.doubts" translate="ERROR500.REPORT">Report this problem</a>
+        </div>
+    </div>
+</div>

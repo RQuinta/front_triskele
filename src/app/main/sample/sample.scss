@@ -1,0 +1,366 @@
+/*----------------------------------------------   
+--Banner
+-----------------------------------------------  */
+.sect-banner{
+ display: table;
+ width: 100%;
+ margin: 0 auto;
+ text-align: center;
+ margin-left: -40px;
+ /*-- Full Height --*/
+ height: 40vh;
+ color:	rgba(255,255,255,0.9);
+
+ /*-- Create an Overlay --*/
+ &:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(118, 144, 164, 0.2);
+  z-index: 0;
+ }
+
+ /*-- Vertically center --*/
+ .v-center{
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+  z-index: 4;
+ }
+}
+
+/*----------------------------------------------   
+--Keyframes
+-----------------------------------------------  */
+@include keyframes(fade-out) {
+ 33%{
+  opacity: 1
+ }
+ 66%{
+ opacity: 0
+ }
+}
+
+/*----------------------------------------------   
+--List for images, sm and large
+-----------------------------------------------  */
+ul.kf-slider{
+ li{ 	
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:	50%;
+  z-index: 0;
+  opacity: 0;
+  /*-- Add animation --*/ 
+  @include animation(fade-out 22.5s infinite both);
+  /*-- Image 1: small --*/ 
+  background-image: url('http://res.cloudinary.com/triskele/image/upload/c_fill,f_auto,g_auto,q_auto,w_auto/v1466711538/iguazu.jpg');
+  @media only screen and (max-width: 599px){
+      background-image: url('http://res.cloudinary.com/triskele/image/upload/c_fill,f_auto,g_auto,q_auto,w_800/v1466711538/iguazu.jpg');
+  }
+  @media only screen and (min-width: 600px) and (max-width: 959px){
+      background-image: url('http://res.cloudinary.com/triskele/image/upload/c_fill,f_auto,g_auto,q_auto,w_1100/v1466711538/iguazu.jpg');
+  }
+ }
+ /*-- Image 2 --*/ 
+ li:nth-child(2){
+  background-image: url('http://res.cloudinary.com/triskele/image/upload/c_fill,f_auto,g_auto,q_auto,w_auto/v1466711538/Amanhecer_no_Hercules.jpg');
+  @media only screen and (max-width: 599px){
+      background-image: url('http://res.cloudinary.com/triskele/image/upload/c_fill,f_auto,g_auto,q_auto,w_800/v1466711538/Amanhecer_no_Hercules.jpg');
+  }
+  @media only screen and (min-width: 600px) and (max-width: 959px){
+      background-image: url('http://res.cloudinary.com/triskele/image/upload/c_fill,f_auto,g_auto,q_auto,w_1100/v1466711538/Amanhecer_no_Hercules.jpg');
+  }
+  @media only screen and (min-width: 960px) and (max-width: 1600px){
+      background-image: url('http://res.cloudinary.com/triskele/image/upload/c_fill,f_auto,g_auto,q_auto,w_1920/v1466711538/Amanhecer_no_Hercules.jpg');
+  }
+  /*-- Animation delay: 3s --*/ 
+  @include animation-delay(7.5s);
+
+ }
+ /*-- Image 3 --*/ 
+ li:nth-child(3){
+  background-image: url('http://res.cloudinary.com/triskele/image/upload/c_fill,f_auto,g_east,q_auto,o_80,w_auto/v1466711538/parapente-por-do-sol.jpg');
+  @media only screen and (max-width: 599px){
+      background-image: url('http://res.cloudinary.com/triskele/image/upload/c_fill,f_auto,g_auto,q_auto,o_80,w_800/v1466711538/sunset-paragliding-2.jpg');
+  }
+  @media only screen and (min-width: 600px) and (max-width: 959px){
+      background-image: url('http://res.cloudinary.com/triskele/image/upload/c_fill,f_auto,g_auto,q_auto,o_80,w_1100/v1466711538/parapente-por-do-sol.jpg');
+  }
+  @media only screen and (min-width: 960px) and (max-width: 1600px){
+      background-image: url('http://res.cloudinary.com/triskele/image/upload/c_fill,f_auto,g_auto,q_auto,o_80,w_1920/v1466711538/parapente-por-do-sol.jpg');
+  }
+  /* Animation delay: 6s */  
+  @include animation-delay(15s);
+ }
+}
+
+#home {
+  // because of te margin left de 40px on sect-banner some itens here need it to
+  .title {
+    @media only screen and (max-width: 599px){
+      font-size: 26px;
+      text-shadow: 0.5px 0.5px #BDBDBD;
+      font-weight: 600;
+      padding-left: 10%;
+      margin-top: 15%;
+    }
+    /* for big cellphones */
+    @media only screen and (max-width: 800px) and (min-height: 320px) and (max-height: 450px){
+      font-size: 26px;
+      text-shadow: 0.5px 0.5px #BDBDBD;
+      font-weight: 600;
+      padding-left: 10%;
+      margin-top: 10%;
+    }
+    @media only screen and (min-width: 600px) and (max-width: 959px){
+      font-size: 42px;
+      text-shadow: 0.5px 0.5px #BDBDBD;
+      font-weight: 600;
+      padding-left: 13%;
+      padding-right: 10%;
+      margin-top: 10%;  
+    }
+    @media only screen and (min-width: 960px) and (max-width: 1279px){
+      font-size: 38px;
+      padding-left: 40px;
+      text-shadow: 0.5px 0.5px #BDBDBD;
+      font-weight: 600;
+      margin-top: 10%;
+    }
+    @media only screen and (min-width: 1280px) and (max-width: 1439px){
+      font-size: 44px;
+      text-shadow: 0.5px 0.5px #BDBDBD;
+      font-weight: 600;
+      margin-top: 10%;
+    }
+    @media only screen and (min-width: 1440px){
+      font-size: 48px;
+      text-shadow: 0.5px 0.5px #BDBDBD;
+      font-weight: 600;
+      margin-top: 10%;
+    }
+  }
+  .sub-title {
+    @media only screen and (max-width: 599px){
+      font-size: 18px;
+      text-shadow: 0.5px 0.5px #BDBDBD;
+      text-align: center;
+      font-weight: 500;
+      padding-left: 10%;
+    }
+    @media only screen and (min-width: 600px) and (max-width: 959px){
+      font-size: 28px;
+      text-shadow: 0.5px 0.5px #BDBDBD;
+      font-weight: 500;
+      padding-left: 13%;
+      padding-right: 10%;
+    }
+    @media only screen and (min-width: 960px) and (max-width: 1279px){
+      font-size: 28px;
+      text-shadow: 0.5px 0.5px #BDBDBD;
+      font-weight: 500;
+      padding: 0 10% 0 10%;
+      margin-left: 40px;
+    }
+    @media only screen and (min-width: 1280px) and (max-width: 1439px){
+      font-size: 34px;
+      text-shadow: 0.5px 0.5px #BDBDBD;
+      font-weight: 500;
+      margin-left: 40px;
+      padding: 0 10% 0 10%;
+    }
+    @media only screen and (min-width: 1440px){
+      font-size: 34px;
+      text-shadow: 0.5px 0.5px #BDBDBD;
+      font-weight: 500;
+      margin-left: 40px;
+      padding: 0 10% 0 10%;
+    }
+  }
+
+  .search {
+    @media only screen and (max-width: 599px){
+      position: fixed;
+      /* bottom: 24px; */
+      right: 16px;
+      left: 16px;
+      width: 100%;
+      margin-top: 20%;
+      bottom: 10%;
+    }
+    /* for big cellphones */
+    @media only screen and (max-width: 599px) and (min-height: 600px) and (max-height: 800px){
+      position: fixed;
+      /* bottom: 24px; */
+      right: 16px;
+      left: 16px;
+      width: 100%;
+      margin-top: 20%;
+      bottom: 30%;
+    }
+    /* for big cellphones */
+    @media only screen and (max-width: 800px) and (min-height: 350px) and (max-height: 450px){
+      position: fixed;
+      /* bottom: 24px; */
+      right: 16px;
+      left: 16px;
+      width: 100%;
+      margin-top: 20%;
+      bottom: 10%;
+    }
+    @media only screen and (min-width: 600px) and (max-width: 959px) and (min-height: 450px){
+      margin-left: 12%;
+      /* bottom: 24px; */
+      width: 80%;
+      margin-top: 10%;
+    }
+    @media only screen and (min-width: 960px) and (max-width: 1279px){
+      /* bottom: 24px; */
+      margin-top: 10%;
+      width: 100%;
+      margin-left: -40px;
+      padding-left: 20%;
+      padding-right: 10%;
+    }
+    @media only screen and (min-width: 1280px) and (max-width: 1439px){
+      /* bottom: 24px; */
+      margin-top: 10%;
+      width: 100%;
+      margin-left: -40px;
+      padding-left: 20%;
+      padding-right: 10%;
+    }
+    @media only screen and (min-width: 1440px){
+      /* bottom: 24px; */
+      margin-top: 10%;
+      width: 100%;
+      margin-left: -40px;
+      padding-left: 20%;
+      padding-right: 10%;
+    }
+  }
+
+  .chips {
+    @media only screen and (max-width: 599px){
+      background-color: white;
+      width: 100%;
+      margin-right: 32px;
+    }
+    /* for big cellphones */
+    @media only screen and (max-width: 800px) and (min-height: 350px) and (max-height: 450px){
+      background-color: white;
+      width: 100%;
+      margin-right: 32px;
+    }
+    @media only screen and (min-width: 600px) and (max-width: 959px){
+      background-color: white;
+      width: 100%;
+    }
+    @media only screen and (min-width: 960px) and (max-width: 1279px){
+      width: 100%;
+      background-color: white;
+    }
+    @media only screen and (min-width: 1280px) and (max-width: 1439px){
+      width: 100%;
+      background-color: white;
+    }
+    @media only screen and (min-width: 1440px){
+      width: 100%;
+      background-color: white;
+    }
+    
+
+  }
+  .complete {
+    @media only screen and (max-width: 599px){
+      z-index:4;
+      width:200px !important;
+    }
+    @media only screen and (min-width: 600px) and (max-width: 959px){
+      z-index:4;
+      width: 270px !important;
+    }
+    @media only screen and (min-width: 960px) and (max-width: 1279px){
+      z-index:4;
+      width: 270px !important;
+    }
+    @media only screen and (min-width: 1280px) and (max-width: 1439px){
+      z-index:4;
+      width: 270px !important;
+      
+    }
+    @media only screen and (min-width: 1440px){
+      z-index:4;
+      width: 270px !important;
+      
+    }
+  }
+
+  .search-button {
+     
+    @media only screen and (max-width: 599px){
+      z-index: 5;
+      position: fixed;
+      right: 16px;
+      height: 49px;
+      width: 50px !important; 
+      cursor: pointer; 
+    }
+    /* for big cellphones */
+    @media only screen and (max-width: 800px) and (min-height: 350px) and (max-height: 450px){
+      z-index: 6;
+      position: fixed;
+      right: 16px;
+      height: 49px;
+      width: 50px !important; 
+      cursor: pointer;
+    }
+    @media only screen and (min-width: 600px) and (max-width: 959px){
+      z-index: 5;
+      right: 16px;
+      height: 49px;
+      width: 70px !important; 
+      cursor: pointer;
+    }
+    @media only screen and (min-width: 960px) and (max-width: 1279px){
+      z-index: 5;
+      right: 16px;
+
+      height: 49px;
+      width: 70px !important; 
+      cursor: pointer;
+    }
+    @media only screen and (min-width: 1280px) and (max-width: 1439px){
+      z-index: 5;
+      right: 16px;
+
+      height: 49px;
+      width: 70px !important; 
+      cursor: pointer;
+    }
+    @media only screen and (min-width: 1440px){
+      z-index: 5;
+      right: 16px;
+
+      height: 49px;
+      width: 70px !important; 
+      cursor: pointer;
+    }
+  }
+
+  .search-icon {
+    color: white; 
+    height: 40px;
+  }
+}
+
+
+

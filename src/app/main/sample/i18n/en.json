@@ -1,5 +1,8 @@
 {
-    "SAMPLE": {
-        "SAMPLE_NAV": "Sample!"
+    "HOME": {
+        "TITLE": "How about a new adventure?",
+        "SUBTITLE": "Triskele is the plataform that helps adventurers live amazing experiences.",
+        "NO_MATCHES": "No matches found.",
+        "SEARCH": "Search"
     }
 }

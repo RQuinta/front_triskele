@@ -1,0 +1,68 @@
+
+.footer-divider {
+    border-color: rgba(255,255,255,0.2);
+    @media only screen and (max-width: 959px){
+      width: 95%;
+    }
+    @media only screen and (min-width: 960px){
+      width: 85%;
+    }
+    
+}
+
+.copyright-heigth{
+    height: 16px !important;
+}
+
+.footer-link {
+    color: #BDBDBD !important;
+    -webkit-transition: color 0.8s; /* Safari 3.1 to 6.0 */
+    transition: color 0.8s;
+}
+.footer-link:hover {
+    color: white !important;
+    -webkit-transition: color 0.8s; /* Safari 3.1 to 6.0 */
+    transition: color 0.8s;
+}
+
+.icon-facebook-style {
+    height: 36px;
+    width: 36px;
+    border: 2px solid white;
+    cursor: pointer;
+    margin-left: 8px;
+    margin-right: 8px;
+    border-radius: 50%;
+    color: white !important;    
+    -webkit-transition: border 0.8s, background-color 0.8s; /* Safari 3.1 to 6.0 */
+    transition: border 0.8s, background-color 0.8s;
+}
+
+.icon-facebook-style:hover {
+    border: 2px solid #3b5998;
+    background-color: #3b5998;
+    -webkit-transition: border 0.8s, background-color 0.8s; /* Safari 3.1 to 6.0 */
+    transition: border 0.8s, background-color 0.8s;
+}
+
+.footer-select {
+   color: white;
+   padding: 8px;
+   font-size: 16px;
+   line-height: 1;
+   border: none;
+   border-radius: 2px;
+   background: url('http://res.cloudinary.com/triskele/image/upload/v1466263466/chevron-down-white.png') no-repeat right #757575;
+   height: 34px;
+   -webkit-appearance: none;
+   @media only screen and (max-width: 959px){
+      width: 95%;
+    }
+    @media only screen and (min-width: 960px){
+      width: 85%;
+    }
+   
+}
+.footer-select option{
+   border: none;
+}

@@ -1,0 +1,16 @@
+{
+    "PAYMENT": {
+        "BOOK": "Book",
+        "DOUBTS": "Doubts?",
+        "CONTACT": "Get in touch",
+        "ADVENTURE_BOOKED": "Adventure Booked!",
+        "BOOKED_SUCCESS": "Your adventure was successfully booked! We send an email with the details.",
+        "DOUBTS": "Any doubts contact us.",
+        "THANKS": "Thank you for buying with us! We hope you have an amazing experience :)",
+        "ERROR_MESSAGE": "Well, you broke the internet!",
+        "ERROR_SUBMESSAGE": "Just kidding, looks like we have an internal issue, please try again in couple minutes",
+        "ERROR_REPORT": "Report this problem",
+        "PEOPLE": "People",
+        "DETAIL": "Details"
+    }
+}

@@ -28,7 +28,8 @@
     "angular-socialshare": "angularjs-socialshare#^2.2.3",
     "ngstorage": "^0.3.10",
     "pg-ng-checkout": "https://raw.githubusercontent.com/pagarme/pagarme-ng-checkout/master/dest/js/pg-ng-checkout.js",
-    "cloudinary_ng": "^1.0.0"
+    "cloudinary_ng": "^1.0.0",
+    "ngGallery": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.5.5"

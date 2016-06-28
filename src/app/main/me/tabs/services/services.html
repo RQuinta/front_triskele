@@ -1,0 +1,125 @@
+<!-- TODO LIST ITEMS Caso seja a própria pessoa vendo-->
+    <div >
+      <div >
+        <ul class="list">
+          <li class="list-item item-width" ng-repeat="service in vm.servicesList">
+
+              <md-card class="md-whiteframe-0dp card-style">
+                <div layout="row" layout-align="space-around center" flex>
+                  <a class="edit pointer" layout="row" flex="33" translate translate-attr-aria-label="ME.EDIT_ACTIVITY" ng-click="vm.openServiceEditDialog(service, $event)" layout-align="center center">
+                      <md-tooltip md-direction="top">
+                          <span translate="ME.EDIT_ACTIVITY" class="font-size-14 padding-8"></span>
+                      </md-tooltip>
+                      <md-icon md-font-icon="icon-pencil" class="s32"></md-icon>
+                  </a>
+                  <a ng-if="!service.aproved" layout="row" flex="33" translate translate-attr-aria-label="ME.NOT_APPROVED" layout-align="center center">
+                      <md-tooltip md-direction="top">
+                          <span translate="ME.NOT_APPROVED" class="font-size-14 padding-8"></span>
+                      </md-tooltip>
+                      <md-icon md-font-icon="icon-timelapse" class="s32 amber-500-fg"></md-icon>
+                  </a>
+                  <a ng-if="service.active && service.aproved" class="edit pointer" layout="row" flex="33" translate translate-attr-aria-label="ME.PAUSE" ng-click="vm.pauseConfirm($event, service)" layout-align="center center">
+                      <md-tooltip md-direction="top">
+                          <span translate="ME.PAUSE" class="font-size-14 padding-8"></span>
+                      </md-tooltip>
+                      <md-icon md-font-icon="icon-eye-off" class="s32"></md-icon>
+                  </a>
+                  <a ng-if="!service.active && service.aproved" class="edit pointer" layout="row" flex="33" translate translate-attr-aria-label="ME.UNPAUSE" ng-click="vm.unpauseActivity(service)" layout-align="center center">
+                      <md-tooltip md-direction="top">
+                          <span translate="ME.UNPAUSE" class="font-size-14 padding-8"></span>
+                      </md-tooltip>
+                      <md-icon md-font-icon="icon-eye" class="s32 md-primary-fg"></md-icon>
+                  </a>
+                  <a class="delete pointer" layout="row" flex="33" ng-click="vm.deleteConfirm($event, service)" translate translate-attr-aria-label="ME.DELETE_ACTIVITY" layout-align="center center">
+                      <md-tooltip md-direction="top">
+                          <span translate="ME.DELETE_ACTIVITY" class="font-size-14 padding-8"></span>
+                      </md-tooltip>
+                      <md-icon md-font-icon="icon-trash" class="s32"></md-icon>
+                  </a>
+                </div>
+            
+            <div ui-sref="app.service-detail({service_id: service.id})" class="pointer">
+              <div class="image-card">
+                      <cl-image public-id="{{service.image}}" class="thumbnail inline" quality="80" format="jpg"/>
+                    </div>
+
+                    <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-headline card-title">{{ service.name }}</span>
+                        <div class="md-subhead" layout="row" layout-align="start center">
+                          <div flex="60"  layout="row" layout-align="start center">
+                            <div ng-if="service.rating" flex=25  style="height: auto; width: 30px;">
+                                <md-tooltip md-direction="top">
+                                  <span ng-if="service.rating == 5" translate="ME.EXCELLENT">Excelente</span>
+                                  <span ng-if="service.rating == 4" translate="ME.VERY_GOOD">Muito Bom</span>
+                                  <span ng-if="service.rating == 3" translate="ME.GOOD">Bom</span>
+                                  <span ng-if="service.rating == 2" translate="ME.SATISFACTORY">Satisfatório</span>
+                                  <span ng-if="service.rating == 1" translate="ME.BELOW_AVERAGE">Abaixo da Média</span>
+                                </md-tooltip>
+                                <img style="height: auto; width: 30px;" src="../../../../../assets/icons/rating-icon/rating-{{ service.rating }}-icon.png" translate translate-attr-alt="ME.RATING_ALT">             
+                            </div>
+                            <div ng-if="!service.rating" flex=25  style="height: auto; width: 30px;">
+                              <div   layout="column" layout-align="center center" style="height: 30px; width: 30px; background-color: #1E88E5
+  ; border-radius: 150px; font-size: 9px; font-weight: 600; color: white;">
+		                        <md-tooltip md-direction="top">
+		                          <span translate="ME.NEW_ADVENTURE">Nova Aventura</span>
+		                        </md-tooltip>
+		                        <span translate="ME.NEW">NOVO</span>
+		                      </div>
+                            </div> 
+                            <div flex="25" style="height: auto; width: 30px;">
+                              <!--  #TODO ver como estar o rating do banco e definir os intervalos --> 
+                              <md-tooltip md-direction="top">
+                                <span ng-if="service.adrenaline == 5" translate="ME.ADRENALINE_5">Ultra Radical</span>
+                                <span ng-if="service.adrenaline == 4" translate="ME.ADRENALINE_4">Radical</span>
+                                <span ng-if="service.adrenaline == 3" translate="ME.ADRENALINE_3">Razoavelmente Radical</span>
+                                <span ng-if="service.adrenaline == 2" translate="ME.ADRENALINE_2">Pouco Radical</span>
+                                <span ng-if="service.adrenaline == 1" translate="ME.ADRENALINE_1">Nada Radical</span>
+                              </md-tooltip>
+                              <img style="height: auto; width: 30px;" src="../../../../../assets/icons/adrenaline-icon/lv{{ service.adrenaline }}-icon.png" translate translate-attr-alt="ME.ADRENALINE_ALT">
+                            </div>
+                            <div flex="25" style="height: auto; width: 30px;">
+                              <!--  #TODO ver como estar o rating do banco e definir os intervalos --> 
+                              <md-tooltip md-direction="top">
+                                <span ng-if="service.physical_effort == 5" translate="ME.PHYSICAL_EFFORT_5">Esforço Físico Extremo</span>
+                                <span ng-if="service.physical_effort == 4" translate="ME.PHYSICAL_EFFORT_4">Esforço Físico Desafiador</span>
+                                <span ng-if="service.physical_effort == 3" translate="ME.PHYSICAL_EFFORT_3">Esforço Físico Razoável</span>
+                                <span ng-if="service.physical_effort == 2" translate="ME.PHYSICAL_EFFORT_2">Esforço Físico Leve</span>
+                                <span ng-if="service.physical_effort == 1" translate="ME.PHYSICAL_EFFORT_1">Sem Esforço Físico</span>
+                              </md-tooltip>
+                              <img style="height: auto; width: 30px;" src="../../../../../assets/icons/physical-effort-icon/lv{{ service.physical_effort }}-icon.png" translate translate-attr-alt="ME.PHYSICAL_EFFORT_ALT">
+                            </div>
+                          </div>
+                          <div flex="40" layout="row" layout-align="end center">
+                            <span class="card-price">R$ {{ service.price }}</span>
+                          </div>
+                        </div>
+                        <div layout="row" flex="100">
+		                  <div flex="50" layout="row" layout-align="end center">
+		                    <md-icon flex="10" md-font-icon="icon-map-marker" class="s16 margin-map-icon"></md-icon>
+		                    <span flex="90"  class="md-subhead city-name">{{ service.city.name }}</span>
+		                  </div>
+		                  <div ng-if="service.event" flex="50" layout="row" layout-align="end center" translate translate-attr-aria-label="ME.SELECT_DATE">
+		                    <md-icon flex="10" md-font-icon="icon-calendar" class="s16 margin-map-icon"></md-icon>
+		                    <span flex="90"  class="md-subhead city-name">{{ service.daytime | date:'dd/MM/yyyy' }}</span>
+		                  </div>
+		                </div>
+                      </md-card-title-text>
+                    </md-card-title>
+
+                    <md-card-content>
+                      <p class="card-description">
+                        {{ service.description }}
+                      </p>
+                    </md-card-content>
+            </div>
+                  
+                </md-card>  
+              
+          </li>         
+        </ul>
+        
+
+      </div>
+    </div>
+    <!-- / TODO LIST ITEMS -->

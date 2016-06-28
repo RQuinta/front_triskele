@@ -1,0 +1,213 @@
+#service-create{
+    .pre-card-toolbar{
+      width: 300px;
+      height: 48px;
+      margin-left: 8px;
+    }
+
+    @media only screen and (min-width: 600px){
+      .content-padding{
+        padding: 24px;
+      }
+    }
+
+    @media only screen and (min-width: 600px){
+      .form-price-width{
+        width: 90px;
+      }
+      .form-medium-width{
+        width: 150px;
+        margin-left: 5px;
+      }
+    }
+
+    .gallery-warn {
+      font-size: 13px;
+    }
+
+    .drop-image{
+      padding: 5px!important;
+      position: relative!important;
+    }
+    .drop-image-button{
+      z-index:10!important;
+      position: absolute!important;
+      top:-5px!important;
+      right:2px!important;
+      height: 15px!important;
+      width: 15px!important;
+      border-radius: 150px!important;
+    }
+    .drop-image-button-icon{
+      color: rgba(255, 0, 0, 0.6)!important;
+    }
+
+
+    .select-image-margin{
+      margin-bottom: 20px!important;
+    }
+    .select-image-padding{
+      padding: 10px 0 10px 0!important;
+    }
+    @media only screen and (min-width: 600px){
+      .select-image{
+        margin-right: 5px!important;
+        margin-top: -5px !important;
+      }
+    }
+
+    .margin-input-image{
+      margin-bottom: 10px!important;
+    }
+
+
+    .checkbox-event{
+      margin: 0 0 20px 5px!important;
+    }
+    .date-event{
+      margin-top:-35px !important;
+      margin-left:10px !important;
+    }
+
+    .effort-adrenaline-margin{
+      margin-top: 15px !important;
+    }
+
+    .city-margin{
+      margin-bottom: -30px !important;
+    }
+
+
+    #file-input { display: none; }
+
+    .text-area-medium{
+      height: 58px !important;
+      max-height: 58px !important;
+    }
+
+    .text-area-large{
+      height: 145px !important;
+      max-height: 145px !important;
+    }
+
+
+
+    .button {
+      -moz-appearance: button;
+      /* Firefox */
+      -webkit-appearance: button;
+      /* Safari and Chrome */
+      padding: 10px;
+      margin: 10px;
+      width: 70px;
+    }
+    .drop-box {
+      border: 3px dashed #1E88E5;
+      width: 200px;
+      height: 95px;
+      text-align: center;
+      padding: 15px 5px 15px 5px;
+      margin: 10px;
+    }
+    .dragover {
+      border: 3px dashed #0D47A1;
+    }
+
+
+
+    /*  Maps  */
+
+    .map-search{
+      height: 30px;
+      width: 150px;
+      margin-top: 11px;
+      padding-left: 10px;
+      border-radius: 2px;
+    }
+
+    /* .map-height{
+        height: 400px;
+    }
+    
+    .pac-controls {
+      margin-top: 16px;
+      border: 1px solid transparent;
+      border-radius: 2px 0 0 2px;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      height: 32px !important;
+      outline: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    #pac-input {
+      background-color: #fff;
+      padding: 0 11px 0 13px;
+      width: 400px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      text-overflow: ellipsis;
+    }
+    
+    #pac-input:focus {
+      border-color: #4d90fe;
+      margin-left: -1px;
+      padding-left: 14px;  Regular padding-left + 1.
+      width: 401px;
+    }
+    
+    .pac-container {
+      font-family: 'Open Sans', sans-serif;
+    }
+    
+    #type-selector {
+      color: #fff;
+      background-color: #4d90fe;
+      padding: 5px 11px 0px 11px;
+    }
+    
+    #type-selector label {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+    } */
+
+    /* .angular-google-map-container {
+      width: 100%;
+      height: 600px;
+    } */
+
+    /* fix for Twitter Bootstrap handling of responsive images */
+    .angular-google-map img {
+      max-width: inherit;
+    }
+
+    // Addicionals
+    .addicionals-btn {
+      height: 36px;
+      @media only screen and (min-width: 600px){
+          margin-top: 15px;
+      }
+    }
+
+
+    /* Card de Pré visualização */
+    .pre-card{
+        margin: 0 0 0 20px;
+    }
+    .pre-card-title-margin{
+        margin-top: -16px;
+    }
+    .pre-card-title{
+      overflow: hidden;
+      height: 64px;
+    }
+    .pre-card-description{
+      overflow: hidden;
+      height: 54px;
+    }
+
+
+}
+

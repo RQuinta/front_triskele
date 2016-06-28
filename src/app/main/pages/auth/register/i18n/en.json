@@ -1,0 +1,29 @@
+{
+    "REGISTER": {
+        "INTRO_TITLE": "Welcome to Triskele!",
+        "INTRO_DESCRIPTION": "Triskele is a platform that helps adventurers to find the best professionals. Life is made ​​up of a succession of trials, through these experiences people evolve. We have the goal of helping people to live these experiences.",
+        "TITLE": "Create an account",
+        "WITH_FACEBOOK": "Sing Up with Facebook",
+        "DESCRIPTION": "Sed mollis velit facilisis facilisis viverra",
+        "NAME": "Name",
+        "OR": "OR",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "PHONE_NUMBER": "Phone Number",
+        "PASSWORD_CONFIRM": "Password (Confirm)",
+        "READ_ACCEPT": "I read and accept",
+        "TERMS_COND": "terms and conditions",
+        "CREATE_ACCOUNT": "CREATE MY ACCOUNT",
+        "ALREADY_HAVE": "Already have an account?",
+        "LOGIN": "Log in",
+        "ERRORS": {
+            "USERNAME_REQUIRED": "Username field is required",
+            "PHONE_NUMBER_REQUIRED": "Phone Number field is required",
+            "EMAIL_REQUIRED": "Email field is required",
+            "EMAIL_MUST_VALID": "Email must be a valid e-mail address",
+            "PASSWORD_REQUIRED": "Password field is required",
+            "PASSWORD_CONFIRM_REQUIRED": "Password confirm field is required",
+            "TERMS_REQUIRED": "You must accept terms and conditions before submitting the form"
+        }
+    }
+}

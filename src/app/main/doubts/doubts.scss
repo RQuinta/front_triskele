@@ -1,0 +1,44 @@
+#doubts {
+	.title {
+		@media only screen and (max-width: 599px){
+          font-size: 24px;
+        }
+        @media only screen and (min-width: 600px) and (max-width: 959px){
+          font-size: 26px;
+        }
+        @media only screen and (min-width: 960px) and (max-width: 1279px){
+          font-size: 34px;
+        }
+        @media only screen and (min-width: 1280px) and (max-width: 1439px){
+          font-size: 36px;
+        }
+        @media only screen and (min-width: 1440px){
+          font-size: 38px;
+        }
+	}
+  .email-margin {
+    margin-top: -5px;
+  }
+	.description {
+    @media only screen and (max-width: 599px){
+      font-size: 14px;
+      text-align: center;
+    }
+    @media only screen and (min-width: 600px) and (max-width: 959px){
+      font-size: 14px;
+      text-align: center;
+    }
+    @media only screen and (min-width: 960px) and (max-width: 1279px){
+      font-size: 16px;
+      text-align: center;
+    }
+    @media only screen and (min-width: 1280px) and (max-width: 1439px){
+      font-size: 18px;
+      text-align: center;
+    }
+    @media only screen and (min-width: 1440px){
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+}

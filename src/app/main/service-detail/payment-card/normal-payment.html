@@ -1,0 +1,53 @@
+<div class="md-whiteframe-1dp md-background-bg">
+  <md-toolbar>
+    <div class="md-toolbar-tools md-whiteframe-1dp" layout="row" layout-align="center center">
+      <h2>
+        <span>R$ {{vm.service.price}}</span>
+      </h2>
+    </div>
+  </md-toolbar>
+  <div layout-padding layout="column">
+    <ng-form name="preAgendar">
+      <md-input-container class="md-block">
+        <label class="font-size-18" translate="DETAIL.PEOPLE">Pessoas</label>
+        <input required type="number" step="1" name="clients" ng-model="vm.appointment.clients" min="1"
+               max="{{vm.service.max_clients}}"/>
+        <div ng-messages="preAgendar.clients.$error" multiple md-auto-hide="true">
+          <div ng-message="required" translate="PEOPLE_NEEDED">
+            Você tem que definir o número de pessoas.
+          </div>
+          <div ng-message="min" translate="PEOPLE_MIN">
+            Ninguém? Quem vai fazer companhia ao guia?
+          </div>
+          <div ng-message="max" translate="PEOPLE_MAX">
+            O número máximo de pessoas para essa atividade é de {{vm.service.max_clients}}.
+          </div>
+        </div>
+      </md-input-container>
+      <div layout="row" layout-align="start center" style="margin-top: -20px; margin-left: -10px; margin-bottom: 20px">
+        <md-datepicker name="date" ng-model="myDate" md-placeholder="Data"></md-datepicker>
+        <div class="validation-messages" ng-messages="preAgendar.dateField.$error">
+          <div ng-message="valid" translate="DETAIL.INVALID_DATE">Essa data não é valida</div>
+          <div ng-message="required" translate="DETAIL.REQUIRED_DATE">A data não pode ser vazia</div>
+        </div>
+      </div>
+      <md-input-container class="md-block" style="margin-top: 15px">
+        <label style="font-size: 18px" translate="DETAIL.DOUBTS">Dúvidas</label>
+        <textarea ng-model="vm.appointment.douts" rowspan="3" rows="3" md-maxlength="300" md-select-on-focus md-no-autogrow></textarea>
+      </md-input-container>
+      <div ng-if="vm.service.additionals">
+        <h4 ng-class="{'md-primary-fg': vm.service.selectedAdditional}" translate="DETAIL.ADDITIONALS">Adicionais: <span class="radioValue"></span> </h4>
+        <md-radio-group ng-model="vm.service.selectedAdditional">
+          <md-radio-button value="0" class="md-primary secondary-text" translate="DETAIL.NONE">Nenhum</md-radio-button>
+          <div layout="row" flex="100" ng-repeat="additional in vm.service.additionals">
+      		<md-radio-button flex="80" flex-xs="70" layout="row" layout-align="start center" value="additional.excess" class="md-primary secondary-text">{{ additional.description }}</md-radio-button>
+      		<div flex="20" flex-xs="30" layout="row" layout-align="end start" class="md-primary-fg font-size-16">
+      			R$ {{ additional.excess }}
+      		</div>
+          </div>                
+        </md-radio-group>
+      </div>
+      <md-button style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" ng-click="vm.openCheckout()" class="md-raised md-primary" translate="DETAIL.PRE_BOOK">Pré Agendar</md-button>
+    </form>
+  </div>
+</div>

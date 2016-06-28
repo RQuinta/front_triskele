@@ -1,3 +1,53 @@
-<h1>
-    {{vm.helloText}}
-</h1>
+<div ng-cloak id="home">
+
+	<div layout="column">
+    <!-- Sect: Banner
+    ======================================= --> 
+    <section class="sect-banner">
+     <!--List items for bg images -->
+     <ul class="kf-slider">
+      <li></li>
+      <li></li>
+      <li></li>
+     </ul>
+     <!-- Vertically Center Content -->
+     <div class="v-center" layout="column" layout-align="center center" flex>
+        <h1 class="title" translate="HOME.TITLE">Que tal uma nova aventura?</h1>
+      
+        <p class="sub-title" translate="HOME.SUBTITLE">Triskele é uma plataforma que ajuda aventureiros a vivenciarem experiências incríveis.</p>  
+     
+        <div class="search"  layout="row" layout-aling="center center" id="search" >
+          <md-chips class="md-whiteframe-1dp chips" layout-align="start center" ng-model="vm.searchService.selectedItens" md-autocomplete-snap="" md-require-match="true">
+            <md-autocomplete class="complete" md-selected-item="vm.searchService.selectedItem"
+                             md-search-text="vm.searchService.searchText"
+                             md-search-text-change="vm.searchService.searchTextHandler(vm.searchText)"
+                             md-selected-item-change="vm.searchService.selectedItemHandler(item)"
+                             md-no-cache="true"
+                             md-items="item in vm.searchService.itens"
+                             md-item-text="item.name"
+                             md-min-length="1"
+                             placeholder="{{vm.screenWidth > 600 ? 'Ex: Rio de Janeiro' : 'Ex: Rio de Janeiro'}}">
+              <span md-highlight-text="vm.searchService.searchText">{{item.name}}</span>
+        
+            </md-autocomplete>
+        
+        
+            <md-chip-template>
+                  <span>
+                    <strong>{{$chip.name}}</strong>
+                  </span>
+            </md-chip-template>
+            <md-not-found translate="HOME.NO_MATCHES">
+              No matches found.
+            </md-not-found>
+        
+          </md-chips>
+        
+          <div layout="row" layout-align="center center" class="md-primary-bg md-whiteframe-1dp search-button" ui-sref="app.service-list" translate translate-attr-aria="HOME.SEARCH">
+            <md-icon md-font-icon="icon-magnify" class="s28 search-icon" aria-hidden="true"></md-icon>
+          </div>
+        </div>
+     </div>
+    </section>
+  </div>
+</div>

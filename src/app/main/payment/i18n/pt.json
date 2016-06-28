@@ -1,0 +1,15 @@
+{
+    "PAYMENT": {
+        "BOOK": "Reservar",
+        "DOUBTS": "Dúvidas?",
+        "CONTACT": "Entre em contato",
+        "ADVENTURE_BOOKED": "Aventura Reservada!",
+        "BOOKED_SUCCESS": "Sua aventura foi reservada com sucesso! Te enviamos um email com os detalhes.",
+        "DOUBTS": "Qualquer dúvida é só entrar em contato.",
+        "THANKS": "Obrigado por comprar com a gente! Esperamos que tenha uma experiência incrível :)",
+        "ERROR_MESSAGE": "Bem, você quebrou a internet!",
+        "ERROR_SUBMESSAGE": "Só brincando, parece que temos um problema interno, por favor tente de novo em alguns minutos",
+        "ERROR_REPORT": "Report this problemReportar esse problema",
+        "PEOPLE": "Pessoas",
+        "DETAIL": "Detalhes"
+}

@@ -1,0 +1,54 @@
+<div class="page-layout simple fullwidth" id="doubts" flex>
+	<div ng-if="!vm.success && !vm.error" layout="column" layout-padding layout-align="center center" flex-gt-xs="50" flex-offset-xs="0" flex-offset="25" flex="100">
+        <h2 class="title" translate="DOUBTS.DOUBTS">Dúvidas</h2>
+        <p class="description" translate="DOUBTS.DESCRIPTION">Tem alguma dúvida, sugestão ou crítica? Nos envie uma mensagem e responderemos o mais rápido possível.</p>
+        <div>
+        	<form name="form">
+			<div layout="column" layout-aling="start center" class="w-400">
+				<md-input-container>
+			        <label translate="DOUBTS.NAME"></label>
+			        <input name="name" required ng-model="vm.doubt.name" type="text">
+			        <div ng-messages="form.name.$error" role="alert" multiple>
+		              <div ng-message="required" class="my-message"></div>
+		            </div>
+			    </md-input-container>
+				<md-input-container layout="row" class="email-margin">
+			        <label translate="DOUBTS.EMAIL"></label>
+			        <input name="email" ng-model="vm.doubt.email" type="email">
+			        <div ng-messages="form.email.$error" role="alert" multiple>
+		              <div ng-message="required" class="my-message" translate="DOUBTS.EMAIL_ALERT"></div>
+		            </div>
+			    </md-input-container>
+			    <md-input-container class="md-block">
+		          <label translate="DOUBTS.MESSAGE"></label>
+		          <textarea ng-model="vm.doubt.message" required rows="3" md-select-on-focus md-no-autogrow></textarea>
+		        </md-input-container>
+				
+	        </div>
+	        <div layout="row" layout-align="end center">
+	        	<md-button class="md-raised md-primary margin-0" ng-disabled="form.$invalid" ng-click="vm.sendDout()" translate="DOUBTS.SEND"></md-button>
+        	</div>
+	        
+        </form>
+        </div>
+    </div>
+    <div ng-if="vm.success || vm.error" id="payment-message">
+	    <div ng-if="vm.success" class="animate-slide-up" flex id="feedback" layout="column" layout-align="center center">
+	        <div class="content" layout="column" flex layout-align="center center">
+	        	<img ng-src="http://res.cloudinary.com/triskele/image/upload/v1466537329/triskele-logo.png" class="success-logo" alt="Triskele">
+	            <div class="message" translate="DOUBTS.ALL_RIGHT"></div>
+	            <div class="sub-message" translate="DOUBTS.ALL_RIGHT_MESSAGE">
+	            </div>
+	        </div>
+	    </div>
+	    <div ng-if="vm.error" class="animate-slide-up" id="error-500" layout="column" layout-align="center center">
+	        <div class="content" layout="column" layout-align="center center">
+	            <div class="error-code" translate="ERROR500.CODE">500</div>
+	            <div class="message" translate="ERROR500.MESSAGE">Well, you broke the internet!</div>
+	            <div class="sub-message" translate="ERROR500.SUBMESSAGE">Just kidding, looks like we have an internal issue, please try again in couple minutes
+	            </div>
+	            <a class="report-link md-accent-color" ui-sref="app.doubts" translate="ERROR500.REPORT">Report this problem</a>
+	        </div>
+	    </div>
+	</div>
+</div>

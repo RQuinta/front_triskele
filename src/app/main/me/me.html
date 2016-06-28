@@ -1,0 +1,60 @@
+<div id="me" class="page-layout simple tabbed">
+    <!-- HEADER -->
+    <div class="md-accent-bg header" ng-style="{'background':'url(http://res.cloudinary.com/dwpckwhch/image/upload/q_80/' + vm.user.background_image + '.jpg) no-repeat center center', 'background-size':'cover', '-webkit-background-size': 'cover', '-moz-background-size': 'cover', '-o-background-size': 'cover', 'background-color': '#E0E0E0'}" layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="space-between end">
+        <div class="user-info" layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="start center">
+            <img ng-if="!vm.user.image" style="border: 2px white solid" class="profile-image avatar huge" src="assets/images/avatars/profile.jpg" alt="{{ vm.profile.name }}">
+            <cl-image ng-if="vm.user.image" public-id="{{ vm.user.image }}" style="border: 2px white solid" class="profile-image avatar huge" quality="80" format="jpg" alt="{{ vm.user.name }}"/>
+
+            <div class="name">{{ vm.user.name }}</div>
+        </div>
+
+        <div class="actions" layout="row" layout-align="end center">
+            <md-button class="md-raised md-background-bg md-hue-1 md-primary-fg" translate="ME.EDIT" ng-click="vm.openUserEditDialog($event)" translate-attr-aria-label="ME.EDIT">Edit
+            </md-button>
+            <a class="md-raised md-primary md-button md-ink-ripple"  translate="ME.NEW_ADVENTURE" translate-attr-aria-label="ME.NEW_ADVENTURE" ng-click="createService()" ng-href="/service-create" href="/service-create">New Adventure</a>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content" flex>
+        <md-tabs md-dynamic-height md-swipe-content>
+            <md-tab ng-if="vm.user.professional">
+                <md-tab-label>
+                    <span translate="ME.ACTIVITIES" translate-attr-aria-label="ME.ACTIVITIES">Atividades</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                        ng-include="'app/main/me/tabs/services/services.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            <md-tab>
+                <md-tab-label>
+                    <span translate="ME.ABOUT" translate-attr-aria-label="ME.ABOUT">About</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/me/dialogs/edit-service.html'">
+                    </md-content>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/me/tabs/about/about.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            <md-tab ng-if="vm.user.professional">
+                <md-tab-label>
+                    <span translate="ME.BOUGHT_ACTIVITIES" translate-attr-aria-label="ME.BOUGHT_ACTIVITIES"></span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                        ng-include="'app/main/me/tabs/bought-adventures/bought-adventures.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+
+    </div>
+
+	<!-- <div ng-include="'app/main/footer/footer.html'"></div> -->
+</div>

@@ -1,0 +1,23 @@
+{
+    "LOGIN_V2": {
+        "INTRO_TITLE": "Bem-vindo ao Triskele!",
+        "INTRO_DESCRIPTION": "Triskele é uma plataforma que ajuda aventureiros a encontrarem os melhores profissionais. A vida é composta de uma sucessão de experimentações, através dessas experiências as pessoas se transformam. Nós temos o objetivo de ajudar as pessoas a viverem essas experiências.",
+        "TITLE": "Faça seu Login",
+        "DESCRIPTION": "Sed mollis velit facilisis facilisis viverra",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "REMEMBER_ME": "Lembrar-me",
+        "FORGOT_PASSWORD": "Esqueceu a senha?",
+        "LOG_IN": "LOGIN",
+        "OR": "OU",
+        "WITH_GOOGLE": "Login com Google",
+        "WITH_FACEBOOK": "Login com Facebook",
+        "DONT_HAVE_ACCOUNT": "Não tem uma conta?",
+        "CREATE_ACCOUNT": "Criar conta",
+        "ERRORS": {
+            "EMAIL_REQUIRED": "Campo de email é necessário",
+            "EMAIL_MUST_VALID": "Email tem que ser um endereço válido",
+            "PASSWORD_REQUIRED": "Campo de senha é necessário"
+        }
+    }
+}

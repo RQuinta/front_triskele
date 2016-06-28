@@ -1,0 +1,440 @@
+<div class="page-layout simple fullwidth" id="service-detail">
+
+  <!-- HEADER -->
+  <div class="header2 md-primary-bg">
+    <h1 class="margin-0">{{vm.service.name}}</h1>
+  </div>
+  <ng-gallery ng-if="vm.service.service_pictures.length > 0" title="vm.service.name" images="vm.service.service_pictures" thumbs-num="{{vm.service.service_pictures.length}}"></ng-gallery>
+  
+
+  <!-- CONTENT -->
+  <div class="content-padding intern-padding-content" md-background-bg layout-xs="column" layout-sm="column" layout-gt-sm="row">
+    <div flex-xs="100" flex-sm="100" flex-gt-sm="70"  class="md-whiteframe-1dp" style="background-color: white">
+      <!-- Place somewhere in the <body> of your page -->
+      <md-content>      
+        <md-tabs md-dynamic-height md-border-bottom md-swipe-content>
+          <md-tab label="visão geral">
+              <md-tab-label>
+                  <span translate="DETAIL.OVERVIEW"></span>
+              </md-tab-label>
+              <md-tab-body layout="column" flex>
+                  <div class="md-padding intern-padding">
+                      <div layout="column" flex class="md-whiteframe-0dp">
+                          <md-toolbar layout="row" flex="100">
+                            <div class="md-toolbar-tools">
+                              <span translate="DETAIL.HIGHLIGHTS">Destaques</span>
+                            </div>
+                          </md-toolbar>
+                          <md-content layout="column" layout-padding>
+                            <div layout-xs="column" layout-gt-xs="row" layout-align-gt-xs="start center" layout-align-xs="start stretch">
+                              <div flex-gt-xs="50" flex-xs-grow layout="row" layout-align="start center" style="padding: 0px 0 15px 0">
+                                <div layout="row" flex="100" layout-align="start center">
+                                  <div flex-gt-xs="40" flex-xs="50">
+                                    <span translate="DETAIL.RATING">Rating: </span>
+                                  </div>
+                                  <div flex="50" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+                                    <div ng-if="vm.service.rating"  flex="25" style="height: auto; width: 30px;">
+                                        <md-tooltip md-direction="top">
+                                          <span ng-if="vm.service.rating == 5" translate="DETAIL.EXCELLENT">Excelente</span>
+                                          <span ng-if="vm.service.rating == 4" translate="DETAIL.VERY_GOOD">Muito Bom</span>
+                                          <span ng-if="vm.service.rating == 3" translate="DETAIL.GOOD">Bom</span>
+                                          <span ng-if="vm.service.rating == 2" translate="DETAIL.SATISFACTORY">Satisfatório</span>
+                                          <span ng-if="vm.service.rating == 1" translate="DETAIL.BELOW_AVERAGE">Abaixo da Média</span>
+                                        </md-tooltip>
+                                        <img style="height: auto; width: 30px;" src="../../../../../assets/icons/rating-icon/rating-{{ vm.service.rating }}-icon.png" translate translate-attr-alt="DETAIL.RATING_ALT">             
+                                    </div>
+                                    <div ng-if="service.rating == 0" flex=25  style="height: auto; width: 30px;">
+                                      <div   layout="column" layout-align="center center" style="height: 30px; width: 30px; background-color: #1E88E5
+                  ; border-radius: 150px; font-size: 9px; font-weight: 600; color: white;">
+                                        <md-tooltip md-direction="top">
+                                          <span translate="DETAIL.NEW_ADVENTURE">Nova Aventura</span>
+                                        </md-tooltip>
+                                        <span translate="DETAIL.NEW">NOVO</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div  flex-gt-xs="50" flex-xs-grow layout="row" layout-align="start center" style="padding: 0px 0 15px 0">
+                                <div layout="row" flex="100" layout-align="start center">
+                                  <div flex="50">
+                                    <span translate="DETAIL.ACTIVITIES">Atividades:</span>
+                                  </div>
+                                  <div flex="50" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+                                    <span ng-repeat="sport in vm.service.sports" translate="{{ vm.LanguagesService.getActivity(sport.name) }}"> </span>
+                                    <span>{{ LanguagesService.getActivity('Arvorismo') }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div layout-xs="column" layout-gt-xs="row" layout-align-gt-xs="start center" layout-align-xs="center stretch">
+                              <div flex-gt-xs="50" flex-xs-grow layout="row" layout-align="start center" style="padding: 0px 0 15px 0">
+                                <div layout="row" flex="100" layout-align="start center">
+                                  <div flex-gt-xs="40" flex-xs="50">
+                                    <span translate="DETAIL.PHYSICAL_EFFORT">Esforço Físico: </span>
+                                  </div>
+                                  <div flex="50" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+                                      <div flex="25" style="height: auto; width: 30px;">
+                                    <!--  #TODO ver como estar o rating do banco e definir os intervalos --> 
+                                    <md-tooltip md-direction="top">
+                                      <span ng-if="vm.service.physical_effort == 5" translate="DETAIL.PHYSICAL_EFFORT_5_2">Extremo</span>
+                                      <span ng-if="vm.service.physical_effort == 4" translate="DETAIL.PHYSICAL_EFFORT_4_2">Desafiador</span>
+                                      <span ng-if="vm.service.physical_effort == 3" translate="DETAIL.PHYSICAL_EFFORT_3_2">Razoável</span>
+                                      <span ng-if="vm.service.physical_effort == 2" translate="DETAIL.PHYSICAL_EFFORT_2_2">Leve</span>
+                                      <span ng-if="vm.service.physical_effort == 1" translate="DETAIL.PHYSICAL_EFFORT_1_2">Pequeno</span>
+                                    </md-tooltip>
+                                    <img style="height: auto; width: 30px;" src="../../../../../assets/icons/physical-effort-icon/lv{{ vm.service.physical_effort }}-icon.png" translate translate-attr-alt="DETAIL.PHYSICAL_EFFORT_ALT">
+                                  </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div  flex-gt-xs="50" flex-xs-grow layout="row" layout-align="start center" style="padding: 0px 0 15px 0">
+                                <div layout="row" flex="100" layout-align="start center">
+                                  <div flex="50">
+                                    <span translate="DETAIL.ADRENALINE">Adrenalina: </span>
+                                  </div>
+                                  <div flex="50" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+                                      <div flex="25" style="height: auto; width: 30px;">
+                                    <!--  #TODO ver como estar o rating do banco e definir os intervalos --> 
+                                    <md-tooltip md-direction="top">
+                                      <span ng-if="vm.service.adrenaline == 5" translate="DETAIL.ADRENALINE_5">Ultra Radical</span>
+                                      <span ng-if="vm.service.adrenaline == 4" translate="DETAIL.ADRENALINE_4">Radical</span>
+                                      <span ng-if="vm.service.adrenaline == 3" translate="DETAIL.ADRENALINE_3">Meio Radical</span>
+                                      <span ng-if="vm.service.adrenaline == 2" translate="DETAIL.ADRENALINE_2">Pouco Radical</span>
+                                      <span ng-if="vm.service.adrenaline == 1" translate="DETAIL.ADRENALINE_1">Nada Radical</span>
+                                    </md-tooltip>
+                                    <img style="height: auto; width: 30px;" src="../../../../../assets/icons/adrenaline-icon/lv{{ vm.service.adrenaline }}-icon.png" translate translate-attr-alt="DETAIL.ADRENALINE_ALT">
+                                  </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div layout-xs="column" layout-gt-xs="row" layout-align-gt-xs="start center" layout-align-xs="center stretch">
+                              <div flex-gt-xs="50" flex-xs-grow layout="row" layout-align="start center" style="padding: 0px 0 15px 0">
+                                <div layout="row" flex="100" layout-align="start center">
+                                  <div flex-gt-xs="40" flex-xs="50">
+                                    <span translate="DETAIL.DURATION">Duração: </span>
+                                  </div>
+                                  <div flex="50" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+                                    <span>2h</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div  flex-gt-xs="50" flex-xs-grow layout="row" layout-align="start center" style="padding: 0px 0 15px 0">
+                                <div layout="row" flex="100" layout-align="start center">
+                                  <div flex="50">
+                                    <span translate="DETAIL.LANGUAGES">Idioma(s): </span>
+                                  </div>
+                                  <div flex="50" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+                                    <span>Português, Inglês</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div layout-xs="column" layout-gt-xs="row" layout-align-gt-xs="start center" layout-align-xs="center stretch">
+                              <div flex-gt-xs="50" flex-xs-grow layout="row" layout-align="start center" style="padding: 0px 0 15px 0">
+                                <div layout="row" flex="100" layout-align="start center">
+                                  <div flex-gt-xs="40" flex-xs="50">
+                                    <span translate="DETAIL.CITY">Cidade: </span>
+                                  </div>
+                                  <div flex="50" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+                                    <span>{{vm.service.city.name}}</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div  ng-if="vm.service.event" flex-gt-xs="50" flex-xs-grow layout="row" layout-align="start center" style="padding: 0px 0 15px 0">
+                                <div layout="row" flex="100" layout-align="start center">
+                                  <div flex="50">
+                                    <span translate="DETAIL.DATE">Data: </span>
+                                  </div>
+                                  <div flex="50" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+                                    <span>{{ vm.service.daytime | date:'dd/MM/yyyy' }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </md-content>
+                        </div>
+                        <div class="md-padding intern-padding">
+                        	<div>
+                                <h2 class="md-primary-fg" translate="DETAIL.GUIDE"></h2>
+                                <div class="user-info" layout="row" layout-align="start center">
+						            <img ng-if="!vm.service.professional.user.image" style="border: 2px white solid" class="profile-image avatar huge" src="assets/images/avatars/profile.jpg" alt="{{ vm.service.professional.user.name }}">
+						            <cl-image ng-if="vm.service.professional.user.image" style="border: 2px white solid" public-id="{{ vm.service.professional.userimage }}" class="profile-image avatar huge" quality="80" format="jpg" alt="{{ vm.service.professional.user.name }}"/>
+						            <div class="name">{{ vm.service.professional.user.name }}</div>
+						        </div>
+                          	</div>
+                        	<div>
+                                <h2 class="md-primary-fg" translate="DETAIL.DESCRIPTION">Descrição</h2>
+                                <p>
+                                  {{vm.service.description}}
+                                </p>
+                          	</div>
+                          	<div>
+                                <h2 class="md-primary-fg" translate="DETAIL.AVERAGE_TIME">Tempo médio de duração</h2>
+                                <p>
+                                  {{vm.service.duration}}
+                                </p>
+                      		</div>
+                          	<div>
+                                <h2 class="md-primary-fg" translate="DETAIL.INCLUDED">O que está incluso</h2>
+                                <p ng-repeat="included in vm.service.included">{{ included }}</p>
+                          	</div>
+                          	<div>
+                                <h2 class="md-primary-fg" translate="DETAIL.NOT_INCLUDED">O que não está incluso</h2>
+                                <p ng-repeat="not_included in vm.service.not_included">{{ not_included }}</p>
+                          	</div>
+                          	<div ng-if="vm.service.restrictions">
+                                <h2 class="md-primary-fg" translate="DETAIL.RESTRICTIONS">Restrições</h2>
+                                <p>{{ vm.service.restrictions }}</p>
+                          	</div>
+                          	<div ng-if="vm.service.required_experience">
+                                <h2 class="md-primary-fg" translate="DETAIL.REQUIRED_EXPERIENCE">Experiência Necessária</h2>
+                                <p>{{ vm.service.required_experience }}</p>
+                          	</div>
+                          	<div ng-if="vm.service.bring">
+                                <h2 class="md-primary-fg" translate="DETAIL.BRING">O que levar</h2>
+                                <p ng-repeat="bring in vm.service.bring">{{ bring }}</p>
+                          	</div>
+                        </div>
+                  </div>
+              </md-tab-body>
+          </md-tab>
+          <md-tab label="como chegar">
+            <md-tab-label>
+                <span translate="DETAIL.HOW_TO_GET"></span>
+            </md-tab-label>
+            <md-tab-body>
+                <div class="md-padding intern-padding">
+                    <p>{{ vm.service.how_to_get }}</p>
+                    <ui-gmap-google-map center="{latitude: vm.service.latitude, longitude: vm.service.longitude}" zoom="14" scrollwheel="false" options="vm.mapOptions">
+                      <ui-gmap-marker idkey="1" coords="{latitude: vm.service.latitude, longitude: vm.service.longitude}" options="marker.options" label="local" click="onClick()"  >
+                          <ui-gmap-window closeClick="closeClick()">
+                              <div>{{ vm.service.place }}</div>
+                          </ui-gmap-window>
+                      </ui-gmap-marker>
+                    </ui-gmap-google-map>
+                </div>
+            </md-tab-body>
+          </md-tab>
+          <md-tab>
+            <md-tab-label>
+                <span translate="DETAIL.RATING_2"></span>
+                ({{ vm.filteredAcquisitions.length }})
+            </md-tab-label>
+            <md-tab-body>
+                <div  class="md-padding intern-padding">
+                    <div ng-if="vm.service.acquisitions.length == 0" class="h-200" flex layout="row" layout-align="center center">
+                    <h3 translate="DETAIL.NO_RATING">Essa atividade ainda não possui nenhuma avaliação :(</h3>
+                    </div>
+                    <div layout="row" class="padding-top-16 padding-bottom-16" ng-repeat="acquisition in vm.filteredAcquisitions">
+                        <div layout="column" layout-align="start center">
+                            <img ng-if="!acquisition.user.image" class="avatar h-50 w-50" src="assets/images/avatars/profile.jpg" alt="{{ acquisition.user.name }}">
+                            <cl-image ng-if="acquisition.user.image" public-id="{{ acquisition.user.image }}" class="avatar h-50 w-50" quality="80" format="jpg" alt="{{ acquisition.user.name }}"/>
+                            <img ng-src="../../../assets/icons/rating-icon/rating-{{ acquisition.rating }}-icon.png" translate translate-attr-alt="DETAIL.RATING_ALT" class="h-35 w-35 margin-top-16">
+                        </div>
+                        <div layout="column" class="margin-left-16">
+                            <div layout="row" layout-align="start center" class="h-30">
+                                <h4>{{ acquisition.user.name }}</h4>
+                                <h5 class="grey-400-fg margin-left-5">{{ acquisition.updated_at | date:'dd/MM/yyyy' }}</h5>
+                            </div>
+                            <h3 class="margin-0 font-size-14" translate="{{ LanguagesService.getRating(acquisition.rating) }}"></h3>
+                            <p class="secondary-text margin-top-16">{{ acquisition.commentary }}</p>
+                        </div>
+                    </div>  
+                </div>
+            </md-tab-body>
+          </md-tab>
+        </md-tabs>
+      </md-content>
+      <div class="share-div" layout="column" layout-align="center center">
+        <h2 translate="DETAIL.SHARE_THIS_ADVENTURE">Compartilhe essa aventura</h2>  
+        <div layout="row" layout-align="center center">
+
+          <a class="md-accent-bg share-icon" translate translate-attr-aria-label="FACEBOOK_SHARE" layout-align="center center" layout="row"
+            socialshare socialshare-provider="facebook"
+            socialshare-text="{{service.name}}"
+            socialshare-type="feed"
+            socialshare-via="1733799820237301"
+            socialshare-description="{{service.description}}"
+            socialshare-url="http://www.triskele.me/service/{{vm.service.id}}">
+            <md-icon md-font-icon="icon-facebook" class="s28 white-fg"></md-icon>
+          </a>
+          <a class="md-accent-bg share-icon" translate translate-attr-aria-label="TWITTER_SHARE" layout-align="center center" layout="row"
+            socialshare
+            socialshare-provider="twitter"
+            socialshare-text="{{service.name}}"
+            socialshare-hashtags="aventura, triskele"
+            socialshare-url="http://www.triskele.me/service/{{vm.service.id}}">
+            <md-icon md-font-icon="icon-twitter" class="s28 white-fg"></md-icon>
+          </a>
+          <a class="md-accent-bg share-icon" translate translate-attr-aria-label="GOOGLE_PLUS_SHARE" layout-align="center center" layout="row"
+            socialshare socialshare-provider="google"
+            socialshare-url="http://www.triskele.me/service/{{vm.service.id}}">
+            <md-icon md-font-icon="icon-google-plus" class="s26 white-fg"></md-icon>
+          </a>
+          <!-- <a class="md-accent-bg" style="width: 35px;height:35px;border-radius: 150px;margin-left: 5px;margin-right: 5px" layout-align="center center" layout="row">
+            <md-icon md-font-icon="icon-pinterest" class="s26 white-fg"></md-icon>
+          </a> -->
+          <a class="md-accent-bg share-icon" translate translate-attr-aria-label="WHATSAPP_SHARE" hide-gt-xs layout-align="center center" layout="row"
+            socialshare socialshare-provider="whatsapp"
+            socialshare-url="http://www.triskele.me/service/{{vm.service.id}}">
+            <md-icon md-font-icon="icon-whatsapp" class="s30 white-fg"></md-icon>
+          </a>
+        </div>
+    </div>
+    </div>
+
+    <div ng-if="!vm.service.event && !vm.payment_success && !vm.appointment_success" flex-xs="100" flex-sm="100" flex-gt-sm="30" class="intern-padding-schedule card-detail-margin">
+        <div class="md-whiteframe-1dp md-background-bg">
+            <md-toolbar>
+                <div class="md-toolbar-tools md-whiteframe-1dp" layout="row" layout-align="center center">
+                  <h2>
+                      <span>R$ {{vm.service.price}}</span>
+                  </h2>
+              </div>
+            </md-toolbar>
+            <div layout-padding layout="column" is-logged>
+                <form name="preAgendar">
+                    <md-input-container class="md-block">
+                        <label class="font-size-18" translate="DETAIL.PEOPLE">Pessoas</label>
+                        <input required type="number" step="1" name="clients" ng-model="vm.appointmentForm.slots" min="1"
+                         max="{{vm.service.max}}"/>
+                        <div ng-messages="preAgendar.clients.$error" multiple md-auto-hide="true">
+                            <div ng-message="required" translate="DETAIL.PEOPLE_NEEDED">
+                                Você tem que definir o número de pessoas.
+                            </div>
+                            <div ng-message="min" translate="DETAIL.PEOPLE_MIN">
+                                0 participantes? Quem vai fazer companhia ao guia?
+                            </div>
+                            <div ng-message="max" translate="DETAIL.PEOPLE_MAX">
+                                O número de vagas disponiveis para essa atividade é de {{ vm.service.max }}.
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <div layout="row" layout-align="start center" style="margin-top: -20px; margin-left: -10px; margin-bottom: 20px">
+                        <md-datepicker name="date" ng-model="vm.appointmentForm.daytime" md-placeholder="Data"></md-datepicker>
+                        <div class="validation-messages" ng-messages="preAgendar.dateField.$error">
+                            <div ng-message="valid" translate="DETAIL.INVALID_DATE">O valor não é uma data válida</div>
+                            <div ng-message="required" translate="DETAIL.REQUIRED_DATE">A data não pode ser vazia</div>
+                        </div>
+                    </div>
+                    <md-input-container class="md-block" style="margin-top: 15px">
+                    <label style="font-size: 18px" translate="DETAIL.DOUBTS">Dúvidas</label>
+                    <textarea ng-model="vm.appointmentForm.doubt" style="height: 87.25px; max-height: 87.25px" rowspan="3" rows="3" md-maxlength="300" md-select-on-focus></textarea>
+                    </md-input-container>
+                    <div ng-if="vm.service.additionals">
+                        <h4 ng-class="{'md-primary-fg': vm.appointmentForm.additional}" translate="DETAIL.ADDITIONALS">Adicionais:</h4>
+                        <md-radio-group ng-model="vm.appointmentForm.additional">
+                            <md-radio-button layout="row" flex=100 ng-value="null" class="md-primary secondary-text"><span translate="DETAIL.NONE"></span></md-radio-button>
+                            <div layout="row" flex="100" ng-repeat="additional in vm.service.additionals">
+                                <md-radio-button flex="80" flex-xs="70" layout="row" layout-align="start center" ng-value="additional" class="md-primary secondary-text">
+                                    {{ additional.description }}
+                                </md-radio-button>
+                                <div flex="20" flex-xs="30" layout="row" layout-align="end start" class="md-primary-fg font-size-16">
+                                    R$ {{ additional.excess }}
+                                </div>
+                            </div>                
+                        </md-radio-group>
+                  </div>
+                    <md-button ng-disabled="preAgendar.valid" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" ng-click="vm.makeAppointment()" class="md-raised md-primary" translate="DETAIL.PRE_BOOK">Pre Agendar</md-button>
+                </form>
+            </div>
+            <div layout-padding layout="column" is-offline>
+                <h3 class="secondary-text" translate="DETAIL.ADDITIONALS"></h3>
+                <div layout="row" flex="100" ng-repeat="additional in vm.service.additionals">
+                    <p flex="80" flex-xs="70" layout="row" layout-align="start center" class="md-primary secondary-text">{{ additional.description }}</p>
+                    <div flex="20" flex-xs="30" layout="row" layout-align="end center" class="md-primary-fg font-size-16">
+                      R$ {{ additional.excess }}
+                    </div>
+                </div>
+                <h2 layout="row" layout-align="center center" class="secondary-text" translate="DETAIL.LOGIN_TO_PRE_BOOK">Faça login para poder Pré-Agendar a Aventura</h2>
+                <md-button ng-if="vm.service.event" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" class="md-raised md-primary" ui-sref="app.login" translate="TOOLBAR.LOG_IN"></md-button>
+            </div>
+        </div>
+    </div>
+
+
+    <div ng-if="vm.service.event && !vm.payment_success && !vm.appointment_success" flex-xs="100" flex-sm="100" flex-gt-sm="30" class="intern-padding-schedule card-detail-margin">
+        <div class="md-whiteframe-1dp md-background-bg">
+            <md-toolbar>
+              <div class="md-toolbar-tools md-whiteframe-1dp" layout="row" layout-align="center center">
+                <h2>
+                  <span>R$ {{vm.service.price}}</span>
+                </h2>
+              </div>
+            </md-toolbar>
+            <div layout-padding layout="column" is-logged>
+              <ng-form name="preAgendar">
+                <md-input-container class="md-block">
+                  <label class="font-size-18" translate="DETAIL.PEOPLE">Pessoas</label>
+                  <input required type="number" step="1" name="clients" ng-model="vm.appointment.clients" min="1"
+                         max="{{vm.service.max_clients}}"/>
+                  <div ng-messages="preAgendar.clients.$error" multiple md-auto-hide="true">
+                    <div ng-message="required" translate="PEOPLE_NEEDED">
+                      Você tem que definir o número de pessoas.
+                    </div>
+                    <div ng-message="min" translate="PEOPLE_MIN">
+                      0 participantes? Quem vai fazer companhia ao guia?
+                    </div>
+                    <div ng-message="max" translate="PEOPLE_MAX">
+                      O número máximo de pessoas para essa atividade é de {{vm.service.max_clients}}.
+                    </div>
+                  </div>
+                </md-input-container>
+                <md-input-container class="md-block" style="margin-top: 15px">
+                  <label style="font-size: 18px" translate="DETAIL.DOUBTS">Dúvidas</label>
+                  <textarea ng-model="vm.appointment.douts" rowspan="3" rows="3" md-maxlength="300" md-select-on-focus md-no-autogrow></textarea>
+                </md-input-container>
+                <div ng-if="vm.service.additionals">
+                  <h4 ng-class="{'md-primary-fg': vm.acquisitionForm.additional}" translate="DETAIL.ADDITIONALS">Adicionais: <span class="radioValue"></span></h4>
+                  <md-radio-group ng-model="vm.acquisitionForm.additional">
+                      <md-radio-button layout="row" flex=100 ng-value="null" class="md-primary secondary-text"><span translate="DETAIL.NONE"></span></md-radio-button>
+                      <div layout="row" flex="100" ng-repeat="additional in vm.service.additionals">
+                          <md-radio-button flex="80" flex-xs="70" layout="row" layout-align="start center" ng-value="additional" class="md-primary secondary-text">{{ additional.description }}</md-radio-button>
+                          <div flex="20" flex-xs="30" layout="row" layout-align="end start" class="md-primary-fg font-size-16">
+                            R$ {{ additional.excess }}
+                          </div>
+                      </div>                
+                  </md-radio-group>
+                </div>
+                <md-button ng-if="vm.service.event" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" ng-click="vm.openCheckout()" class="md-raised md-primary" translate="DETAIL.BOOK">Agendar</md-button>
+              </form>
+            </div>
+            <div layout-padding layout="column" is-offline>
+                <h3 class="secondary-text" translate="DETAIL.ADDITIONALS"></h3>
+                <div layout="row" flex="100" ng-repeat="additional in vm.service.additionals">
+                    <p flex="80" flex-xs="70" layout="row" layout-align="start center" class="md-primary secondary-text">{{ additional.description }}</p>
+                    <div flex="20" flex-xs="30" layout="row" layout-align="end center" class="md-primary-fg font-size-16">
+                      R$ {{ additional.excess }}
+                    </div>
+                </div>
+                <h2 layout="row" layout-align="center center" class="secondary-text" translate="DETAIL.LOGIN_TO_BOOK">Faça login para poder Pré-Agendar a Aventura</h2>
+                <md-button ng-if="vm.service.event" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" class="md-raised md-primary" ui-sref="app.login" translate="TOOLBAR.LOG_IN"></md-button>
+            </div>
+        </div>
+    </div>
+    <div ng-if="vm.payment_success || vm.appointment_success" flex-xs="100" flex-sm="100" flex-gt-sm="30" class="intern-padding-schedule card-detail-margin">
+        <div class="animate-slide-up" id="feedback-edit-service" layout="column" layout-align="center center">
+            <div class="content padding-top-48 padding-bottom-32" layout="column" layout-align="center center">
+                <img ng-src="http://res.cloudinary.com/triskele/image/upload/v1466537329/triskele-logo.png" class="success-logo" alt="Triskele">
+                <div ng-if="vm.payment_success">
+                  <div class="message" translate="PAYMENT.ADVENTURE_BOOKED"></div>
+                  <div class="sub-message-no-margin-bottom" translate="PAYMENT.BOOKED_SUCCESS"></div>
+                  <div class="sub-message-no-margin-bottom" translate="PAYMENT.DOUBTS"></div>
+                  <div class="sub-message" translate="PAYMENT.THANKS"></div>
+                </div>
+                <div ng-if="vm.appointment_success">
+                  <div class="message" translate="DETAIL.PRE_BOOK_SUCCESS"></div>
+                  <div class="sub-message-no-margin-bottom" translate="DETAIL.PRE_BOOK_SUCCESS_MESSAGE"></div>
+                  <div class="sub-message-no-margin-bottom" translate="PAYMENT.DOUBTS"></div>
+                  <div class="sub-message" translate="DETAIL.PRE_BOOK_THANKS"></div>
+                </div>
+                <a class="report-link md-accent-color" ui-sref="app.service-list" translate="RATING.SEE_MORE_ADVENTURES"></a>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- / CONTENT -->
+
+</div>

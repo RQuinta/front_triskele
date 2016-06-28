@@ -1,0 +1,14 @@
+{
+    "FORGOTPASSWORD": {
+        "TITLE": "Recuperar senha",
+        "EMAIL_ADRESS": "Email",
+        "SEND_RESET_LINK": "ENVIAR LINK PARA RESETAR",
+        "GO_BACK": "Voltar para login",
+        "ALL_RIGHT": "Tudo Certo!",
+        "WE_SENT": "Te enviamos um email com um link para redefinir sua senha.",
+        "ERRORS": {
+            "EMAIL_REQUIRED": "Campo Email é necessário",
+            "EMAIL_MUST_VALID": "Email tem que ser um endereço válido"
+        }
+    }
+}
