@@ -29,7 +29,8 @@
     "ngstorage": "^0.3.10",
     "pg-ng-checkout": "https://raw.githubusercontent.com/pagarme/pagarme-ng-checkout/master/dest/js/pg-ng-checkout.js",
     "cloudinary_ng": "^1.0.0",
-    "ngGallery": "*"
+    "ngGallery": "*",
+    "bourbon": "^4.2.7"
   },
   "devDependencies": {
     "angular-mocks": "1.5.5"
