@@ -13,7 +13,14 @@
                 'ngSanitize',
                 'ngMaterial',
                 'pascalprecht.translate',
-                'ui.router'
-                
+                'ui.router',
+                'uiGmapgoogle-maps',
+                'cloudinary',
+                '720kb.socialshare',
+                'pg-ng-checkout',
+                'ngFileUpload',
+                'datatables',
+                'angular-img-cropper',
+                'ngStorage'
             ]);
 })();

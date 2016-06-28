@@ -7,12 +7,18 @@
         .run(runBlock);
 
     /** @ngInject */
-    function runBlock($rootScope, $timeout, $state)
+    function runBlock($rootScope, $timeout, $state, AuthService)
     {
+
         // Activate loading indicator
-        var stateChangeStartEvent = $rootScope.$on('$stateChangeStart', function ()
-        {
+        var stateChangeStartEvent = $rootScope.$on('$stateChangeStart', function (event, destination)
+        {   
             $rootScope.loadingProgress = true;
+            if ( !_.has(destination.data, 'accessRule') || !angular.isFunction(destination.data.accessRule) ) return;
+            if (!destination.data.accessRule(AuthService)) {
+                event.preventDefault();
+                if (_.has(destination.data, 'redirectTo')) $state.go(destination.data.redirectTo);
+            }
         });
 
         // De-activate loading indicator
@@ -32,6 +38,6 @@
         {
             stateChangeStartEvent();
             stateChangeSuccessEvent();
-        });
+        })
     }
 })();

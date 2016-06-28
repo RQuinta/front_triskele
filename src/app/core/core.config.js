@@ -7,7 +7,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($ariaProvider, $logProvider, msScrollConfigProvider, $translateProvider, fuseConfigProvider)
+    function config($ariaProvider, $logProvider, msScrollConfigProvider, $translateProvider, fuseConfigProvider, uiGmapGoogleMapApiProvider)
     {
         // Enable debug logging
         $logProvider.debugEnabled(true);
@@ -36,6 +36,11 @@
         // msScroll configuration
         msScrollConfigProvider.config({
             wheelPropagation: true
+        });
+
+        uiGmapGoogleMapApiProvider.configure({
+          //    key: 'your api key',
+          libraries: 'places' // Required for SearchBox.
         });
 
         /*eslint-enable */

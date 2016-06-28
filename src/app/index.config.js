@@ -7,9 +7,11 @@
         .config(config);
 
     /** @ngInject */
-    function config()
+    function config($facebookProvider)
     {
-        // Put your custom configurations here
+    	/*$facebookProvider.setVersion("v2.6");*/
+   		$facebookProvider.setAppId('1733799820237301');
+        $facebookProvider.setPermissions("email");
     }
 
 })();
