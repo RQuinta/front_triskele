@@ -97,7 +97,7 @@
                         <div layout="row" flex="100">
 		                  <div flex="50" layout="row" layout-align="end center">
 		                    <md-icon flex="10" md-font-icon="icon-map-marker" class="s16 margin-map-icon"></md-icon>
-		                    <span flex="90"  class="md-subhead city-name">{{ service.city.name }}</span>
+		                    <span flex="90"  class="md-subhead city-name">Rio de Janeiro{{ service.city }}</span>
 		                  </div>
 		                  <div ng-if="service.event" flex="50" layout="row" layout-align="end center" translate translate-attr-aria-label="ME.SELECT_DATE">
 		                    <md-icon flex="10" md-font-icon="icon-calendar" class="s16 margin-map-icon"></md-icon>
@@ -109,7 +109,7 @@
 
                     <md-card-content>
                       <p class="card-description">
-                        {{ service.description }}
+                        {{ service.short_description }}
                       </p>
                     </md-card-content>
             </div>

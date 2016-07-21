@@ -1,0 +1,26 @@
+<div layout="row" class="md-whiteframe-1dp" layout-align="start center" style="z-index: 20; position: fixed; top: 0px;left: 0px; min-height: 128px;width: 100%; background-color: white">
+  <div flex-offset="5">
+    <md-icon md-font-icon="icon-magnify" class="s52" aria-hidden="true"></md-icon>
+  </div>
+  <md-input layout="row" layout-align="start center" layout-fill ms-scroll layout-align="start center" hide-sm hide-xs>
+    <md-chips layout="row"  layout-align="start center" ng-model="vm.searchService.selectedItens" md-autocomplete-snap=""	 md-require-match="false" style="overflow: hidden">
+      <md-autocomplete layout-fill flex-grow layout-align="start center" md-selected-item="vm.searchService.selectedItem"
+                       md-search-text="vm.searchService.searchText"
+                       md-search-text-change="vm.searchService.searchTextHandler(vm.searchText)"
+                       md-selected-item-change="vm.searchService.selectedItemHandler(item)"
+                       md-no-cache="true"
+                       md-items="item in vm.searchService.itens"
+                       md-item-text="item.name"
+                       md-min-length="2"
+                       placeholder="Cidades, atividades ...">
+        <span md-highlight-text="vm.searchService.searchText">{{item.name}}</span>
+      </md-autocomplete>
+      <md-chip-template>
+                <span style="margin-top:200px;">
+                  <strong>{{$chip.name}}</strong>
+                </span>
+      </md-chip-template>
+    </md-chips>
+
+  </md-input>
+</div>

@@ -1,13 +1,24 @@
 {
     "TOOLBAR": {
         "TOGGLE_NAVIGATION": "Toggle navigation",
-        "TOGGLE_NAVIGATION_FOLD": "Toggle navigation fold",
         "TOGGLE_NAVIGATION_MODE": "Toggle navigation mode",
         "SEARCH": "Search",
         "USER_SETTINGS": "User settings",
         "TOGGLE_QUICK_PANEL": "Toggle quick panel",
         "ENGLISH": "English",
         "SPANISH": "Spanish",
-        "TURKISH": "Turkish"
+        "TURKISH": "Turkish",
+        "PORTUGUESE": "Portuguese",
+        "NO_MATCHES": "No matches found.",
+        "BE_OUR_PARTNER": "Be our Partner",
+        "LOG_IN": "Log In",
+        "PROFILE": "Profile",
+        "ACCOUNT_OPTIONS": "Account Options",
+        "LOGOUT": "Logout",
+        "HOW_IT_WORKS": "How It Works",
+        "DOUBTS": "Doubts",
+        "HELP": "Help",
+        "LANGUAGE": "Language",
+        "NEW_ADVENTURE": "New Adventure"
     }
 }

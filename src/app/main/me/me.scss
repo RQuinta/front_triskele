@@ -1,4 +1,13 @@
+#page-no-content {
+  .page-layout.simple.tabbed > .content > md-tabs > md-tabs-content-wrapper > md-tab-content {
+      @media only screen and (max-width: 599px){
+        padding: 0px;
+      }
+      
+  }
+}
 #me {
+
     
 
     .edit {
@@ -146,7 +155,6 @@
       .list-item {
         display: flex;
         width: 100%;
-        margin-right: 16px;
       }
     }
     @media all and (min-width: 601px) {
@@ -224,11 +232,12 @@
     }
 
     .content {
-
         md-content {
             background-color: transparent;
         }
     }
+
+    
 
     // Profile boxes
     .profile-box {

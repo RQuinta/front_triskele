@@ -8,6 +8,9 @@
             height: $toolbarHeight;
             border-right: 1px solid rgba(0, 0, 0, 0.12);
             margin-right: 16px;
+            @media only screen and (min-width: 960px) {
+                margin-left: -16px;
+            }
 
             .md-button {
                 margin: 0;
@@ -15,29 +18,38 @@
                 height: $toolbarHeight;
             }
         }
+        .noshadow {
+        -webkit-box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        box-shadow: none !important;
+        }
+
+        .blue-border {
+            border: 2px solid #2196F3;
+        }
 
         .logo {
-            margin-right: 16px;
-
+            padding: 12px 5px 11px 5px;
+            cursor:pointer;
             .logo-image {
-                display: block;
-                background: material-color('light-blue', '600');
-                width: 32px;
-                min-width: 32px;
-                height: 32px;
-                line-height: 32px;
-                text-align: center;
-                color: #FFFFFF;
-                font-size: 16px;
-                font-weight: 500;
-                border-radius: 2px;
+                min-width: 40px;
+                width: 40px;
+                @media only screen and (max-width: 960px) {
+                    margin-left: 15px;
+                }
             }
 
             .logo-text {
-                color: rgba(0, 0, 0, 0.87);
+                color: #1E88E5;
                 margin-left: 16px;
-                font-size: 16px;
+                font-size: 24px;
+                font-weight: 500;
             }
+        }
+
+        .partner-button {
+            border-radius: 5px; 
+            border: 2px solid #2196F3;
         }
     }
 }

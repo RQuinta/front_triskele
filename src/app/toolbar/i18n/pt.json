@@ -1,0 +1,24 @@
+{
+  "TOOLBAR": {
+    "TOGGLE_NAVIGATION": "Alternar navegação",
+    "TOGGLE_NAVIGATION_MODE": "Alternar modo de navegação",
+    "SEARCH": "Buscar",
+    "USER_SETTINGS": "Configurações",
+    "TOGGLE_QUICK_PANEL": "Alternar painel rápido",
+    "ENGLISH": "Inglês",
+    "SPANISH": "Espanhol",
+    "TURKISH": "Turko",
+    "PORTUGUESE": "Português",
+    "NO_MATCHES": "No matches found.",
+    "BE_OUR_PARTNER": "Seja nosso Parceiro",
+    "LOG_IN": "Login",
+    "PROFILE": "Perfil",
+    "ACCOUNT_OPTIONS": "Opções da Conta",
+    "LOGOUT": "Logout",
+    "HOW_IT_WORKS": "Como Funciona",
+    "DOUBTS": "Dúbidas",
+    "HELP": "Ajuda",
+    "LANGUAGE": "Idioma",
+    "NEW_ADVENTURE": "Nova Aventura"
+  }
+}

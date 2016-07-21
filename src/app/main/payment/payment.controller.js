@@ -30,7 +30,7 @@
 
         function makePayment(){
             var totalPrice = ( ( ( vm.appointment.base_price + _.get(vm.appointment, 'additional_price', 0) ) * vm.appointment.slots ) * 100); 
-            var params = { "customerData": false, "amount": totalPrice };
+            var params = { "amount": totalPrice, "maxInstallments": 2 };
             $pgCheckout.open(params, function(data){
                 console.log(data);
                 var acquisition = { 

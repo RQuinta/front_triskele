@@ -7,7 +7,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($ariaProvider, $logProvider, msScrollConfigProvider, $translateProvider, fuseConfigProvider, uiGmapGoogleMapApiProvider)
+    function config($ariaProvider, $logProvider, msScrollConfigProvider, $translateProvider, fuseConfigProvider, cloudinaryProvider, uiGmapGoogleMapApiProvider, $pgCheckoutProvider)
     {
         // Enable debug logging
         $logProvider.debugEnabled(true);
@@ -16,7 +16,7 @@
         $translateProvider.useLoader('$translatePartialLoader', {
             urlTemplate: '{part}/i18n/{lang}.json'
         });
-        $translateProvider.preferredLanguage('en');
+        $translateProvider.preferredLanguage('pt');
         $translateProvider.useSanitizeValueStrategy('sanitize');
 
         /*eslint-disable */
@@ -41,6 +41,15 @@
         uiGmapGoogleMapApiProvider.configure({
           //    key: 'your api key',
           libraries: 'places' // Required for SearchBox.
+        });
+
+        $pgCheckoutProvider.setEncryptKey('ek_test_EOnyktVOJexsia8JqVsBpzHeCLWAvr');
+
+        cloudinaryProvider.set("cloud_name", "dwpckwhch").set("upload_preset", "byiqmv4h");
+        
+        // msScroll configuration
+        msScrollConfigProvider.config({
+            wheelPropagation: true
         });
 
         /*eslint-enable */

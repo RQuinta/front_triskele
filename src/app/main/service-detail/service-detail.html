@@ -43,7 +43,7 @@
                                         </md-tooltip>
                                         <img style="height: auto; width: 30px;" src="../../../../../assets/icons/rating-icon/rating-{{ vm.service.rating }}-icon.png" translate translate-attr-alt="DETAIL.RATING_ALT">             
                                     </div>
-                                    <div ng-if="service.rating == 0" flex=25  style="height: auto; width: 30px;">
+                                    <div ng-if="vm.service.rating == 0 || vm.service.rating == null" flex=25  style="height: auto; width: 30px;">
                                       <div   layout="column" layout-align="center center" style="height: 30px; width: 30px; background-color: #1E88E5
                   ; border-radius: 150px; font-size: 9px; font-weight: 600; color: white;">
                                         <md-tooltip md-direction="top">
@@ -61,8 +61,7 @@
                                     <span translate="DETAIL.ACTIVITIES">Atividades:</span>
                                   </div>
                                   <div flex="50" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
-                                    <span ng-repeat="sport in vm.service.sports" translate="{{ vm.LanguagesService.getActivity(sport.name) }}"> </span>
-                                    <span>{{ LanguagesService.getActivity('Arvorismo') }}</span>
+                                    <span ng-repeat="sport in vm.service.sports" translate="{{ vm.LanguagesService.getActivity(sport.name) }}"></span>
                                   </div>
                                 </div>
                               </div>
@@ -116,7 +115,7 @@
                                     <span translate="DETAIL.DURATION">Duração: </span>
                                   </div>
                                   <div flex="50" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
-                                    <span>2h</span>
+                                    <span>{{vm.service.duration}}</span>
                                   </div>
                                 </div>
                               </div>
@@ -160,7 +159,7 @@
                                 <h2 class="md-primary-fg" translate="DETAIL.GUIDE"></h2>
                                 <div class="user-info" layout="row" layout-align="start center">
 						            <img ng-if="!vm.service.professional.user.image" style="border: 2px white solid" class="profile-image avatar huge" src="assets/images/avatars/profile.jpg" alt="{{ vm.service.professional.user.name }}">
-						            <cl-image ng-if="vm.service.professional.user.image" style="border: 2px white solid" public-id="{{ vm.service.professional.userimage }}" class="profile-image avatar huge" quality="80" format="jpg" alt="{{ vm.service.professional.user.name }}"/>
+						            <cl-image ng-if="vm.service.professional.user.image" style="border: 2px white solid" public-id="{{ vm.service.professional.user.image }}" class="profile-image avatar huge" quality="80" format="jpg" alt="{{ vm.service.professional.user.name }}"/>
 						            <div class="name">{{ vm.service.professional.user.name }}</div>
 						        </div>
                           	</div>
@@ -170,12 +169,6 @@
                                   {{vm.service.description}}
                                 </p>
                           	</div>
-                          	<div>
-                                <h2 class="md-primary-fg" translate="DETAIL.AVERAGE_TIME">Tempo médio de duração</h2>
-                                <p>
-                                  {{vm.service.duration}}
-                                </p>
-                      		</div>
                           	<div>
                                 <h2 class="md-primary-fg" translate="DETAIL.INCLUDED">O que está incluso</h2>
                                 <p ng-repeat="included in vm.service.included">{{ included }}</p>
@@ -349,7 +342,7 @@
                     </div>
                 </div>
                 <h2 layout="row" layout-align="center center" class="secondary-text" translate="DETAIL.LOGIN_TO_PRE_BOOK">Faça login para poder Pré-Agendar a Aventura</h2>
-                <md-button ng-if="vm.service.event" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" class="md-raised md-primary" ui-sref="app.login" translate="TOOLBAR.LOG_IN"></md-button>
+                <md-button style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" class="md-raised md-primary" ui-sref="app.pages_auth_login-v2" translate="TOOLBAR.LOG_IN"></md-button>
             </div>
         </div>
     </div>
@@ -368,7 +361,7 @@
               <ng-form name="preAgendar">
                 <md-input-container class="md-block">
                   <label class="font-size-18" translate="DETAIL.PEOPLE">Pessoas</label>
-                  <input required type="number" step="1" name="clients" ng-model="vm.appointment.clients" min="1"
+                  <input required type="number" step="1" name="clients" ng-model="vm.acquisitionForm.slots" min="1"
                          max="{{vm.service.max_clients}}"/>
                   <div ng-messages="preAgendar.clients.$error" multiple md-auto-hide="true">
                     <div ng-message="required" translate="PEOPLE_NEEDED">
@@ -398,7 +391,7 @@
                       </div>                
                   </md-radio-group>
                 </div>
-                <md-button ng-if="vm.service.event" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" ng-click="vm.openCheckout()" class="md-raised md-primary" translate="DETAIL.BOOK">Agendar</md-button>
+                <md-button ng-if="vm.service.event" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" ng-click="vm.makeAcquisition()" class="md-raised md-primary" translate="DETAIL.BOOK">Agendar</md-button>
               </form>
             </div>
             <div layout-padding layout="column" is-offline>
@@ -410,7 +403,7 @@
                     </div>
                 </div>
                 <h2 layout="row" layout-align="center center" class="secondary-text" translate="DETAIL.LOGIN_TO_BOOK">Faça login para poder Pré-Agendar a Aventura</h2>
-                <md-button ng-if="vm.service.event" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" class="md-raised md-primary" ui-sref="app.login" translate="TOOLBAR.LOG_IN"></md-button>
+                <md-button style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" class="md-raised md-primary" ui-sref="app.pages_auth_login-v2" translate="TOOLBAR.LOG_IN"></md-button>
             </div>
         </div>
     </div>

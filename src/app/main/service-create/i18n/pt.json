@@ -7,7 +7,7 @@
         "GALLERY_ERROR": "Para a galeria devem ser selecionadas entre 4 e 7 imagens.",
         "DRAG_GALLERY": "Arraste imagens ou clique para fazer Upload",
         "DRAG_ERROR": "Arrastar e soltar não suportado nesse browser",
-        "GENERAL_INFOGENERAL_INFO": "Informações Gerais",
+        "GENERAL_INFO": "Informações Gerais",
         "NAME": "Nome",
         "NAME_REQUIRED": "A atividade deve ter um nome",
         "NAME_MAX": "O nome não pode ter mais de 45 caracters",

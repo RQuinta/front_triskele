@@ -12,6 +12,9 @@
         border-right: 1px solid rgba(0, 0, 0, 0.12);
         border-radius: 0;
     }
+    .help-margin {
+        margin-top: -5px;
+    }
 
     #user-menu {
         height: $toolbarHeight;

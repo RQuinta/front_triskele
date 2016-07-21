@@ -41,7 +41,7 @@
 
         function makeAcquisition(){
             var totalPrice = ( ( ( vm.service.price + _.get(vm.acquisitionForm, 'additional.excess', 0) ) * vm.acquisitionForm.slots ) * 100); 
-            var params = { "customerData": false, "amount": totalPrice };
+            var params = { "amount": totalPrice, "maxInstallments": 2 };
             $pgCheckout.open(params, function(data){
                 console.log(data);
                 var acquisition = { 
@@ -49,7 +49,7 @@
                     'payment_method': data.payment_method,
                     'service_id': vm.service.id,
                     'additional_id': _.get(vm.acquisitionForm, 'additional.id'),
-                    'slots': 1, 
+                    'slots': vm.acquisitionForm.slots, 
                     'base_price': vm.service.price,
                     'user_id': AuthService.getUser().id
                 };

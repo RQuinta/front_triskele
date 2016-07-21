@@ -7,7 +7,7 @@
   
   <!-- CONTENT -->
   <div class="content-padding" id="top" md-background-bg layout-xs="column" layout-sm="column" layout-gt-sm="row">
-    <div flex="100" flex-sm="65" flex-gt-sm="75"  class="md-whiteframe-1dp white-bg">
+    <div flex="100" flex-sm="65" flex-gt-sm="65"  class="md-whiteframe-1dp white-bg">
       <ms-form-wizard flex>
         <md-tabs md-dynamic-height md-selected="msWizard.selectedIndex" md-center-tabs="true">
           <md-tab>
@@ -168,14 +168,14 @@
                 <div layout="column">
                   <md-input-container class="md-block">
                     <label translate="SERVICE_CREATE.SHORT_DESCRIPTION">Descrição Curta (Para o card da atividade)</label>
-                    <textarea required name="short_description" ng-model="vm.newService.short_description" md-maxlength="150" rows="2" md-select-on-focus></textarea>
+                    <textarea required name="short_description" ng-model="vm.newService.short_description" md-maxlength="195" rows="2" md-select-on-focus></textarea>
                     <div ng-messages="newServiceStep3.short_description.$error" ng-if="newServiceStep3.short_description.$touched">
                       <div ng-message="required" translate="SERVICE_CREATE.SHORT_DESCRIPTION_REQUIRED">Você deve informar uma descrição breve da aventura, ela será fundamental para aumentar a chance de uma pessoa clicar para ver mais detalhes da aventura.</div>
                     </div>
                   </md-input-container>
                   <md-input-container class="md-block">
                     <label translate="SERVICE_CREATE.DESCRIPTION">Descrição</label>
-                    <textarea required name="description" ng-model="vm.newService.description" rows="20" md-maxlength="2000" md-select-on-focus></textarea>
+                    <textarea required name="description" ng-model="vm.newService.description" rows="20" md-maxlength="3000" md-select-on-focus></textarea>
                     <div ng-messages="newServiceStep3.description.$error" ng-if="newServiceStep3.description.$touched">
                       <div ng-message="required" translate="SERVICE_CREATE.DESCRIPTION_REQUIRED">Você deve informar uma descrição da sua aventura, uma boa descrição aumentará as chances de uma pessoa contratar sua atividade.</div>
                     </div>
@@ -184,8 +184,7 @@
               </form>
             </md-tab-body>
           </md-tab>
-           <!-- ng-disabled="newServiceStep1.$invalid || newServiceStep2.$invalid || newServiceStep3.$invalid || !vm.files || vm.files.length < 3" -->
-          <md-tab>
+          <md-tab ng-disabled="newServiceStep1.$invalid || newServiceStep2.$invalid || newServiceStep3.$invalid || !vm.files || vm.files.length < 3">
 
             <md-tab-label>
             <span class="ms-form-wizard-step-label">
@@ -341,8 +340,7 @@
               </form>
             </md-tab-body>
           </md-tab>
-           <!-- ng-disabled="newServiceStep1.$invalid || newServiceStep2.$invalid || vm.newService.sports.length == 0 || newServiceStep3.$invalid || !vm.newService.adrenaline || !vm.newService.physical_effort || newServiceStep4.$invalid || newServiceStep5.$invalid || !vm.files || vm.files.length < 3 || !vm.newService.city" -->
-          <md-tab>
+          <md-tab ng-disabled="newServiceStep1.$invalid || newServiceStep2.$invalid || vm.newService.sports.length == 0 || newServiceStep3.$invalid || !vm.newService.adrenaline || !vm.newService.physical_effort || newServiceStep4.$invalid || newServiceStep5.$invalid || !vm.files || vm.files.length < 3 || !vm.newService.city">
             <md-tab-label>
             <span class="ms-form-wizard-step-label">
                 <span class="ms-form-wizard-step-number md-accent-bg" ng-if="newServiceStep6.$invalid">6</span>
@@ -435,7 +433,7 @@
       </ms-form-wizard>
 
     </div>
-    <div ng-show="vm.cropper.croppedImage!=null" flex-none layout="column" layout-align="start start"  hide-sm hide-xs class="pre-card">
+    <div ng-show="vm.cropper.croppedImage!=null" flex-sm="35" flex-gt-sm="35" flex-none layout="column" layout-align="start start"  hide-sm hide-xs class="pre-card">
       <md-toolbar class="md-whiteframe-1dp pre-card-toolbar">
         <div class="md-toolbar-tools" flex>
           <h3 translate="SERVICE_CREATE.CARD_PREVIEW">Pré Visualização do Card</h3>
