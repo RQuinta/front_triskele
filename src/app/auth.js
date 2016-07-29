@@ -79,6 +79,7 @@
         return {
             'request' : function (config) {
                 if ($localStorage.userToken && _.includes(_.words(config.url), 'triskele') ){
+                /* Produção  if ($localStorage.userToken && _.includes(_.words(config.url), 'herokuapp') ){*/
                   config.headers.AUTHORIZATION = 'Token '+ 'token='+ $localStorage.userToken;
                 } 
                 return config;

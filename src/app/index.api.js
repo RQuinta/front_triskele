@@ -13,7 +13,8 @@
 
       // Base Url
 
-      api.baseUrl = 'afternoon-everglades-99638.herokuapp.com';
+      //api.baseUrl = 'https://afternoon-everglades-99638.herokuapp.com/';
+      api.baseUrl = 'http://development.triskele.me:4000';
 
       api.city = $resource(api.baseUrl + "/api/cities/:id.json", { id: '@id' }, {
          'index':   { 
