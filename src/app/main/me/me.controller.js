@@ -7,7 +7,7 @@
   .controller('MeController', MeController);
 
   /** @ngInject */
-    function MeController($scope, $state, AuthService, $mdDialog, api, $mdToast, $mdMedia)
+    function MeController($scope, $state, AuthService, $mdDialog, api, $mdToast, $mdMedia , $rootScope)
     {
         var vm = this;
         // Data
@@ -15,6 +15,7 @@
         // Methods
 		    vm.deleteConfirm = deleteConfirm;
         vm.pauseConfirm = pauseConfirm;
+        vm.unpauseConfirm = unpauseConfirm;
         vm.openUserEditDialog = openUserEditDialog;
         vm.openServiceEditDialog = openServiceEditDialog;
 
@@ -26,12 +27,14 @@
                 api.professional.show({ id: vm.user.professional.id}, function(professional) {
                     vm.servicesList = professional.services;
                     vm.acquisitionsList = professional.acquisitions;
-                }, function() {
-                    console.log('b');
                 });
             }
             vm.backgroundImage = "http://res.cloudinary.com/dwpckwhch/image/upload/q_80/" + vm.user.background_image + ".jpg";
         }
+
+        $rootScope.$on('permissionsChanged', function(event, message){
+            vm.user = AuthService.getUser();
+        });
 
         function deleteConfirm(ev, service) 
         {
@@ -42,9 +45,10 @@
                   .ok('Sim')
                   .cancel('Não');
             $mdDialog.show(confirm).then(function() {
-                service.deleted = true;
-                _.remove(vm.servicesList, service);
-                service.$delete();
+                api.service.delete({ id: service.id }, function(){
+                  this.service.deleted = true;
+                  _.remove(this.servicesList, this.service);
+                }.bind({ 'servicesList': vm.servicesList, 'service': service }));
             });
         };
 
@@ -59,11 +63,28 @@
             $mdDialog.show(confirm).then(function() {
                 var copyService = angular.copy(this.service);
                 copyService.active = false;
-                api.service.update({id: service.id , service: service}, function(){
+                api.service.update({id: service.id , service: copyService}, function(){
                   this.service.active = false;
                 }.bind({ 'service': this.service }));
             }.bind({ 'service': service }));
         };
+
+        function unpauseConfirm(ev, service) 
+        {
+            var confirm = $mdDialog.confirm()
+                  .title('Deseja ativar o serviço?')
+                  .ariaLabel('Ativar Serviço')
+                  .targetEvent(ev)
+                  .ok('Sim')
+                  .cancel('Não');
+            $mdDialog.show(confirm).then(function() {
+                var copyService = angular.copy(this.service);
+                copyService.active = true;
+                api.service.update({id: service.id , service: copyService}, function(){
+                  this.service.active = true;
+                }.bind({ 'service': this.service }));
+            }.bind({ 'service': service }));
+        }
 
         function openServiceEditDialog(service, ev) {
             $mdDialog.show({ 

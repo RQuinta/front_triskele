@@ -5,7 +5,7 @@
     angular.module('app.me').controller('editUserDialogController', editUserDialogController);
 
     /** @ngInject */
-    function editUserDialogController($mdDialog, CloudnaryService, $q, api, user, $timeout, $rootScope)
+    function editUserDialogController($mdDialog, CloudnaryService, $q, api, user, $timeout, $rootScope, AuthService)
     {
         var vm = this;
 
@@ -15,17 +15,18 @@
         vm.saveChanges = saveChanges;
         vm.closeDialog = closeDialog;
         vm.saveCropImage = saveCropImage;
+        vm.languages = [];
 
         init();
 
-        //////////
-
-        /**
-         * Initialize
-         */
         function init()
         {
-            vm.copyUser = angular.copy(user);  
+            api.language.index({}, function(resource) {
+              vm.languages = resource;
+            });
+            vm.copyUser = angular.copy(user); 
+            vm.copyProfessional = angular.copy(user.professional); 
+            vm.selectedLanguages = _.get(vm.copyProfessional, 'languages', []);
             vm.backgroundImage = "http://res.cloudinary.com/dwpckwhch/image/upload/q_80/" + user.background_image + ".jpg";
             vm.lastBackgroundImage = "http://res.cloudinary.com/dwpckwhch/image/upload/q_80/" + user.background_image + ".jpg";
         }
@@ -36,7 +37,14 @@
         }
 
         function saveChanges()
-        {
+        {   
+            if (vm.copyProfessional) { 
+                vm.copyProfessional.language_ids = _.map(vm.selectedLanguages, 'id');
+                api.professional.update({ id: vm.copyUser.professional.id, professional: vm.copyProfessional }, function(){
+                    $rootScope.$broadcast('updateUser');
+                });
+            }
+            
             if (vm.newProfilePicture && vm.backgroundImage != vm.lastBackgroundImage) {
                 var profileImage = CloudnaryService.uploadFile(vm.newProfilePicture);
                 var backgroundImage = CloudnaryService.uploadFile(vm.backgroundImage);
@@ -44,12 +52,8 @@
                		vm.copyUser.image = profImage.data.public_id;
                		vm.copyUser.background_image = backImage.data.public_id;
                     api.user.update({ id: vm.copyUser.id, user: vm.copyUser }, function(){
-                        user.image = vm.copyUser.image;
-                        user.background_image = vm.copyUser.background_image;
-                        user.about = vm.copyUser.about;
-                        user.phone = vm.copyUser.phone;
-                        user.email = vm.copyUser.email;
-                        $rootScope.$broadcast("$event");
+                        AuthService.updateUserEmail(vm.copyUser.email);
+                        $rootScope.$broadcast('updateUser');
                         $mdDialog.hide();
                     });
         		}.bind(vm)));
@@ -59,10 +63,8 @@
                 profileImage.then(function (profileImage){
                     vm.copyUser.image = profileImage.data.public_id;
                     api.user.update({ id: vm.copyUser.id, user: vm.copyUser }, function(){
-                        user.image = vm.copyUser.image;
-                        user.about = vm.copyUser.about;
-                        user.phone = vm.copyUser.phone;
-                        user.email = vm.copyUser.email;
+                        AuthService.updateUserEmail(vm.copyUser.email);
+                        $rootScope.$broadcast('updateUser');
                         $mdDialog.hide();
                     });     
                 }.bind(vm));
@@ -72,20 +74,16 @@
                 backgroundImage.then(function (backImage){
                     vm.copyUser.background_image = backImage.data.public_id;
                     api.user.update({ id: vm.copyUser.id, user: vm.copyUser }, function(){
-                        user.background_image = vm.copyUser.background_image;
-                        user.about = vm.copyUser.about;
-                        user.phone = vm.copyUser.phone;
-                        user.email = vm.copyUser.email;
-                        $rootScope.$broadcast("$event");
+                        AuthService.updateUserEmail(vm.copyUser.email);
+                        $rootScope.$broadcast('updateUser');
                         $mdDialog.hide();
                     });     
                 }.bind(vm));
             }
             else{
                 api.user.update({ id: vm.copyUser.id, user: vm.copyUser }, function(){
-                    user.about = vm.copyUser.about;
-                    user.phone = vm.copyUser.phone;
-                    user.email = vm.copyUser.email;
+                    AuthService.updateUserEmail(vm.copyUser.email);
+                    $rootScope.$broadcast('updateUser');    
                     $mdDialog.hide();
                 }, function(response) {
                     vm.emailError = _.has(response, 'data.errors.email');
@@ -93,6 +91,19 @@
             }
             
             
+        }
+
+        function createFilterFor(query) {
+          var lowercaseQuery = _.lowerCase(query);
+
+          return function filterFn(language) {
+            return (_.lowerCase(language.name).indexOf(lowercaseQuery) === 0);
+          };
+        }
+
+        vm.queryLanguageSearch = function(query) {
+          var results = query ? vm.languages.filter(createFilterFor(query)) : [];
+          return results;
         }
 
 

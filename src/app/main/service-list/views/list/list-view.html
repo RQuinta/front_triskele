@@ -11,64 +11,63 @@
 
             <md-card-title>
               <md-card-title-text>
-                <span class="md-headline card-title">{{ service.name }}</span>
+                <span class="card-title" layout="row" layout-align="start center">{{ service.name }}</span>
                 <div class="md-subhead" layout="row" layout-align="start center">
-                  <div flex="60"  layout="row" layout-align="start center">
-                    <div ng-if="service.rating" flex="25" style="height: auto; width: 30px;">
-                        <md-tooltip md-direction="top">
-                          <span ng-if="service.rating == 5" translate="LIST.EXCELLENT">Excelente</span>
-                          <span ng-if="service.rating == 4" translate="LIST.VERY_GOOD">Muito Bom</span>
-                          <span ng-if="service.rating == 3" translate="LIST.GOOD">Bom</span>
-                          <span ng-if="service.rating == 2" translate="LIST.SATISFACTORY">Satisfatório</span>
-                          <span ng-if="service.rating == 1" translate="LIST.BELOW_AVERAGE">Abaixo da Média</span>
-                        </md-tooltip>
-                        <img style="height: auto; width: 30px;" src="../../../../../assets/icons/rating-icon/rating-{{ service.rating }}-icon.png" translate translate-attr-alt="LIST.RATING_ALT">             
-                    </div>
-                    <div ng-if="service.rating == 0" flex="25"  style="height: auto; width: 30px;">
-                      <div   layout="column" layout-align="center center" style="height: 30px; width: 30px; background-color: #1E88E5
+                    <div flex="70"  layout="row" layout-align="start center">
+                        <div ng-if="service.rating" flex="25" style="height: auto; width: 30px;">
+                            <md-tooltip md-direction="top">
+                                <span ng-if="service.rating == 5" translate="LIST.EXCELLENT">Excelente</span>
+                                <span ng-if="service.rating == 4" translate="LIST.VERY_GOOD">Muito Bom</span>
+                                <span ng-if="service.rating == 3" translate="LIST.GOOD">Bom</span>
+                                <span ng-if="service.rating == 2" translate="LIST.SATISFACTORY">Satisfatório</span>
+                                <span ng-if="service.rating == 1" translate="LIST.BELOW_AVERAGE">Abaixo da Média</span>
+                            </md-tooltip>
+                            <img style="height: auto; width: 30px;" src="../../../../../assets/icons/rating-icon/rating-{{ service.rating }}-icon.png" translate translate-attr-alt="LIST.RATING_ALT">             
+                        </div>
+                        <div ng-if="service.rating == 0" flex="25"  style="height: auto; width: 30px;">
+                            <div   layout="column" layout-align="center center" style="height: 30px; width: 30px; background-color: #1E88E5
   ; border-radius: 150px; font-size: 9px; font-weight: 600; color: white;">
-                        <md-tooltip md-direction="top">
-                          <span translate="LIST.NEW_ADVENTURE">Nova Aventura</span>
-                        </md-tooltip>
-                        <span translate="LIST.NEW">NOVO</span>
-                      </div>
-                    </div>                  
-                    <div flex="25" style="height: auto; width: 30px;">
-                      <!--  #TODO ver como estar o rating do banco e definir os intervalos --> 
-                      <md-tooltip md-direction="top">
-                        <span ng-if="service.adrenaline == 5" translate="LIST.ADRENALINE_5">Ultra Radical</span>
-                        <span ng-if="service.adrenaline == 4" translate="LIST.ADRENALINE_4">Radical</span>
-                        <span ng-if="service.adrenaline == 3" translate="LIST.ADRENALINE_3">Meio Radical</span>
-                        <span ng-if="service.adrenaline == 2" translate="LIST.ADRENALINE_2">Pouco Radical</span>
-                        <span ng-if="service.adrenaline == 1" translate="LIST.ADRENALINE_1">Nada Radical</span>
-                      </md-tooltip>
-                      <img style="height: auto; width: 30px;" src="../../../../../assets/icons/adrenaline-icon/lv{{ service.adrenaline }}-icon.png" translate translate-attr-alt="LIST.ADRENALINE_ALT">
+                                <md-tooltip md-direction="top">
+                                    <span translate="LIST.NEW_ADVENTURE">Nova Aventura</span>
+                                </md-tooltip>
+                                <span translate="LIST.NEW">NOVO</span>
+                            </div>
+                        </div>                  
+                        <div flex="25" style="height: auto; width: 30px;">
+                            <!--  #TODO ver como estar o rating do banco e definir os intervalos --> 
+                            <md-tooltip md-direction="top">
+                              <span ng-if="service.adrenaline == 5" translate="LIST.ADRENALINE_5">Ultra Radical</span>
+                              <span ng-if="service.adrenaline == 4" translate="LIST.ADRENALINE_4">Radical</span>
+                              <span ng-if="service.adrenaline == 3" translate="LIST.ADRENALINE_3">Meio Radical</span>
+                              <span ng-if="service.adrenaline == 2" translate="LIST.ADRENALINE_2">Pouco Radical</span>
+                              <span ng-if="service.adrenaline == 1" translate="LIST.ADRENALINE_1">Nada Radical</span>
+                            </md-tooltip>
+                            <img style="height: auto; width: 30px;" src="../../../../../assets/icons/adrenaline-icon/lv{{ service.adrenaline }}-icon.png" translate translate-attr-alt="LIST.ADRENALINE_ALT">
+                        </div>
+                        <div flex="25" style="height: auto; width: 30px;">
+                            <!--  #TODO ver como estar o rating do banco e definir os intervalos --> 
+                            <md-tooltip md-direction="top">
+                              <span ng-if="service.physical_effort == 5" translate="LIST.PHYSICAL_EFFORT_5">Esforço Físico Extremo</span>
+                              <span ng-if="service.physical_effort == 4" translate="LIST.PHYSICAL_EFFORT_4">Esforço Físico Desafiador</span>
+                              <span ng-if="service.physical_effort == 3" translate="LIST.PHYSICAL_EFFORT_3">Esforço Físico Razoável</span>
+                              <span ng-if="service.physical_effort == 2" translate="LIST.PHYSICAL_EFFORT_2">Esforço Físico Leve</span>
+                              <span ng-if="service.physical_effort == 1" translate="LIST.PHYSICAL_EFFORT_1">Pouco Esforço Físico</span>
+                            </md-tooltip>
+                            <img style="height: auto; width: 30px;" src="../../../../../assets/icons/physical-effort-icon/lv{{ service.physical_effort }}-icon.png" translate translate-attr-alt="LIST.PHYSICAL_EFFORT_ALT">
+                        </div>
                     </div>
-                    <div flex="25" style="height: auto; width: 30px;">
-                      <!--  #TODO ver como estar o rating do banco e definir os intervalos --> 
-                      <md-tooltip md-direction="top">
-                        <span ng-if="service.physical_effort == 5" translate="LIST.PHYSICAL_EFFORT_5">Esforço Físico Extremo</span>
-                        <span ng-if="service.physical_effort == 4" translate="LIST.PHYSICAL_EFFORT_4">Esforço Físico Desafiador</span>
-                        <span ng-if="service.physical_effort == 3" translate="LIST.PHYSICAL_EFFORT_3">Esforço Físico Razoável</span>
-                        <span ng-if="service.physical_effort == 2" translate="LIST.PHYSICAL_EFFORT_2">Esforço Físico Leve</span>
-                        <span ng-if="service.physical_effort == 1" translate="LIST.PHYSICAL_EFFORT_1">Pouco Esforço Físico</span>
-                      </md-tooltip>
-                      <img style="height: auto; width: 30px;" src="../../../../../assets/icons/physical-effort-icon/lv{{ service.physical_effort }}-icon.png" translate translate-attr-alt="LIST.PHYSICAL_EFFORT_ALT">
+                    <div flex="30" layout="row" layout-align="end center">
+                        <span class="card-price">R$ {{ service.price }}</span>
                     </div>
                 </div>
-                <div flex="40" layout="row" layout-align="end center">
-                  <span class="card-price">R$ {{ service.price }}</span>
-                </div>
-                </div>
-                <div layout="row" flex="100">
-                  <div flex="50" layout="row" layout-align="end center">
-                    <md-icon flex="10" md-font-icon="icon-map-marker" class="s16 margin-map-icon"></md-icon>
-                    <span flex="90"  class="md-subhead city-name">{{ service.city.name }}</span>
-                  </div>
-                  <div ng-if="service.event" flex="50" layout="row" layout-align="end center" translate translate-attr-aria-label="LIST.SELECT_DATE">
-                    <md-icon flex="10" md-font-icon="icon-calendar" class="s16 margin-map-icon"></md-icon>
-                    <span flex="90"  class="md-subhead city-name">{{ service.daytime | date:'dd/MM/yyyy' }}</span>
-                  </div>
+                <div layout="row" flex="100" layout-align="space-between center">
+                    <div flex="60" layout="row" layout-align="end center">
+                        <md-icon flex="15" md-font-icon="icon-map-marker" class="s16 margin-top-15" layout="row" layout-align="start center"></md-icon>
+                        <span flex="85" class="md-subhead city-name" layout="row" layout-align="start center">{{ service.city.name }}</span>
+                    </div>
+                    <div ng-if="service.event" flex="40" layout="row" layout-align="end center">
+                        <span flex="100" class="md-subhead city-name" layout="row" layout-align="end center"><md-icon md-font-icon="icon-calendar" class="s16"></md-icon>{{ service.daytime | date:'dd/MM/yyyy' }}</span>
+                    </div>
                 </div>
               </md-card-title-text>
             </md-card-title>

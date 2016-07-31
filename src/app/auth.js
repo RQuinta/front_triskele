@@ -9,8 +9,19 @@
 
         var vm = this;
 
+        $rootScope.$on('updateUser', function(event, message){
+            api.session.create({ email: vm.getUser().email, social_login: true}, function(session){
+                vm.setUser(session);
+                $rootScope.$broadcast('permissionsChanged');
+            });
+        });
+
         vm.getUser = function () {
             return $localStorage.user;
+        };
+
+        vm.updateUserEmail = function(email){
+            $localStorage.user.email = email;
         };
 
         vm.isProfessional = function(){

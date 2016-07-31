@@ -17,15 +17,19 @@
         <p class="sub-title" translate="HOME.SUBTITLE">Triskele é uma plataforma que ajuda aventureiros a vivenciarem experiências incríveis.</p>  
      
         <div class="search"  layout="row" layout-aling="center center" id="search" >
+
+  
           <md-chips class="md-whiteframe-1dp chips" layout-align="start center" ng-model="vm.searchService.selectedItens" md-autocomplete-snap="" md-require-match="true">
             <md-autocomplete class="complete" md-selected-item="vm.searchService.selectedItem"
                              md-search-text="vm.searchService.searchText"
                              md-search-text-change="vm.searchService.searchTextHandler(vm.searchText)"
                              md-selected-item-change="vm.searchService.selectedItemHandler(item)"
                              md-no-cache="true"
+                             md-autofocus="true"
+                             md-select-on-focus
                              md-items="item in vm.searchService.itens"
                              md-item-text="item.name"
-                             md-min-length="1"
+                             md-min-length="2"
                              placeholder="{{vm.screenWidth > 600 ? 'Ex: Rio de Janeiro' : 'Ex: Rio de Janeiro'}}">
               <span md-highlight-text="vm.searchService.searchText">{{item.name}}</span>
         

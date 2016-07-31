@@ -155,15 +155,17 @@
                           </md-content>
                         </div>
                         <div class="md-padding intern-padding">
-                        	<div>
+                          	<div>
                                 <h2 class="md-primary-fg" translate="DETAIL.GUIDE"></h2>
                                 <div class="user-info" layout="row" layout-align="start center">
-						            <img ng-if="!vm.service.professional.user.image" style="border: 2px white solid" class="profile-image avatar huge" src="assets/images/avatars/profile.jpg" alt="{{ vm.service.professional.user.name }}">
-						            <cl-image ng-if="vm.service.professional.user.image" style="border: 2px white solid" public-id="{{ vm.service.professional.user.image }}" class="profile-image avatar huge" quality="80" format="jpg" alt="{{ vm.service.professional.user.name }}"/>
-						            <div class="name">{{ vm.service.professional.user.name }}</div>
-						        </div>
+                                    <a ng-href="profile/{{ vm.service.professional.user.id }}">
+                                        <img ng-if="!vm.service.professional.user.image" style="border: 2px white solid" class="profile-image avatar huge" src="assets/images/avatars/profile.jpg" alt="{{ vm.service.professional.user.name }}">
+                                        <cl-image ng-if="vm.service.professional.user.image" style="border: 2px white solid" public-id="{{ vm.service.professional.user.image }}" class="profile-image avatar huge" quality="80" format="jpg" alt="{{ vm.service.professional.user.name }}"/>
+                                    </a>
+  						                      <div class="name font-size-26"><a ng-href="profile/{{ vm.service.professional.user.id }}">{{ vm.service.professional.user.name }}</a></div>
+  					                    </div>
                           	</div>
-                        	<div>
+                      	<div>
                                 <h2 class="md-primary-fg" translate="DETAIL.DESCRIPTION">Descrição</h2>
                                 <p>
                                   {{vm.service.description}}
@@ -200,8 +202,8 @@
             <md-tab-body>
                 <div class="md-padding intern-padding">
                     <p>{{ vm.service.how_to_get }}</p>
-                    <ui-gmap-google-map center="{latitude: vm.service.latitude, longitude: vm.service.longitude}" zoom="14" scrollwheel="false" options="vm.mapOptions">
-                      <ui-gmap-marker idkey="1" coords="{latitude: vm.service.latitude, longitude: vm.service.longitude}" options="marker.options" label="local" click="onClick()"  >
+                    <ui-gmap-google-map center="vm.map.center" zoom="vm.map.zoom" scrollwheel="false" options="vm.mapOptions" control="vm.map.control"> 
+                      <ui-gmap-marker idkey="1" coords="vm.map.center" options="marker.options" label="local" click="onClick()"  >
                           <ui-gmap-window closeClick="closeClick()">
                               <div>{{ vm.service.place }}</div>
                           </ui-gmap-window>
@@ -306,7 +308,7 @@
                         </div>
                     </md-input-container>
                     <div layout="row" layout-align="start center" style="margin-top: -20px; margin-left: -10px; margin-bottom: 20px">
-                        <md-datepicker name="date" ng-model="vm.appointmentForm.daytime" md-placeholder="Data"></md-datepicker>
+                        <md-datepicker required name="date" ng-model="vm.appointmentForm.daytime" md-placeholder="Data"></md-datepicker>
                         <div class="validation-messages" ng-messages="preAgendar.dateField.$error">
                             <div ng-message="valid" translate="DETAIL.INVALID_DATE">O valor não é uma data válida</div>
                             <div ng-message="required" translate="DETAIL.REQUIRED_DATE">A data não pode ser vazia</div>
@@ -330,7 +332,7 @@
                             </div>                
                         </md-radio-group>
                   </div>
-                    <md-button ng-disabled="preAgendar.valid" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" ng-click="vm.makeAppointment()" class="md-raised md-primary" translate="DETAIL.PRE_BOOK">Pre Agendar</md-button>
+                    <md-button ng-disabled="!vm.appointmentForm.daytime" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" ng-click="vm.makeAppointment()" class="md-raised md-primary" translate="DETAIL.PRE_BOOK">Pre Agendar</md-button>
                 </form>
             </div>
             <div layout-padding layout="column" is-offline>

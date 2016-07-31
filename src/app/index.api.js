@@ -34,8 +34,8 @@
       api.professional = $resource(api.baseUrl + "/api/professionals/:id.json", { id: '@id' }, {
          index:   { method: 'GET', isArray: true },
          create:  { method: 'POST' },
-         update:  { method: 'PUT' },
-         show:    { method: 'GET' }
+         update:  { method: 'PUT'  },
+         show:    { method: 'GET', }
       });
 
       api.doubts = $resource(api.baseUrl + "/api/doubts/.json", { id: '@id' }, {
@@ -72,6 +72,10 @@
               return service;
             } 
           }
+      });
+
+      api.language = $resource(api.baseUrl + "/api/languages/:id.json", { id: '@id'}, {
+         index:   { method: 'GET', isArray: true },
       });
 
       api.sport = $resource(api.baseUrl + "/api/sports/:id.json", { id: '@id' }, {

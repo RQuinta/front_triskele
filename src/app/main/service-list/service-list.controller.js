@@ -7,9 +7,10 @@
         .controller('ServiceListController', ServiceListController);
 
     /** @ngInject */
-    function ServiceListController($document, $mdDialog, $mdSidenav, searchService, $state, api, LanguagesService)
+    function ServiceListController($document, $mdDialog, $mdSidenav, searchService, $state, api, $rootScope, LanguagesService, $mdUtil)
 
     {
+
         var vm = this;
 
         vm.searchService = searchService;
@@ -42,6 +43,9 @@
         vm.toggleFilter = toggleFilter;
         vm.serviceDetails = serviceDetails;
         vm.changeMenuState = changeMenuState;
+
+        $rootScope.$on('$destroy', $mdUtil.enableScrolling);
+
 
         init();
 

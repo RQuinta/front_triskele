@@ -39,7 +39,7 @@
         });
 
         uiGmapGoogleMapApiProvider.configure({
-          //    key: 'your api key',
+          key: 'AIzaSyBDlmMp1dc30C52ITvL34L8Q4K-H40286c',
           libraries: 'places' // Required for SearchBox.
         });
 

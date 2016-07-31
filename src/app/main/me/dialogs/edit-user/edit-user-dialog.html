@@ -1,5 +1,5 @@
 <md-dialog aria-label="Editar Atividade" ng-cloak class="edit-user-width" >
-    <form name="editUser">
+    <form name="vm.editUser">
 		<md-toolbar>
 			<div class="md-toolbar-tools">
 				<h2 translate="ME.EDIT"></h2>
@@ -23,9 +23,9 @@
                 <div class="user-info" layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="start center">
                     <div class="image-upload user-control pointer">
                         <label for="file-input">
-                            <img ng-if="!vm.copyUser.image" style="border: 2px white solid" md-menu-align-target class="profile-image avatar huge" src="assets/images/avatars/profile.jpg" alt="{{ vm.copyUser.name }}">
+                            <img ng-if="!vm.copyUser.image && !vm.cropper.croppedImage" style="border: 2px white solid" md-menu-align-target class="profile-image avatar huge" src="assets/images/avatars/profile.jpg" alt="{{ vm.copyUser.name }}">
                             <cl-image ng-if="!vm.cropper.croppedImage && vm.copyUser.image" style="border: 2px white solid" public-id="{{ vm.copyUser.image }}" class="profile-image avatar huge" quality="80" format="jpg" alt="{{ vm.copyUser.name }}"/>
-                            <img ng-if="vm.cropper.croppedImage && vm.copyUser.image" style="border: 2px white solid" class="profile-image avatar huge" ng-src="{{vm.cropper.croppedImage}}" class="md-card-image" alt="{{ vm.copyUser.name }}" />
+                            <img ng-if="vm.cropper.croppedImage" style="border: 2px white solid" class="profile-image avatar huge" ng-src="{{vm.cropper.croppedImage}}" class="md-card-image" alt="{{ vm.copyUser.name }}" />
                             <div class="user-superior pointer" layout="row" layout-align="center center">
                                 <span class="content"><md-icon md-font-icon="icon-camera md-background-fg" class="s24"></md-icon></span>
                             </div>
@@ -47,12 +47,13 @@
                       		<div class="info-line">
                               	<md-input-container class="md-block" flex>
                                 		<label translate="ME.EMAIL" translate-attr-aria-label="ME.EMAIL"></label>
-                                		<input name="email" type="email" required ng-model="vm.copyUser.email">
-                                    <div ng-messages="editUser.email.$error" ng-show="editUser.email.$touched" role="alert">
+                                		<input name="email" type="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required ng-model="vm.copyUser.email">
+                                    <div ng-messages="vm.editUser.email.$error" ng-show="vm.editUser.email.$touched" role="alert">
                                         <div ng-message="required">Você precisa de um email para podermos conversar.</div>
                                         <div ng-message="email">This field must be a valid email address.</div>
                                         <div ng-message="vm.emailError">O nome não pode ter mais de 45 caracters</div>
                                     </div>
+                                    <div ng-if="vm.emailError">Deu ruim</div>
                                     <div class="error" data-ng-messages="serverErrors" data-ng-cloak>
                                         <div data-ng-message="vm.emailError">Email already exists</div>
                                     </div>
@@ -70,6 +71,18 @@
                               		<textarea ng-model="vm.copyUser.about" rows="5" md-select-on-focus md-no-autogrow></textarea>
                               	</md-input-container>
                           	</div>
+                            <div>{{vm.languages}}</div>
+                            <div class="info-line">
+                              <label translate="ME.LANGUAGES" translate-attr-aria-label="ME.LANGUAGES"></label>
+                              <md-contact-chips
+                                  ng-model="vm.selectedLanguages"
+                                  md-contacts="vm.queryLanguageSearch($query)"
+                                  md-contact-name="name"
+                                  md-require-match="true"
+                                  md-highlight-flags="i"
+                                  placeholder="Ex: Português">
+                              </md-contact-chips>
+                            </div>
                       	</div>
                   	</div>
              	</div>

@@ -16,7 +16,7 @@
             vm.profile = profile;
             vm.backgroundImage = "http://res.cloudinary.com/dwpckwhch/image/upload/q_80/" + vm.profile.background_image + ".jpg";
             if (profile.professional) {
-                api.service.index({ by_professional: profile.id, with_city: true }, function(services) {
+                api.service.index({ by_professional: profile.id, with_city: true, only_aproved: true, only_active: true}, function(services) {
                     vm.servicesList = services;
                 }, function() {
                     console.log('b');

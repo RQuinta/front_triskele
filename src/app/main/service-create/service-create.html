@@ -184,6 +184,7 @@
               </form>
             </md-tab-body>
           </md-tab>
+
           <md-tab ng-disabled="newServiceStep1.$invalid || newServiceStep2.$invalid || newServiceStep3.$invalid || !vm.files || vm.files.length < 3">
 
             <md-tab-label>
@@ -201,26 +202,14 @@
                   <h3 class="hint-text" translate="SERVICE_CREATE.ADVENTURE_ACTIVITIES">Atividades da Aventura</h3>
                 </div>
                 <div layout="row" layout-wrap layout-align="start center">                    
-                    <md-chips flex layout="row" layout-align="start center" ng-model="vm.newService.sports" md-autocomplete-snap="" md-require-match="true">
-                      <md-autocomplete
-                        name="activities"
-                        md-no-cache="true"
-                        md-items="item in vm.sports"
-                        md-item-text="item.name"
-                        md-min-length="1"
+                    <md-contact-chips
+                        ng-model="vm.newService.sports"
+                        md-contacts="vm.querySportSearch($query)"
+                        md-contact-name="name"
+                        md-require-match="true"
+                        md-highlight-flags="i"
                         placeholder="Ex: Trekking">
-                        <span>{{item.name}}</span>
-                      </md-autocomplete>
-
-                      <md-chip-template>
-                        <span>
-                          <strong>{{$chip.name}}</strong>
-                        </span>
-                      </md-chip-template>
-                      <md-not-found translate="SERVICE_CREATE.NO_MATCHES">
-                        No matches found.
-                      </md-not-found>
-                    </md-chips>
+                    </md-contact-chips>
                 </div>
                 <div layout="row">
                   <div layout="column" flex="50">
@@ -284,17 +273,20 @@
               <form name="newServiceStep5" ms-form-wizard-form novalidate>
                 <div layout="row" layout-wrap>
 
-                  <md-autocomplete class="city-margin" flex-xs="100" flex-sm="40" flex="35" required
+                  <md-autocomplete class="city-margin" flex-xs="100" flex-sm="40" flex="35"
+                      required
+                      md-autocomplete-snap
                       md-input-name="city"
-                      md-no-cache="ctrl.noCache"
+                      md-no-cache="true"
                       md-selected-item="vm.newService.city"
-                      md-search-text="ctrl.searchText"
-                      md-items="city in vm.cities"
-                      md-item-text="city.name"
+                      md-search-text="vm.searchCityText"
+                      md-min-length="2"
+                      md-items="item in vm.queryCitySearch(vm.searchCityText)"
+                      md-item-text="item.name"
                       md-floating-label="Cidade">
 
                     <md-item-template>
-                            <span md-highlight-text="ctrl.searchText">{{city.name}}</span>
+                            <span md-highlight-text="vm.searchCityText">{{item.name}}</span>
                             </md-item-template>
                             <div ng-messages="newServiceStep5.city.$error" ng-if="newServiceStep5.city.$touched">
                               <div ng-message="required" translate="SERVICE_CREATE.CITY_REQUIRED">Você deve informar a cidade.</div>

@@ -7,7 +7,7 @@
   .service('searchService', searchService);
 
   /** @ngInject */
-  function searchService($q, api, $timeout, $state, $rootScope, $mdUtil) {
+  function searchService($q, api, $timeout, $state, $rootScope) {
 
       var vm = this;
 
@@ -39,8 +39,6 @@
         }
          vm.selectedItemHandler(item);  
       };
-
-      $rootScope.$on('$destroy', $mdUtil.enableScrolling);
 
       vm.selectedItemHandler = function (item){
           vm.itens = [];
@@ -143,45 +141,36 @@
 
        function searchWithParams(groupedSelectedItens) {
           if ( _.has(groupedSelectedItens, 'City') && (!_.has(groupedSelectedItens, 'Sport') ) ) {
-             _.forEach(groupedSelectedItens['City'], function(city) {
-                api.service.index({ 
-                  by_city: city.id, without_deleted: true, only_active: true, only_aproved: true 
-                }, function(resource) {
-                    vm.servicesList = resource;
-                    vm.filterResults(vm.servicesList);
-                }, function() {
-                    console.log('b');
-                });
-             });
-          }
-          else{
-             if ( ( !_.has(groupedSelectedItens, 'City') ) && _.has(groupedSelectedItens, 'Sport') ){
-                _.forEach(groupedSelectedItens['Sport'], function(sport) {
-                  api.service.index({
-                      by_sport: sport.id, without_deleted: true, only_active: true, only_aproved: true
-                }, function(resource) {
-                      vm.servicesList = resource;
-                      vm.filterResults(vm.servicesList);
-                   }, function() {
-                      console.log('b');
-                   });
-                });
-             }
-             else{
-                _.forEach(groupedSelectedItens['City'], function(city) {
-                   _.forEach(groupedSelectedItens['Sport'], function(sport) {
-                      api.service.index({
-                         by_city: city.id, by_sport: sport.id, without_deleted: true, only_active: true, only_aproved: true
-                      }, function(resource) {
-                         vm.servicesList.concat(resource);
-                         vm.filterResults(vm.servicesList);
-                      }, function() {
-                         console.log('b');
-                      });
-
-                   });
-                });
-             }
+              var cities_ids = _.map(groupedSelectedItens['City'], 'id');
+              api.service.index({ 
+                'by_city[]': cities_ids, without_deleted: true, only_active: true, only_aproved: true 
+              }, function(resource) {
+                  vm.servicesList = resource;
+                  vm.filterResults(vm.servicesList);
+              }, function() {
+                  console.log('b');
+              });
+          } else if ( ( !_.has(groupedSelectedItens, 'City') ) && _.has(groupedSelectedItens, 'Sport') ){
+              var sports_ids = _.map(groupedSelectedItens['Sport'], 'id');
+              api.service.index({
+                  'by_sport[]': sports_ids, without_deleted: true, only_active: true, only_aproved: true
+              }, function(resource) {
+                  vm.servicesList = resource;
+                  vm.filterResults(vm.servicesList);
+              }, function() {
+                  console.log('b');
+              });
+          } else {
+              var cities_ids = _.map(groupedSelectedItens['City'], 'id');
+              var sports_ids = _.map(groupedSelectedItens['Sport'], 'id');
+              api.service.index({
+                 'by_city[]': cities_ids, 'by_sport[]': sports_ids, without_deleted: true, only_active: true, only_aproved: true
+              }, function(resource) {
+                 vm.servicesList = resource;
+                 vm.filterResults(vm.servicesList);
+              }, function() {
+                 console.log('b');
+              });              
           }
        };
 
@@ -196,6 +185,7 @@
 
       vm.filterClear = function(){
         vm.itens = [];
+        $rootScope.$broadcast('selectedItemHandler');
         vm.selectedItens = [];
         vm.servicesList = [];
         vm.filter.highPriceUntouched = true;

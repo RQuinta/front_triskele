@@ -6,10 +6,16 @@
                 <div class="title" translate="PROFILE.GENERAL_INFORMATION">General Information</div>
             </header>
 
-            <div class="content">
+            <div class="content" ng-if="vm.profile.about">
                 <div class="info-line">
                     <div class="title" translate="PROFILE.ABOUT_ME">About Me</div>
                     <div class="info">{{vm.profile.about}}</div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="info-line">
+                    <div class="title" translate="PROFILE.MEMBER_SINCE"></div>
+                    <div class="info">{{vm.profile.created_at | date:'dd/MM/yyyy'}}</div>
                 </div>
             </div>
         </div>

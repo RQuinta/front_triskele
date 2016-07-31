@@ -114,6 +114,24 @@
             });
         };
 
+        function createFilterFor(query) {
+          var lowercaseQuery = _.lowerCase(query);
+
+          return function filterFn(city) {
+            return (_.lowerCase(city.name).indexOf(lowercaseQuery) === 0);
+          };
+        }
+
+        vm.querySportSearch = function(query) {
+          var results = query ? vm.sports.filter(createFilterFor(query)) : [];
+          return results;
+        }
+
+        vm.queryCitySearch = function(query) {
+          var results = query ? vm.cities.filter(createFilterFor(query)) : [];
+          return results;
+        }
+
         vm.addItemToList = function(list, item) {
             vm.newService[list].push(item);
             vm['new_' + list] = null;

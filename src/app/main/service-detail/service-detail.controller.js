@@ -7,7 +7,7 @@
         .controller('ServiceDetailController', ServiceDetailController);
 
     /** @ngInject */
-    function ServiceDetailController($state, api, AuthService, $pgCheckout, LanguagesService)
+    function ServiceDetailController($state, api, AuthService, $pgCheckout, LanguagesService, uiGmapGoogleMapApi)
     {
         var vm = this;
 
@@ -32,6 +32,14 @@
         function init() {
             api.service.show({ id: $state.params.service_id}, function(service) { 
                 vm.service = service;
+                vm.map = {
+                    center : {
+                        latitude: vm.service.latitude, 
+                        longitude: vm.service.longitude
+                    },
+                    zoom : 14,
+                    control : {}
+                };
                 vm.filteredAcquisitions = _.filter(vm.service.acquisitions, "rating");
                 if (service.deleted || (!service.aproved) || (!service.active)) $state.go('app.pages_errors_error-404');
                 vm.appointmentForm = { 'slots': 1 };
@@ -97,6 +105,10 @@
             }
             return vm.numberOfComments;
         }
+
+        uiGmapGoogleMapApi.then(function(maps) {
+
+        });
 
     }
 })();

@@ -43,6 +43,7 @@
         "TWITTER_SHARE": "Share on Twitter",
         "GOOGLE_PLUS_SHARE": "Share on Google+",
         "SEE_ADVENTURE": "See Adventure",
-        "SHARE": "Share"
+        "SHARE": "Share",
+        "MEMBER_SINCE": "Member Since"
     }
 }

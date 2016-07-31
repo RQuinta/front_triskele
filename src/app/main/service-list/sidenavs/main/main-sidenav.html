@@ -178,7 +178,7 @@
       <div ng-show="vm.menuState.cities" class="menu-toggle-list">
         <div>
           <ul>
-            <li class="item list" ng-repeat="city in vm.cities" menu-check item="city" clicked-class="checked">
+            <li class="item list" ng-repeat="city in vm.cities" menu-check validate-fn="vm.hasItem" item="city" clicked-class="checked">
               <div ng-click="vm.searchService.addItemHandler(city);">
                 <span>{{ city.name }}</span>
               </diV>
@@ -197,7 +197,7 @@
       <div ng-show="vm.menuState.sports" class="animate-if">
         <div>
           <ul>
-            <li class="item list" ng-repeat="sport in vm.sports" menu-check item="sport" clicked-class="checked">
+            <li class="item list" ng-repeat="sport in vm.sports" menu-check validate-fn="vm.hasItem" item="sport" clicked-class="checked">
               <div ng-click="vm.searchService.addItemHandler(sport);">
                 <span translate="{{ vm.LanguagesService.getActivity(sport.name) }}"></span>
               </div>
