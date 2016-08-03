@@ -7,14 +7,19 @@
         .controller('RegisterController', RegisterController);
 
     /** @ngInject */
-    function RegisterController(AuthService)
+    function RegisterController(api, AuthService)
     {
      var vm = this;
         // Data
 
         // Methods
         vm.create = function(){
-            AuthService.apiUserCreate(vm.credencials);
+            api.user.create({user: vm.credencials}, function(user){
+                AuthService.setUser(user);
+                $window.history.back();
+            }, function(error){
+                vm.emailError = _.has(error, 'data.errors.email');
+            }); 
         };
 
         vm.loginWithFacebook = function(){

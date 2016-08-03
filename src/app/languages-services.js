@@ -109,6 +109,8 @@
                     return("DETAIL.ITALIAN");
                 case 'ja':
                     return("DETAIL.JAPANESE");
+                case 'zh':
+                    return("DETAIL.MANDARIM");
                 default:
             }
         };

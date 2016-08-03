@@ -42,6 +42,7 @@
         "CITY": "City:",
         "DATE": "Date",
         "DESCRIPTION": "Description",
+        "PAYMENT": "Payment",
         "AVERAGE_TIME": "Average Time",
         "INCLUDED": "What's included",
         "NOT_INCLUDED": "What's not included",
@@ -108,6 +109,7 @@
         "FRENCH": "French ",
         "GERMAN": "German ",
         "ITALIAN": "Italian ",
-        "JAPANESE": "Japanese "
+        "JAPANESE": "Japanese ",
+        "MANDARIM": "Mandarim "
     }
 }

@@ -54,6 +54,8 @@
         "TEL": "Tel.",
         "WEBSITE": "Website",
         "EMAILS": "Emails",
+        "EMAIL_ALREADY_EXISTS": "Email already exists",
+        "REGISTER": "Register",
         "FRIENDS": "Friends",
         "SEE": "See",
         "JOINED_GROUPS": "Joined Groups",

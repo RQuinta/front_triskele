@@ -53,7 +53,7 @@
                                         <div ng-message="email">This field must be a valid email address.</div>
                                         <div ng-message="vm.emailError">O nome não pode ter mais de 45 caracters</div>
                                     </div>
-                                    <div ng-if="vm.emailError">Deu ruim</div>
+                                    <div ng-if="vm.emailError" class="md-warn-fg font-size-14 margin-top-5"  translate="ME.EMAIL_ALREADY_EXISTS" translate-attr-aria-label="ME.EMAIL_ALREADY_EXISTS">Deu ruim</div>
                                     <div class="error" data-ng-messages="serverErrors" data-ng-cloak>
                                         <div data-ng-message="vm.emailError">Email already exists</div>
                                     </div>
@@ -71,7 +71,6 @@
                               		<textarea ng-model="vm.copyUser.about" rows="5" md-select-on-focus md-no-autogrow></textarea>
                               	</md-input-container>
                           	</div>
-                            <div>{{vm.languages}}</div>
                             <div class="info-line">
                               <label translate="ME.LANGUAGES" translate-attr-aria-label="ME.LANGUAGES"></label>
                               <md-contact-chips

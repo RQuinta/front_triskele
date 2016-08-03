@@ -16,6 +16,9 @@
         "CREATE_ACCOUNT": "CREATE MY ACCOUNT",
         "ALREADY_HAVE": "Already have an account?",
         "LOGIN": "Log in",
+        "REGISTER_AS_PARTNER": "Be our Partner",
+        "EMAIL_ALREADY_EXISTS": "Email already exists",
+        "REGISTER": "Register",
         "ERRORS": {
             "USERNAME_REQUIRED": "Username field is required",
             "PHONE_NUMBER_REQUIRED": "Phone Number field is required",

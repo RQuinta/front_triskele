@@ -49,7 +49,7 @@
         <md-input-container class="md-block" md-no-float>
           <input type="email" name="email" ng-model="vm.credencials.email" placeholder="Email"
                  translate translate-attr-placeholder="REGISTER.EMAIL"
-                 ng-pattern="/^.+@.+\..+$/" required>
+                 ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required>
           <div ng-messages="registerForm.email.$error" role="alert" multiple>
             <div ng-message="required">
               <span translate="REGISTER.ERRORS.EMAIL_REQUIRED">Email field is required</span>
@@ -58,6 +58,7 @@
               <span translate="REGISTER.ERRORS.EMAIL_MUST_VALID">Email must be a valid e-mail address</span>
             </div>
           </div>
+          <div ng-if="vm.emailError" class="md-warn-fg font-size-14 margin-top-5" translate="ME.EMAIL_ALREADY_EXISTS" translate-attr-aria-label="ME.EMAIL_ALREADY_EXISTS">Deu ruim</div>
         </md-input-container>
 
         <md-input-container class="md-block" md-no-float>

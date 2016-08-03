@@ -61,7 +61,10 @@
                                     <span translate="DETAIL.ACTIVITIES">Atividades:</span>
                                   </div>
                                   <div flex="50" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
-                                    <span ng-repeat="sport in vm.service.sports" translate="{{ vm.LanguagesService.getActivity(sport.name) }}"></span>
+                                    <div ng-repeat="sport in vm.service.sports">
+                                        <span translate="{{ vm.LanguagesService.getActivity(sport.name) }}"></span>
+                                        <span ng-if="!$last">,&nbsp;</span>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -125,7 +128,10 @@
                                     <span translate="DETAIL.LANGUAGES">Idioma(s): </span>
                                   </div>
                                   <div flex="50" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
-                                    <span>Português, Inglês</span>
+                                    <div ng-repeat="language in vm.service.professional.languages">
+                                        <span translate="{{ vm.LanguagesService.getLanguage(language.code) }}"></span>
+                                        <span ng-if="!$last">,&nbsp;</span>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -165,12 +171,18 @@
   						                      <div class="name font-size-26"><a ng-href="profile/{{ vm.service.professional.user.id }}">{{ vm.service.professional.user.name }}</a></div>
   					                    </div>
                           	</div>
-                      	<div>
+                      	    <div>
                                 <h2 class="md-primary-fg" translate="DETAIL.DESCRIPTION">Descrição</h2>
                                 <p>
                                   {{vm.service.description}}
                                 </p>
                           	</div>
+                            <div>
+                                <h2 class="md-primary-fg" translate="DETAIL.PAYMENT"></h2>
+                                <p>
+                                    O pagamento dessa atividade será realizado apenas parcialmente dentro da plataforma, o necessário para fazer a reserva ( R${{vm.service.price}} ). O restante ( R$50 ) deverá ser pago diretamente com o guia.
+                                </p>
+                            </div>
                           	<div>
                                 <h2 class="md-primary-fg" translate="DETAIL.INCLUDED">O que está incluso</h2>
                                 <p ng-repeat="included in vm.service.included">{{ included }}</p>
@@ -332,7 +344,7 @@
                             </div>                
                         </md-radio-group>
                   </div>
-                    <md-button ng-disabled="!vm.appointmentForm.daytime" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" ng-click="vm.makeAppointment()" class="md-raised md-primary" translate="DETAIL.PRE_BOOK">Pre Agendar</md-button>
+                    <md-button ng-disabled="!vm.appointmentForm.daytime" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" ng-click="vm.makeAppointment()" class="md-raised md-primary"><span translate="DETAIL.PRE_BOOK"></span> <span>( R$50 )</span></md-button>
                 </form>
             </div>
             <div layout-padding layout="column" is-offline>
@@ -393,7 +405,7 @@
                       </div>                
                   </md-radio-group>
                 </div>
-                <md-button ng-if="vm.service.event" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" ng-click="vm.makeAcquisition()" class="md-raised md-primary" translate="DETAIL.BOOK">Agendar</md-button>
+                <md-button ng-if="vm.service.event" style="width: 100%; bottom:10px; margin-left: 0px; position: relative; margin-top: 15px" ng-click="vm.makeAcquisition()" class="md-raised md-primary"><span translate="DETAIL.BOOK"></span> <span>( R$50 )</span></md-button>
               </form>
             </div>
             <div layout-padding layout="column" is-offline>
